@@ -1,0 +1,23 @@
+#ifndef GROUP_H
+#define GROUP_H
+
+#include "ShapeItem.h"
+
+#include <QList>
+#include <QPainterPath>
+
+namespace Lottie {
+
+class Group : public ShapeItem
+{
+public:
+    Group();
+    ~Group() override;
+
+    virtual void decode(const QJsonObject& in_obj) override;
+
+public:
+    QList<ShapeItem*> m_shapes;
+};
+}
+#endif // GROUP_H

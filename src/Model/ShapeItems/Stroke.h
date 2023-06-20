@@ -1,0 +1,34 @@
+#ifndef STROKE_H
+#define STROKE_H
+
+#include "ShapeItem.h"
+#include "../../Utility/Primitives/DashElement.h"
+#include "../Keyframes/KeyFrameGroup.h"
+#include <QPen>
+
+namespace Lottie {
+
+class Stroke : public ShapeItem
+{
+public:
+
+    enum class StrokeRule {
+      None,
+      NonZeroWinding,
+      EvenOdd
+    };
+
+    Stroke();
+
+    virtual void decode(const QJsonObject& in_obj) override;
+
+public:
+    KeyFrameGroup<Vector1D> m_opacity;
+    KeyFrameGroup<Vector1D> m_width;
+    KeyFrameGroup<QVector4D> m_color;
+    KeyFrameGroup<std::vector<DashElement>> m_dashPattern;
+    QPen m_pen;
+};
+}
+
+#endif // STROKE_H

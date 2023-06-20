@@ -1,0 +1,13 @@
+AnimationView is derived from LottieView
+    animationlayer : AnimationContainer
+
+AnimationContainer : is derived from CALayer
+   animationlayers array of CompositionLayer
+
+CompositionLayer : CALayer
+    transformNode: LayerTransformNode
+
+LayerTransformNode : AnimatorNode
+
+AnimatorNode
+ KayPathSearchable
