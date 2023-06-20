@@ -26,7 +26,7 @@ protected:
     void resizeEvent(QResizeEvent* ev) override;
 
 private slots:
-    void on_frame_changed(int time);
+    void on_frame_changed(int frame);
 
 private:
     std::unique_ptr<Animation> m_animation;

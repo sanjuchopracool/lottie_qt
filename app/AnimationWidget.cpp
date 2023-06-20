@@ -29,8 +29,8 @@ AnimationWidget::AnimationWidget(QWidget *parent) : QWidget(parent)
 {
     setAttribute(Qt::WA_TransparentForMouseEvents);
     m_timeline.setEasingCurve(QEasingCurve::Linear);
-    connect(&m_timeline, SIGNAL(frameChanged(int)),
-            this, SLOT(on_frame_changed(int)));
+    connect(&m_timeline, SIGNAL(frameChanged(int)), this, SLOT(on_frame_changed(int)));
+    load(QDir::home().absolutePath() + "/Downloads/PLANE.json");
 }
 
 AnimationWidget::~AnimationWidget()
@@ -49,10 +49,12 @@ bool AnimationWidget::load(const QString &file_path)
 
         m_animation_container = std::make_unique<AnimationContainer>(m_animation.get());
 
-        m_timeline.setStartFrame(m_animation->m_start_frame*1000);
-        m_timeline.setEndFrame(m_animation->m_end_frame*1000);
-        m_timeline.setDuration(ms_for_frame(m_animation->m_frame_rate, (m_animation->m_end_frame - m_animation->m_start_frame)));
-        m_timeline.setUpdateInterval(1000/m_animation->m_frame_rate);
+        m_timeline.setStartFrame(m_animation->m_start_frame * 1000);
+        m_timeline.setEndFrame(m_animation->m_end_frame * 1000);
+        m_timeline.setDuration(
+            ms_for_frame(m_animation->m_frame_rate,
+                         (m_animation->m_end_frame - m_animation->m_start_frame)));
+        m_timeline.setUpdateInterval(20);
         m_timeline.setLoopCount(0);
         m_timeline.start();
 
@@ -76,7 +78,7 @@ void AnimationWidget::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)
     QPainter painter(this);
-    painter.fillRect(this->rect(), Qt::darkGreen);
+    //    painter.fillRect(this->rect(), Qt::darkGreen);
     if (m_animation_container)
     {
 //        AutoProfiler p("D");
@@ -106,16 +108,16 @@ void AnimationWidget::resizeEvent(QResizeEvent *ev)
 
 void AnimationWidget::on_frame_changed(int time)
 {
-//    static int counter = 1;
-//    qDebug() << time << counter++;
-    if (m_animation_container)
-    {
-//        AutoProfiler p("U");
-        if(m_animation_container->update(time/1000.0, m_forced_update))
+    static int counter = 1;
+    FrameType t = static_cast<FrameType>(time) / 1000.0;
+    qDebug() << t << counter++;
+    if (m_animation_container) {
+        //        AutoProfiler p("U");
+        if (m_animation_container->update(t, m_forced_update))
             this->update();
 
         m_forced_update = false;
     }
 }
 
-}
+} // namespace Lottie
