@@ -6,7 +6,7 @@
 #include <QPainter>
 #include <QDebug>
 
-namespace  Lottie {
+namespace  eao {
 ShapeCompositionLayer::ShapeCompositionLayer(const ShapeLayer *layer, const PaintBufferInfo &info)
     : TransformedPaintBuffer(layer->m_transform, info, layer)
 {

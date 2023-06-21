@@ -4,7 +4,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
-namespace Lottie {
+namespace eao {
 
 const QString it_key("it");
 

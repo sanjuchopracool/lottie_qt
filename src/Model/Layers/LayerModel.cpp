@@ -1,6 +1,6 @@
 #include "LayerModel.h"
 
-namespace Lottie {
+namespace eao {
 
 namespace {
 const QString name_key = "nm";

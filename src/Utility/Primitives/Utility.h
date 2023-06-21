@@ -14,7 +14,7 @@
 #include <QVector3D>
 #include <QVector4D>
 
-namespace  Lottie {
+namespace  eao {
 class BezierPath;
 struct DashElement;
 

@@ -23,7 +23,7 @@ double frame_for_ms(double frame_rate, int in_value)
 }
 }
 
-namespace Lottie {
+namespace eao {
 
 AnimationWidget::AnimationWidget(QWidget *parent) : QWidget(parent)
 {
@@ -120,4 +120,4 @@ void AnimationWidget::on_frame_changed(int time)
     }
 }
 
-} // namespace Lottie
+} // namespace eao

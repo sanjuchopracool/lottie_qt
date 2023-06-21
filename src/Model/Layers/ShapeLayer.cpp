@@ -4,7 +4,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-namespace Lottie {
+namespace eao {
 
 namespace {
 const QString shapes_key = "shapes";

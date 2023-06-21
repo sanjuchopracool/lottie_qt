@@ -3,7 +3,7 @@
 
 #include <memory>
 
-namespace  Lottie {
+namespace  eao {
 class TransformedPaintBuffer;
 class LayerModel;
 struct PaintBufferInfo;

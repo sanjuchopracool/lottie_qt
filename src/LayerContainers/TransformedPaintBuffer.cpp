@@ -7,7 +7,7 @@
 #include <QPainter>
 #include <QDebug>
 
-namespace Lottie {
+namespace eao {
 
 TransformedPaintBuffer::TransformedPaintBuffer(const Transformation& transformation, const PaintBufferInfo &info, const LayerModel *layer_mode)
     : CompositionLayer(info),

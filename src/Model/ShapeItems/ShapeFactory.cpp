@@ -14,7 +14,7 @@
 #include <QMap>
 #include <QJsonObject>
 
-namespace Lottie {
+namespace eao {
 
 const QString type_key = "ty";
 const QMap<QString, ShapeType> keyToType

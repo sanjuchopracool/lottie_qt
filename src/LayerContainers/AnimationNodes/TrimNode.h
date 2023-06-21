@@ -8,7 +8,7 @@
 #include <memory>
 #include <QPainterPath>
 
-namespace Lottie {
+namespace eao {
 class Trim;
 class TrimNode : public ShapeNodeInterface
 {

@@ -9,7 +9,7 @@
 #include <QVector3D>
 #include <QEasingCurve>
 
-namespace Lottie {
+namespace eao {
 
 template<typename T>
 class KeyFrame

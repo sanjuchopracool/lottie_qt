@@ -8,7 +8,7 @@
 
 #include "../CompositionLayer.h"
 
-namespace Lottie {
+namespace eao {
 class Group;
 
 class GroupNode : public ShapeNodeInterface

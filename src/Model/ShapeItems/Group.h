@@ -6,7 +6,7 @@
 #include <QList>
 #include <QPainterPath>
 
-namespace Lottie {
+namespace eao {
 
 class Group : public ShapeItem
 {

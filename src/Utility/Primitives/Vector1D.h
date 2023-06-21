@@ -4,7 +4,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 
-namespace Lottie
+namespace eao
 {
 using Vector1D = double;
 inline void decode(Vector1D &val, const QJsonValue &in_value)

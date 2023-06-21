@@ -2,7 +2,7 @@
 
 #include <QJsonObject>
 
-namespace Lottie {
+namespace eao {
 
 const QString opacity_key = "o";
 const QString color_key = "c";

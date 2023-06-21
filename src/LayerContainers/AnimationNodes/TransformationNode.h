@@ -7,7 +7,7 @@
 
 #include <memory>
 
-namespace Lottie {
+namespace eao {
 class Transformation;
 class TransformationNode : public ShapeNodeInterface
 {

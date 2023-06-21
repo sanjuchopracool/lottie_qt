@@ -7,7 +7,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-namespace Lottie {
+namespace eao {
 
 template<typename T>
 class KeyFrameGroup
@@ -76,19 +76,19 @@ void KeyFrameGroup<T>::decode(const QJsonValue &in_value)
                 DecoderHelper::do_decode<T>(prev_end_value,object.value(key_end));
 
             if (object.contains(key_in_tan))
-                Lottie::decode_keyframe_tangent(in_tangent, object.value(key_in_tan));
+                eao::decode_keyframe_tangent(in_tangent, object.value(key_in_tan));
 
             if (object.contains(key_out_tan))
-                Lottie::decode_keyframe_tangent(out_tangent, object.value(key_out_tan));
+                eao::decode_keyframe_tangent(out_tangent, object.value(key_out_tan));
 
             if (object.contains(key_hold))
                 hold = object.value(key_hold).toBool();
 
             if (object.contains(key_sp_in))
-                Lottie::decode(sp_in_tan, object.value(key_sp_in));
+                eao::decode(sp_in_tan, object.value(key_sp_in));
 
             if (object.contains(key_sp_out))
-                Lottie::decode(sp_out_tan, object.value(key_sp_out));
+                eao::decode(sp_out_tan, object.value(key_sp_out));
 
             m_keyframes.append(KeyFrameType(start_value, time, hold,
                                             prev_in_tangent, out_tangent,

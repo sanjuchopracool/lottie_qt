@@ -2,7 +2,7 @@
 
 #include <QJsonObject>
 
-namespace Lottie {
+namespace eao {
 
 const QString mode_key("mm");
 const QString match_name_key("mn");

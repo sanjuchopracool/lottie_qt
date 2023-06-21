@@ -3,7 +3,7 @@
 
 #include "CurveVertex.h"
 
-namespace Lottie {
+namespace eao {
 
 class PathElement
 {

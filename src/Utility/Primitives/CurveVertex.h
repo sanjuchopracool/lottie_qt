@@ -3,7 +3,7 @@
 
 #include <QPointF>
 
-namespace Lottie {
+namespace eao {
 
 class CurveVertex
 {

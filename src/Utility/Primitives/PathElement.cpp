@@ -1,6 +1,6 @@
 #include "PathElement.h"
 
-namespace  Lottie {
+namespace  eao {
 
 SplitElementResult split_element_at(const PathElement &to, const PathElement &from, float at_length)
 {

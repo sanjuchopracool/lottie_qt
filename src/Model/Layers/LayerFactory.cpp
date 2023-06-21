@@ -4,7 +4,7 @@
 #include "ShapeLayer.h"
 #include <QJsonObject>
 
-namespace  Lottie {
+namespace  eao {
 
 namespace {
 const QString type_key = "ty";

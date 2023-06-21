@@ -14,8 +14,8 @@ class AutoProfiler {
   ~AutoProfiler() {
     auto end = std::chrono::high_resolution_clock::now();
     auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - m_beg);
-    std::cout << m_name << " : " << dur.count() << " musec" << std::endl;
-//    printf("%s: %d musec\n", m_name.c_str(), dur.count());
+    std::cout << m_name << " : " << dur.count() << " usec" << std::endl;
+    //    printf("%s: %d musec\n", m_name.c_str(), dur.count());
   }
  private:
   std::string m_name;

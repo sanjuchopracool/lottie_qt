@@ -1,7 +1,7 @@
 #ifndef LOTTIELIB_H
 #define LOTTIELIB_H
 
-namespace Lottie
+namespace eao
 {
     using FrameType = double;
 

@@ -2,7 +2,7 @@
 #define LAYERFACTORY_H
 
 class QJsonObject;
-namespace Lottie {
+namespace eao {
 
 class LayerModel;
 LayerModel* layer_from_object(const QJsonObject& in_value);

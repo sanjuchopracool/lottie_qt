@@ -6,7 +6,7 @@
 #include <vector>
 #include <memory>
 
-namespace  Lottie {
+namespace  eao {
 class ShapeLayer;
 class ShapeItem;
 

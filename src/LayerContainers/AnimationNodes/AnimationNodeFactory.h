@@ -4,7 +4,7 @@
 #include <memory>
 #include <QList>
 
-namespace Lottie {
+namespace eao {
 class ShapeNodeInterface;
 class PathNode;
 class ShapeItem;

@@ -2,7 +2,7 @@
 
 #include <QJsonObject>
 
-namespace Lottie {
+namespace eao {
 
 const QString path_key = "ks";
 const QString direction_key = "d";

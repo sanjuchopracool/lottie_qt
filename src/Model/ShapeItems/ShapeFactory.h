@@ -2,7 +2,7 @@
 #define SHAPEFACTORY_H
 
 class QJsonObject;
-namespace Lottie {
+namespace eao {
 
 class ShapeItem;
 class ShapeFactory

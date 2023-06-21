@@ -8,8 +8,8 @@ class AnyValueProvider
 {
 public:
     using valueType = T;
-    virtual bool has_update(Lottie::FrameType frame) const = 0;
-    virtual const valueType& value(Lottie::FrameType frame) = 0;
+    virtual bool has_update(eao::FrameType frame) const = 0;
+    virtual const valueType& value(eao::FrameType frame) = 0;
 
     virtual ~AnyValueProvider() {}
     virtual bool is_static() const { return false;}

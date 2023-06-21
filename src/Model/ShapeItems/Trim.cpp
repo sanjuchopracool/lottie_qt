@@ -1,6 +1,6 @@
 #include "Trim.h"
 
-namespace Lottie {
+namespace eao {
 const QString start_key = "s";
 const QString end_key = "e";
 const QString offset_key = "o";

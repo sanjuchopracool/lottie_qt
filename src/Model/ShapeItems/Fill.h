@@ -5,7 +5,7 @@
 #include "../Keyframes/KeyFrameGroup.h"
 #include "../../Utility/Primitives/Utility.h"
 
-namespace Lottie {
+namespace eao {
 
 class Fill : public ShapeItem
 {

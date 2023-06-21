@@ -5,7 +5,7 @@
 
 #include <QPainter>
 
-namespace Lottie {
+namespace eao {
 
 TransformationNode::TransformationNode(const Transformation &transformation)
 {

@@ -4,7 +4,7 @@
 #include "../../NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 #include <QPainter>
 
-namespace Lottie {
+namespace eao {
 StrokeNode::StrokeNode(const Stroke* stroke)
 {
     using PropColor = NodeProperty<QVector4D>;

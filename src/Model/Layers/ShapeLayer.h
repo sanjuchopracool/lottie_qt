@@ -6,7 +6,7 @@
 
 #include <QList>
 
-namespace Lottie {
+namespace eao {
 
 class ShapeLayer : public LayerModel
 {

@@ -5,7 +5,7 @@
 
 #include <QPainter>
 
-namespace Lottie {
+namespace eao {
 
 ShapeTransformationNode::ShapeTransformationNode(const ShapeTransformation* transform)
     : m_transform(transform)

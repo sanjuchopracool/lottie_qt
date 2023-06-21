@@ -6,7 +6,7 @@
 #include <QPixmap>
 #include <memory>
 
-namespace Lottie {
+namespace eao {
 class LayerModel;
 
 struct PaintBufferInfo

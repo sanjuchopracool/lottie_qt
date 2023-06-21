@@ -7,7 +7,7 @@
 
 #include <memory>
 
-namespace Lottie {
+namespace eao {
 class Fill;
 class FillNode : public ShapeNodeInterface, public RenderNode
 {

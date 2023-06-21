@@ -3,7 +3,7 @@
 
 #include "CompositionLayer.h"
 
-namespace Lottie {
+namespace eao {
 class LayerModel;
 class Transformation;
 class TransformationNode;

@@ -3,7 +3,7 @@
 #include "../../Model/ShapeItems/Ellipse.h"
 #include "../../NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 
-namespace Lottie {
+namespace eao {
 EllipseNode::EllipseNode(const Ellipse *ellipse)
 {
     using Prop2D = NodeProperty<QVector2D>;

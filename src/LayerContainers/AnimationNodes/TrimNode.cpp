@@ -5,7 +5,7 @@
 #include "../../AutoProfiler.h"
 #include "../../Model/ShapeItems/Trim.h"
 #include "../../NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
-namespace Lottie {
+namespace eao {
 TrimNode::TrimNode(const Trim *trim)
     : m_trim(trim)
 {

@@ -16,7 +16,7 @@
 #include "TrimNode.h"
 #include "ShapeTransformationNode.h"
 
-namespace Lottie {
+namespace eao {
 namespace AnimationNodeFactory {
 
 std::unique_ptr<ShapeNodeInterface> node_for_shape(ShapeItem *shape_item, QList<PathNode*>& paths)

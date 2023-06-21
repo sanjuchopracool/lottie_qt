@@ -9,7 +9,7 @@
 #include <QPen>
 #include <memory>
 
-namespace Lottie {
+namespace eao {
 class Stroke;
 
 class StrokeNode : public ShapeNodeInterface, public RenderNode

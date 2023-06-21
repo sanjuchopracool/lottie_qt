@@ -2,7 +2,7 @@
 #include "Utility.h"
 #include "../Interpolatable/Interpolatable.h"
 
-namespace Lottie {
+namespace eao {
 
 SplitResult split_curve(const CurveVertex& from, const CurveVertex& to, float amount)
 {

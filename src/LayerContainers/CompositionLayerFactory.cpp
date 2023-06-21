@@ -7,7 +7,7 @@
 #include "ShapeCompositionLayer.h"
 #include "NullCompositionLayer.h"
 
-namespace  Lottie {
+namespace  eao {
 
 std::unique_ptr<TransformedPaintBuffer> CompositionLayerFactory::composition_layer(const LayerModel *model, const PaintBufferInfo &info)
 {

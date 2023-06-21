@@ -8,7 +8,7 @@
 #include "../../Utility/Primitives/Utility.h"
 #include <memory>
 
-namespace Lottie {
+namespace eao {
 class Shape;
 
 class ShapeNode : public ShapeNodeInterface, public PathNode

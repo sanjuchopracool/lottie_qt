@@ -3,7 +3,7 @@
 #include <QJsonValue>
 
 
-namespace Lottie {
+namespace eao {
 const QString type_key = "n";
 const QString value_key = "v";
 

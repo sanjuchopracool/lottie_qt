@@ -6,7 +6,7 @@
 #include <QJsonObject>
 #include <QList>
 
-namespace Lottie {
+namespace eao {
 class Animation
 {
 public:

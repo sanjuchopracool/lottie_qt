@@ -5,7 +5,7 @@
 #include "../../lottielib.h"
 #include <QJsonObject>
 
-namespace Lottie {
+namespace eao {
 
 enum class LayerType
 {

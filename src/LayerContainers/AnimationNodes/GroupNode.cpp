@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <algorithm>
 
-namespace Lottie {
+namespace eao {
 
 GroupNode::GroupNode(const Group *group)
     : m_group(group)

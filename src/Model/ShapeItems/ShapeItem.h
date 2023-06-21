@@ -6,7 +6,7 @@
 class QJsonObject;
 class QPainterPath;
 
-namespace Lottie {
+namespace eao {
 
 enum class ShapeType {
     None,

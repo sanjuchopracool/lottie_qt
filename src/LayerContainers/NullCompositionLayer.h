@@ -3,7 +3,7 @@
 
 #include "TransformedPaintBuffer.h"
 
-namespace Lottie {
+namespace eao {
 class LayerModel;
 
 class NullCompositionLayer : public TransformedPaintBuffer

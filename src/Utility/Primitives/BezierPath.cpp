@@ -6,7 +6,7 @@
 #include <QPixmap>
 #include <QPainter>
 
-namespace Lottie {
+namespace eao {
 
 namespace {
 const QString closed_key = "c";

@@ -7,7 +7,7 @@
 #include <QMap>
 #include <QPainter>
 
-namespace Lottie {
+namespace eao {
 
 AnimationContainer::AnimationContainer(const Animation *animation)
     : m_animation(animation)
@@ -89,4 +89,4 @@ void AnimationContainer::load_layers()
     }
     //    std::reverse(m_layers.begin(), m_layers.end());
 }
-} // namespace Lottie
+} // namespace eao

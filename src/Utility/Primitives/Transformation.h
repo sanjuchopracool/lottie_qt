@@ -4,7 +4,7 @@
 #include "../../Model//Keyframes/KeyFrameGroup.h"
 #include "Utility.h"
 
-namespace Lottie {
+namespace eao {
 
 class Transformation
 {

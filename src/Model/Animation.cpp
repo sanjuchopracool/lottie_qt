@@ -4,7 +4,7 @@
 #include <QJsonArray>
 
 using namespace std;
-namespace Lottie {
+namespace eao {
 
 namespace {
 const QString version_key("v");

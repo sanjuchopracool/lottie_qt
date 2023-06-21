@@ -24,12 +24,12 @@ public:
 
     }
 
-    bool needs_update(Lottie::FrameType frame) const
+    bool needs_update(eao::FrameType frame) const
     {
         return  m_value_container.needs_update() or m_value_provider->has_update(frame);
     }
 
-    void update(Lottie::FrameType frame)
+    void update(eao::FrameType frame)
     {
         m_value_container.set_value(m_value_provider->value(frame), frame);
     }

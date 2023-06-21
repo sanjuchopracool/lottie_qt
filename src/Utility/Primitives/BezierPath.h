@@ -9,7 +9,7 @@
 #include "../Interpolatable/Interpolatable.h"
 #include "../../AutoProfiler.h"
 
-namespace Lottie {
+namespace eao {
 
 class BezierPath
 {

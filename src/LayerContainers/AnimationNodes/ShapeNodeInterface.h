@@ -7,7 +7,7 @@
 
 class QPainter;
 
-namespace Lottie {
+namespace eao {
 
 class PathNode
 {

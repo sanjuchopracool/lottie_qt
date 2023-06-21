@@ -3,7 +3,7 @@
 
 #include "ShapeItem.h"
 
-namespace Lottie {
+namespace eao {
 
 enum class MergeMode {
       None,

@@ -7,7 +7,7 @@
 
 #include <memory>
 
-namespace Lottie {
+namespace eao {
 class Ellipse;
 
 class EllipseNode : public ShapeNodeInterface, public PathNode

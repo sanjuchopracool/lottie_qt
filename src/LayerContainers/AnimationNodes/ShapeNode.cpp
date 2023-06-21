@@ -4,7 +4,7 @@
 #include "../../NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 #include "../../Utility/Primitives/BezierPath.h"
 
-namespace Lottie {
+namespace eao {
 
 ShapeNode::ShapeNode(const Shape *shape)
     : m_shape(shape)

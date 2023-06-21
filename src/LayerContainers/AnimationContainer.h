@@ -10,7 +10,7 @@
 
 class QPainter;
 
-namespace Lottie {
+namespace eao {
 class Animation;
 
 class AnimationContainer

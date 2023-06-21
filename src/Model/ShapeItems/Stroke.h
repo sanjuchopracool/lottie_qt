@@ -6,7 +6,7 @@
 #include "../Keyframes/KeyFrameGroup.h"
 #include <QPen>
 
-namespace Lottie {
+namespace eao {
 
 class Stroke : public ShapeItem
 {

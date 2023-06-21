@@ -5,7 +5,7 @@
 
 #include <QPainter>
 
-namespace Lottie {
+namespace eao {
 
 FillNode::FillNode(const Fill *fill)
 {

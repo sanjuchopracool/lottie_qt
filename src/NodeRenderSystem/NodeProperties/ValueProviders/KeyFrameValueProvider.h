@@ -6,7 +6,7 @@
 
 #include <QDebug>
 
-namespace Lottie {
+namespace eao {
 
 template <typename T>
 class KeyFrameValueProvider : public AnyValueProvider<T>
@@ -21,7 +21,7 @@ public:
     {
     }
 
-    bool has_update(Lottie::FrameType time) const override
+    bool has_update(eao::FrameType time) const override
     {
         if (m_last_updated_frame == -1)
             return true;
@@ -50,7 +50,7 @@ public:
         return true;
     }
 
-    const valueType& value(Lottie::FrameType time) override
+    const valueType& value(eao::FrameType time) override
     {
         update_indices(time);
         if (is_valid_index(m_leading_index) and is_valid_index(m_trailing_index))

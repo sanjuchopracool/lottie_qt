@@ -6,7 +6,7 @@
 
 #include <memory>
 
-namespace Lottie {
+namespace eao {
 class Animation;
 class AnimationContainer;
 
@@ -23,7 +23,7 @@ protected:
     QSize sizeHint() const override;
     void paintEvent(QPaintEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
-    void resizeEvent(QResizeEvent* ev) override;
+    void resizeEvent(QResizeEvent *ev) override;
 
 private slots:
     void on_frame_changed(int frame);
@@ -36,6 +36,6 @@ private:
 
 };
 
-}
+} // namespace eao
 
 #endif // ANIMATIONWIDGET_H

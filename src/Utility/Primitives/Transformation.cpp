@@ -2,7 +2,7 @@
 
 #include <QJsonObject>
 
-namespace Lottie {
+namespace eao {
 
 const QString anchor_key = "a";
 const QString position_key = "p";

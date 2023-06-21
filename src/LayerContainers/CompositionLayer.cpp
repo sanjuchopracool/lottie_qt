@@ -5,7 +5,7 @@
 
 #include "../NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 
-namespace Lottie {
+namespace eao {
 
 void PaintBuffer::update_buffer_info(const PaintBufferInfo &info)
 {

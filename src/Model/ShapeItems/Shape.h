@@ -5,7 +5,7 @@
 #include "../Keyframes/KeyFrameGroup.h"
 #include "../../Utility/Primitives/BezierPath.h"
 
-namespace Lottie {
+namespace eao {
 
 class Shape : public ShapeItem
 {

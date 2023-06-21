@@ -9,7 +9,7 @@ class AnyValueContainer
 {
 public:
 
-    void set_value(const T& value, Lottie::FrameType frame) {
+    void set_value(const T& value, eao::FrameType frame) {
         m_last_update_frame = frame;
         m_need_update = false;
         m_value = value;
@@ -33,7 +33,7 @@ public:
 protected:
     T m_value;
     bool m_need_update = true;
-    Lottie::FrameType m_last_update_frame = std::numeric_limits<float>::max();
+    eao::FrameType m_last_update_frame = std::numeric_limits<float>::max();
 };
 
 #endif // ANYVALUECONTAINER_H

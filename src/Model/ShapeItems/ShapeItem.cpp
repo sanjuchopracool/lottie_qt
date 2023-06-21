@@ -1,7 +1,7 @@
 #include "ShapeItem.h"
 
 #include <QJsonObject>
-namespace Lottie {
+namespace eao {
 
 namespace {
 const QString name_key = "nm";

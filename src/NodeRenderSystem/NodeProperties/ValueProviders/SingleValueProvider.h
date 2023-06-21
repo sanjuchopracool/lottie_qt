@@ -3,7 +3,7 @@
 
 #include "../AnyValueProvider.h"
 
-namespace Lottie {
+namespace eao {
 template <typename T>
 class SingleValueProvider : public AnyValueProvider<T>
 {
@@ -15,12 +15,12 @@ public:
     {
     }
 
-    bool has_update(Lottie::FrameType) override
+    bool has_update(eao::FrameType) override
     {
         return m_has_update;
     }
 
-    const valueType& value(Lottie::FrameType) override
+    const valueType& value(eao::FrameType) override
     {
         m_has_update = false;
         return m_value;

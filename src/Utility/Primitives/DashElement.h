@@ -8,7 +8,7 @@
 
 class QJsonValue;
 
-namespace Lottie {
+namespace eao {
 struct DashElementData;
 
 struct DashElement
