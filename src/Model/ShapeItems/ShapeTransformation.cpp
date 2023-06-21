@@ -17,7 +17,7 @@ ShapeTransformation::ShapeTransformation()
     m_type = ShapeType::Transform;
 }
 
-void ShapeTransformation::decode(const QJsonObject &in_obj, QList<QString>& out_messages)
+void ShapeTransformation::decode(QJsonObject &in_obj, QList<QString>& out_messages)
 {
     m_anchor.decode(in_obj.value(anchor_key));
     m_position.decode(in_obj.value(position_key));

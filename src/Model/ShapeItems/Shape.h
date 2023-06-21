@@ -13,7 +13,7 @@ public:
     Shape();
     ~Shape() override;
 
-    void decode(const QJsonObject &in_obj, QList<QString>& out_messages) override;
+    void decode(QJsonObject &in_obj, QList<QString>& out_messages) override;
 
 public:
     PathDirection m_direction = PathDirection::None;

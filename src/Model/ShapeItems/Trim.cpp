@@ -19,7 +19,7 @@ Trim::Trim()
     m_type = ShapeType::Trim;
 }
 
-void Trim::decode(const QJsonObject &in_obj, QList<QString>& out_messages)
+void Trim::decode(QJsonObject &in_obj, QList<QString>& out_messages)
 {
     m_start.decode(in_obj.value(start_key));
     m_end.decode(in_obj.value(end_key));

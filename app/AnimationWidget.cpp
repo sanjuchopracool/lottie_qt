@@ -32,7 +32,7 @@ AnimationWidget::AnimationWidget(QWidget *parent)
     setAttribute(Qt::WA_TransparentForMouseEvents);
     m_timeline.setEasingCurve(QEasingCurve::Linear);
     connect(&m_timeline, SIGNAL(frameChanged(int)), this, SLOT(on_frame_changed(int)));
-    load(QDir::home().absolutePath() + "/Downloads/lottielogo.json");
+    load(QDir::home().absolutePath() + "/Downloads/skia_repeater.json");
 }
 
 AnimationWidget::~AnimationWidget() {}
@@ -46,7 +46,8 @@ bool AnimationWidget::load(const QString &file_path)
         QStringList messages;
         QJsonObject obj = doc.object();
         m_composition->decode(obj, messages);
-        qDebug() << messages;
+        for(const auto& message : messages)
+            qDebug() << message;
 
         m_animation_container = std::make_unique<AnimationContainer>(m_composition.get());
 

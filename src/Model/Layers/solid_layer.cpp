@@ -20,11 +20,11 @@ SolidLayer::~SolidLayer()
 {
 }
 
-void SolidLayer::decode(const QJsonObject &in_obj, QList<QString> &out_messages)
+void SolidLayer::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
-    m_color = QColor::fromString(in_obj.value(color_key).toString());
-    m_width = in_obj.value(width_key).toDouble();
-    m_height = in_obj.value(height_key).toDouble();
+    m_color = QColor::fromString(in_obj.take(color_key).toString());
+    m_width = in_obj.take(width_key).toDouble();
+    m_height = in_obj.take(height_key).toDouble();
     LayerModel::decode(in_obj, out_messages);
 }
 

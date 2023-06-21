@@ -12,7 +12,7 @@ public:
     SolidLayer();
     ~SolidLayer() override;
 
-    void decode(const QJsonObject& in_obj,QList<QString> &out_messages) override;
+    void decode(QJsonObject& in_obj,QList<QString> &out_messages) override;
 
 public:
     QColor m_color;

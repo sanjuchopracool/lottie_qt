@@ -10,7 +10,7 @@ class ShapeItem;
 class ShapeFactory
 {
 public:
-    static ShapeItem* shape_from_object(const QJsonObject &in_value, QList<QString>& out_messages);
+    static ShapeItem* shape_from_object(QJsonObject &in_value, QList<QString>& out_messages);
 };
 
 }

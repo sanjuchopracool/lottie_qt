@@ -12,7 +12,7 @@ Merge::Merge()
     m_type = ShapeType::Merge;
 }
 
-void Merge::decode(const QJsonObject &in_obj, QList<QString> &out_messages)
+void Merge::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
     m_mode = static_cast<MergeMode>(in_obj.value(mode_key).toInt());
     m_match_name = in_obj.value(match_name_key).toString();

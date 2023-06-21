@@ -18,12 +18,13 @@ Group::~Group()
     qDeleteAll(m_shapes);
 }
 
-void Group::decode(const QJsonObject &in_obj, QList<QString>& out_messages)
+void Group::decode(QJsonObject &in_obj, QList<QString>& out_messages)
 {
-    auto shapes= in_obj.value(it_key).toArray();
+    auto shapes= in_obj.take(it_key).toArray();
     for( auto shape : shapes)
     {
-        auto shape_item = ShapeFactory::shape_from_object(shape.toObject(), out_messages);
+        auto shape_obj = shape.toObject();
+        auto shape_item = ShapeFactory::shape_from_object(shape_obj, out_messages);
         if(shape_item)
             m_shapes.push_back(shape_item);
     }

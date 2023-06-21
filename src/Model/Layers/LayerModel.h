@@ -37,7 +37,7 @@ public:
     LayerModel();
     virtual ~LayerModel();
 
-    virtual void decode(const QJsonObject& in_obj, QList<QString> &out_messages);
+    virtual void decode(QJsonObject& in_obj, QList<QString> &out_messages);
 
     bool in_range(FrameType t) const;
 public:

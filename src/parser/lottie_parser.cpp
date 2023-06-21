@@ -21,7 +21,7 @@ const QList<QStringView> composition_required_fields{u"w", u"h", u"fr", u"layers
 //const QStringView asset_library_key(u"assets");
 //const QStringView markers_key(u"markers");
 
-std::unique_ptr<Composition> LottieParser::parse(const QJsonObject &in_obj,
+std::unique_ptr<Composition> LottieParser::parse(QJsonObject &in_obj,
                                                  QStringList &out_messages)
 {
     return nullptr;

@@ -56,7 +56,7 @@ bool TrimNode::update(FrameType t, bool force_update)
                     new_path.lineTo(path.pointAtPercent(trim));
                 }
                 pathNode->setPath(new_path);
-                qDebug() << start << end << path.length() << new_path.length();
+//                qDebug() << start << end << path.length() << new_path.length();
             }
         }
 

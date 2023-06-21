@@ -19,6 +19,7 @@ public:
 
 public:
     QString m_version;
+    QString m_name;
     FrameType m_in_point;
     FrameType m_out_point;
     FrameType m_framerate;

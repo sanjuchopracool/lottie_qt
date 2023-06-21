@@ -10,6 +10,7 @@
 #include "Stroke.h"
 #include "Trim.h"
 #include "rectangle.h"
+#include "polystar.h"
 #include "ShapeTransformation.h"
 
 #include <QMap>
@@ -45,7 +46,7 @@ ShapeType from_key(const QString& key)
     return  ShapeType::None;
 }
 
-ShapeItem *ShapeFactory::shape_from_object(const QJsonObject &in_value, QList<QString> &out_messages)
+ShapeItem *ShapeFactory::shape_from_object(QJsonObject &in_value, QList<QString> &out_messages)
 {
     ShapeItem * result = nullptr;
     auto key = in_value.value(type_key).toString();
@@ -71,6 +72,9 @@ ShapeItem *ShapeFactory::shape_from_object(const QJsonObject &in_value, QList<QS
         break;
     case ShapeType::Rectangle:
         result = new Rectangle;
+        break;
+    case ShapeType::Star:
+        result = new PolyStar;
         break;
     case ShapeType::Stroke:
         result = new Stroke;

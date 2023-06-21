@@ -4,6 +4,7 @@
 #include "../../Model/ShapeItems/Shape.h"
 #include "../../Model/ShapeItems/Ellipse.h"
 #include "../../Model/ShapeItems/rectangle.h"
+#include "../../Model/ShapeItems/polystar.h"
 #include "../../Model/ShapeItems/Fill.h"
 #include "../../Model/ShapeItems/Stroke.h"
 #include "../../Model/ShapeItems/Trim.h"
@@ -17,6 +18,7 @@
 #include "TrimNode.h"
 #include "ShapeTransformationNode.h"
 #include "rectangle_node.h"
+#include "polystar_node.h"
 
 namespace eao {
 namespace AnimationNodeFactory {
@@ -72,6 +74,13 @@ std::unique_ptr<ShapeNodeInterface> node_for_shape(ShapeItem *shape_item, QList<
         auto rect = std::make_unique<RectangleNode>(static_cast<Rectangle*>(shape_item));
         paths.append(rect.get());
         result = std::move(rect);
+    }
+    break;
+    case ShapeType::Star:
+    {
+        auto polystar = std::make_unique<PolyStarNode>(static_cast<PolyStar*>(shape_item));
+        paths.append(polystar.get());
+        result = std::move(polystar);
     }
     break;
     case ShapeType::Trim:

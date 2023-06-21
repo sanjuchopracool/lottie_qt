@@ -12,7 +12,7 @@ namespace {
 const QString type_key = "ty";
 }
 
-LayerModel *layer_from_object(const QJsonObject &in_value , QList<QString> &out_messages)
+LayerModel *layer_from_object(QJsonObject &in_value , QList<QString> &out_messages)
 {
     LayerModel* result = nullptr;
     int t = in_value.value(type_key).toInt();

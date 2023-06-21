@@ -13,7 +13,7 @@ Rectangle::Rectangle()
     m_type = ShapeType::Rectangle;
 }
 
-void Rectangle::decode(const QJsonObject &in_obj, QList<QString> &out_messages)
+void Rectangle::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
     m_center.decode(in_obj.value(center_key));
     m_size.decode(in_obj.value(size_key));

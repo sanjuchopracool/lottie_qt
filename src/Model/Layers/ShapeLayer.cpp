@@ -20,12 +20,13 @@ ShapeLayer::~ShapeLayer()
     qDeleteAll(m_shapes);
 }
 
-void ShapeLayer::decode(const QJsonObject &in_obj, QList<QString> &out_messages)
+void ShapeLayer::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
-    auto shapes= in_obj.value(shapes_key).toArray();
+    auto shapes= in_obj.take(shapes_key).toArray();
     for( auto shape : shapes)
     {
-        auto shape_item = ShapeFactory::shape_from_object(shape.toObject(), out_messages);
+        auto shape_object = shape.toObject();
+        auto shape_item = ShapeFactory::shape_from_object(shape_object, out_messages);
         if(shape_item)
             m_shapes.push_back(shape_item);
     }

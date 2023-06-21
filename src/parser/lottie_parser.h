@@ -14,7 +14,7 @@ namespace eao::Lottie {
 class LottieParser
 {
 public:
-    static std::unique_ptr<Composition> parse(const QJsonObject &in_obj, QStringList &out_messages);
+    static std::unique_ptr<Composition> parse(QJsonObject &in_obj, QStringList &out_messages);
 };
 
 } // namespace eao::Lottie

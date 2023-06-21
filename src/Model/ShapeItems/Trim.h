@@ -17,7 +17,7 @@ public:
         Individually = 2
     };
 
-    virtual void decode(const QJsonObject& in_obj, QList<QString>& out_messages) override;
+    virtual void decode(QJsonObject& in_obj, QList<QString>& out_messages) override;
 
 public:
     KeyFrameGroup<Vector1D> m_start;

@@ -58,9 +58,10 @@ public:
     ShapeItem();
     virtual ~ShapeItem();
 
-    virtual void decode(const QJsonObject& in_obj, QList<QString>& out_messages);
+    virtual void decode(QJsonObject& in_obj, QList<QString>& out_messages);
 public:
     QString m_name;
+    QString m_match_name;
     ShapeType m_type;
     bool m_hidden = false;
 };

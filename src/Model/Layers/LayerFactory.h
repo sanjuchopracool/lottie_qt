@@ -8,6 +8,6 @@ namespace eao {
 
 class QStringList;
 class LayerModel;
-LayerModel *layer_from_object(const QJsonObject &in_value, QList<QString> &out_messages);
+LayerModel *layer_from_object(QJsonObject &in_value, QList<QString> &out_messages);
 } // namespace eao
 #endif // LAYERFACTORY_H

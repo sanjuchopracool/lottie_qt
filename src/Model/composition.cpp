@@ -17,17 +17,21 @@ const QStringView framerate_key(u"fr");
 const QStringView width_key(u"w");
 const QStringView height_key(u"h");
 const QStringView layers_key(u"layers");
+const QStringView name_key(u"nm");
 //const QStringView glyphs_key(u"chars");
 //const QStringView fonts_key(u"fonts");
 //const QStringView asset_library_key(u"assets");
 //const QStringView markers_key(u"markers");
 
-QList<LayerModel *> load_layers(const QJsonObject &in_obj , QList<QString> &out_messages)
+QList<LayerModel *> load_layers(QJsonObject &in_obj , QList<QString> &out_messages)
 {
     QList<LayerModel *> result;
-    const auto &layers = in_obj.value(layers_key).toArray();
+    auto val = in_obj.take(layers_key);
+    Q_ASSERT(!val.isUndefined());
+    const auto &layers = val.toArray();
     for (const auto &layer_value : layers) {
-        auto layer = layer_from_object(layer_value.toObject() , out_messages);
+        QJsonObject layer_obj = layer_value.toObject();
+        auto layer = layer_from_object( layer_obj, out_messages);
         if (layer)
             result.append(layer);
     }
@@ -47,6 +51,7 @@ void Composition::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
     out_messages.clear();
     m_version = in_obj.take(version_key).toString();
+    m_name = in_obj.take(name_key).toString();
 
     m_type = static_cast<CoordinateSpace>(in_obj.take(type_key).toInt());
     Q_ASSERT(m_type == CoordinateSpace::Type2D);
@@ -72,6 +77,11 @@ void Composition::decode(QJsonObject &in_obj, QList<QString> &out_messages)
     m_height = val.toInt();
 
     m_layers = load_layers(in_obj , out_messages);
+
+    for(const auto& element : in_obj.keys()) {
+        const static QString msg("Error: Unsupproted element : %1 in composition");
+        out_messages.emplace_back(msg.arg(element));
+    }
 }
 
 } // namespace eao
