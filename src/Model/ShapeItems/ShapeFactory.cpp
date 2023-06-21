@@ -9,6 +9,7 @@
 #include "Fill.h"
 #include "Stroke.h"
 #include "Trim.h"
+#include "rectangle.h"
 #include "ShapeTransformation.h"
 
 #include <QMap>
@@ -44,10 +45,11 @@ ShapeType from_key(const QString& key)
     return  ShapeType::None;
 }
 
-ShapeItem *ShapeFactory::shape_from_object(const QJsonObject &in_value)
+ShapeItem *ShapeFactory::shape_from_object(const QJsonObject &in_value, QList<QString> &out_messages)
 {
     ShapeItem * result = nullptr;
-    auto type = from_key(in_value.value(type_key).toString());
+    auto key = in_value.value(type_key).toString();
+    auto type = from_key(key);
     switch (type) {
     case ShapeType::Group:
         result = new Group;
@@ -67,6 +69,9 @@ ShapeItem *ShapeFactory::shape_from_object(const QJsonObject &in_value)
     case ShapeType::Ellipse:
         result = new Ellipse;
         break;
+    case ShapeType::Rectangle:
+        result = new Rectangle;
+        break;
     case ShapeType::Stroke:
         result = new Stroke;
         break;
@@ -74,14 +79,16 @@ ShapeItem *ShapeFactory::shape_from_object(const QJsonObject &in_value)
         result = new Trim;
         break;
     default:
+        const static QString msg("Error: Unsupproted shape item type: %1");
+        auto arg = type == ShapeType::None ? key : shape_type_names[static_cast<int>(type)];
+        out_messages.emplace_back(msg.arg(arg));
         break;
     }
 
-    assert(result != nullptr);
     if (result)
     {
-        result->decode(in_value);
-        result->ShapeItem::decode(in_value);
+        result->decode(in_value, out_messages);
+        result->ShapeItem::decode(in_value, out_messages);
     }
 
     return  result;

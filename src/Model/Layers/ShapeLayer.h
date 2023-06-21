@@ -14,7 +14,7 @@ public:
     ShapeLayer();
     ~ShapeLayer() override;
 
-    void decode(const QJsonObject& in_obj) override;
+    void decode(const QJsonObject& in_obj,QList<QString> &out_messages) override;
 
 public:
     QList<ShapeItem*> m_shapes;

@@ -1,13 +1,12 @@
-#ifndef ELLIPSE_H
-#define ELLIPSE_H
+#ifndef RECTANGLE_H
+#define RECTANGLE_H
 
 #include "ShapeItem.h"
 #include "../Keyframes/KeyFrameGroup.h"
-#include "../../Utility/Primitives/Utility.h"
 
 namespace eao {
 
-class Ellipse : public ShapeItem
+class Rectangle : public ShapeItem
 {
 public:
 
@@ -17,15 +16,15 @@ public:
       CounterClockwise
     };
 
-    Ellipse();
+    Rectangle();
 
     virtual void decode(const QJsonObject& in_obj, QList<QString>& out_messages) override;
 
 public:
     KeyFrameGroup<QVector2D> m_size;
-    KeyFrameGroup<QVector2D> m_position;
-    Direction m_direction = Direction::Clockwise;
+    KeyFrameGroup<QVector2D> m_center;
+    KeyFrameGroup<QVector2D> m_corner_radius;
 };
 }
 
-#endif // ELLIPSE_H
+#endif // RECTANGLE_H

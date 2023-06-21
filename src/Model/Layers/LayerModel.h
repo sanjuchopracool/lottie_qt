@@ -7,23 +7,10 @@
 
 namespace eao {
 
-enum class LayerType
-{
-    Precomp,
-    Solid,
-    Image,
-    Null,
-    Shape,
-    Text
-};
+enum class LayerType { Precomp, Solid, Image, Null, Shape, Text };
+const QList<QStringView> layer_type_names {u"Precomp", u"Solid", u"Image", u"Null", u"Shape", u"Text" };
 
-enum class MatteType
-{
-    None,
-    Add,
-    Invert,
-    Unknown
-};
+enum class MatteType { None, Add, Invert, Unknown };
 
 enum class BlendMode
 {
@@ -50,7 +37,7 @@ public:
     LayerModel();
     virtual ~LayerModel();
 
-    virtual void decode(const QJsonObject& in_obj);
+    virtual void decode(const QJsonObject& in_obj, QList<QString> &out_messages);
 
     bool in_range(FrameType t) const;
 public:

@@ -3,6 +3,7 @@
 #include "../../Model/ShapeItems/Group.h"
 #include "../../Model/ShapeItems/Shape.h"
 #include "../../Model/ShapeItems/Ellipse.h"
+#include "../../Model/ShapeItems/rectangle.h"
 #include "../../Model/ShapeItems/Fill.h"
 #include "../../Model/ShapeItems/Stroke.h"
 #include "../../Model/ShapeItems/Trim.h"
@@ -15,6 +16,7 @@
 #include "EllipseNode.h"
 #include "TrimNode.h"
 #include "ShapeTransformationNode.h"
+#include "rectangle_node.h"
 
 namespace eao {
 namespace AnimationNodeFactory {
@@ -65,6 +67,13 @@ std::unique_ptr<ShapeNodeInterface> node_for_shape(ShapeItem *shape_item, QList<
         result = std::move(ellipse);
     }
         break;
+    case ShapeType::Rectangle:
+    {
+        auto rect = std::make_unique<RectangleNode>(static_cast<Rectangle*>(shape_item));
+        paths.append(rect.get());
+        result = std::move(rect);
+    }
+    break;
     case ShapeType::Trim:
     {
         auto trim = std::make_unique<TrimNode>(static_cast<Trim*>(shape_item));
@@ -73,7 +82,7 @@ std::unique_ptr<ShapeNodeInterface> node_for_shape(ShapeItem *shape_item, QList<
     }
         break;
     default:
-//        assert(false);
+        assert(false);
         break;
     }
 

@@ -1,7 +1,7 @@
 #ifndef SHAPEITEM_H
 #define SHAPEITEM_H
 
-#include <QString>
+#include <QStringList>
 
 class QJsonObject;
 class QPainterPath;
@@ -26,6 +26,24 @@ enum class ShapeType {
     Transform,
 };
 
+const QList<QStringView> shape_type_names {
+    u"None",
+    u"Ellipse",
+    u"Fill",
+    u"GradientFill",
+    u"Group",
+    u"GradientStroke",
+    u"Merge",
+    u"Rectangle",
+    u"Repeater",
+    u"Round",
+    u"Shape",
+    u"Star",
+    u"Stroke",
+    u"Trim",
+    u"Transform",
+};
+
 enum class PathDirection
 {
     None = 0,
@@ -40,7 +58,7 @@ public:
     ShapeItem();
     virtual ~ShapeItem();
 
-    virtual void decode(const QJsonObject& in_obj);
+    virtual void decode(const QJsonObject& in_obj, QList<QString>& out_messages);
 public:
     QString m_name;
     ShapeType m_type;

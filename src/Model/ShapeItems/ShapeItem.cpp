@@ -18,7 +18,7 @@ ShapeItem::~ShapeItem()
 
 }
 
-void ShapeItem::decode(const QJsonObject &in_obj)
+void ShapeItem::decode(const QJsonObject &in_obj, QList<QString>&)
 {
     m_name = in_obj.value(name_key).toString();
     m_hidden = in_obj.value(hidden_key).toBool();

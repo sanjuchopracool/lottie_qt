@@ -19,7 +19,7 @@ class Merge : public ShapeItem
 public:
     Merge();
 
-    virtual void decode(const QJsonObject& in_obj) override;
+    virtual void decode(const QJsonObject& in_obj, QList<QString>& out_messages) override;
 
 private:
     MergeMode m_mode = MergeMode::None;

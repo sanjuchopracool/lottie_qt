@@ -13,7 +13,7 @@ Ellipse::Ellipse()
     m_type = ShapeType::Ellipse;
 }
 
-void Ellipse::decode(const QJsonObject &in_obj)
+void Ellipse::decode(const QJsonObject &in_obj, QList<QString> &out_messages)
 {
     m_direction = static_cast<Direction>(in_obj.value(direction_key).toInt());
     m_size.decode(in_obj.value(size_key));

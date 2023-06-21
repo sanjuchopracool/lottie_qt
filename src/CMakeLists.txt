@@ -15,7 +15,6 @@ file(GLOB_RECURSE SRC_FILES
 
 message(STATUS    ${SRC_FILES})
 add_library(eao
-    lottielib.h
     ${SRC_FILES}
 )
 

@@ -7,7 +7,7 @@
 #include <memory>
 
 namespace eao {
-class Animation;
+class Composition;
 class AnimationContainer;
 
 class AnimationWidget : public QWidget
@@ -29,7 +29,7 @@ private slots:
     void on_frame_changed(int frame);
 
 private:
-    std::unique_ptr<Animation> m_animation;
+    std::unique_ptr<Composition> m_composition;
     std::unique_ptr<AnimationContainer> m_animation_container;
     QTimeLine m_timeline;
     bool m_forced_update = false;

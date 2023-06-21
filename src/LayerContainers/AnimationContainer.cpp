@@ -1,6 +1,7 @@
 #include "AnimationContainer.h"
-#include "../Model/Animation.h"
+#include "../Model/composition.h"
 #include "CompositionLayerFactory.h"
+#include "../Model/Layers/LayerModel.h"
 
 #include <algorithm>
 #include <QDebug>
@@ -9,7 +10,7 @@
 
 namespace eao {
 
-AnimationContainer::AnimationContainer(const Animation *animation)
+AnimationContainer::AnimationContainer(const Composition *animation)
     : m_animation(animation)
     , m_buffer_info(PaintBufferInfo(QSize(animation->m_width, animation->m_height), 1, 1))
 {

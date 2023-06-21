@@ -29,7 +29,7 @@ LayerModel::~LayerModel()
 
 }
 
-void LayerModel::decode(const QJsonObject &in_obj)
+void LayerModel::decode(const QJsonObject &in_obj, QList<QString> &out_messages)
 {
     m_name = in_obj.value(name_key).toString();
     m_index = in_obj.value(index_key).toInt();

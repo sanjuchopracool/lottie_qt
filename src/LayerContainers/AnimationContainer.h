@@ -11,12 +11,12 @@
 class QPainter;
 
 namespace eao {
-class Animation;
+class Composition;
 
 class AnimationContainer
 {
 public:
-    AnimationContainer(const Animation *animation);
+    AnimationContainer(const Composition *animation);
     ~AnimationContainer();
 
     void draw(QPainter* painter);
@@ -28,7 +28,7 @@ private:
     void load_layers();
 
 private:
-    const Animation* m_animation;
+    const Composition* m_animation;
     PaintBufferInfo m_buffer_info;
     FrameType m_last_updated_frame = -1;
 

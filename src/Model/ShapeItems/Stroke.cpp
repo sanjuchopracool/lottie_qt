@@ -47,7 +47,7 @@ Stroke::Stroke()
     m_type = ShapeType::Stroke;
 }
 
-void Stroke::decode(const QJsonObject &in_obj)
+void Stroke::decode(const QJsonObject &in_obj, QList<QString>& out_messages)
 {
     m_pen.setCapStyle(int_to_cap_style(in_obj.value(lineCap_key).toInt()));
     m_pen.setJoinStyle(int_to_join_style(in_obj.value(lineJoin_key).toInt()));

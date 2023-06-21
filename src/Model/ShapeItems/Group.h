@@ -14,7 +14,7 @@ public:
     Group();
     ~Group() override;
 
-    virtual void decode(const QJsonObject& in_obj) override;
+    virtual void decode(const QJsonObject& in_obj, QList<QString> &out_messages) override;
 
 public:
     QList<ShapeItem*> m_shapes;
