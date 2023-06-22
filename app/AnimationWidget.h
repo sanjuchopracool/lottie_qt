@@ -2,13 +2,13 @@
 #define ANIMATIONWIDGET_H
 
 #include <QWidget>
-#include <QTimeLine>
 
 #include <memory>
 
 namespace eao {
 class Composition;
 class AnimationContainer;
+class TimeLineWidget;
 
 class AnimationWidget : public QWidget
 {
@@ -22,8 +22,13 @@ public:
 protected:
     QSize sizeHint() const override;
     void paintEvent(QPaintEvent *event) override;
-    void keyPressEvent(QKeyEvent *event) override;
     void resizeEvent(QResizeEvent *ev) override;
+
+signals:
+    void animation_loaded(QSize,
+                          float in_point,
+                          float out_point,
+                          float framerate);
 
 private slots:
     void on_frame_changed(int frame);
@@ -31,9 +36,30 @@ private slots:
 private:
     std::unique_ptr<Composition> m_composition;
     std::unique_ptr<AnimationContainer> m_animation_container;
-    QTimeLine m_timeline;
     bool m_forced_update = false;
 
+};
+
+
+class AnimationViewWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit AnimationViewWidget(QWidget *parent = nullptr);
+    ~AnimationViewWidget();
+
+private slots:
+    void slot_animation_loaded(QSize size,
+                               float in_point,
+                               float out_point,
+                               float framerate);
+protected:
+    QSize sizeHint() const override;
+    void keyPressEvent(QKeyEvent *event) override;
+
+private:
+    AnimationWidget* m_animation_widget = nullptr;
+    TimeLineWidget* m_timeline_widget = nullptr;
 };
 
 } // namespace eao

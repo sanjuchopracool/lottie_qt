@@ -11,28 +11,16 @@
 
 #include <AutoProfiler.h>
 #include <QJsonObject>
-
-namespace {
-int ms_for_frame(double frame_rate, double in_value)
-{
-    return (1000.0 / frame_rate) * in_value;
-}
-
-double frame_for_ms(double frame_rate, int in_value)
-{
-    return (frame_rate * in_value / 1000);
-}
-} // namespace
+#include <QVBoxLayout>
+#include "timeline_widget.h"
 
 namespace eao {
 
 AnimationWidget::AnimationWidget(QWidget *parent)
     : QWidget(parent)
 {
+    setMinimumSize(200,200);
     setAttribute(Qt::WA_TransparentForMouseEvents);
-    m_timeline.setEasingCurve(QEasingCurve::Linear);
-    connect(&m_timeline, SIGNAL(frameChanged(int)), this, SLOT(on_frame_changed(int)));
-    load(QDir::home().absolutePath() + "/Downloads/skia_repeater.json");
 }
 
 AnimationWidget::~AnimationWidget() {}
@@ -50,21 +38,11 @@ bool AnimationWidget::load(const QString &file_path)
             qDebug() << message;
 
         m_animation_container = std::make_unique<AnimationContainer>(m_composition.get());
-
-        m_timeline.setStartFrame(m_composition->m_in_point * 1000);
-        m_timeline.setEndFrame(m_composition->m_out_point * 1000);
-        m_timeline.setDuration(
-            ms_for_frame(m_composition->m_framerate,
-                         (m_composition->m_out_point - m_composition->m_in_point)));
-        m_timeline.setUpdateInterval(20);
-        m_timeline.setLoopCount(0);
-        m_timeline.start();
-
-        qDebug() << m_timeline.startFrame() << m_timeline.endFrame() << m_timeline.updateInterval()
-                 << m_timeline.duration();
         m_forced_update = true;
-        //        on_frame_changed(0);
-        resize(m_composition->m_width, m_composition->m_height);
+        emit animation_loaded(QSize(m_composition->m_width, m_composition->m_height),
+                              m_composition->m_in_point,
+                              m_composition->m_out_point,
+                              m_composition->m_framerate);
         return true;
     }
     return false;
@@ -88,17 +66,6 @@ void AnimationWidget::paintEvent(QPaintEvent *event)
     }
 }
 
-void AnimationWidget::keyPressEvent(QKeyEvent *event)
-{
-    if ((event->modifiers() & Qt::ControlModifier) and (event->key() == Qt::Key_O)) {
-        QString file_path = QFileDialog::getOpenFileName(this,
-                                                         "select file",
-                                                         QDir::homePath() + "/Downloads",
-                                                         "*.json");
-        load(file_path);
-    }
-}
-
 void AnimationWidget::resizeEvent(QResizeEvent *ev)
 {
     auto size = ev->size();
@@ -119,6 +86,57 @@ void AnimationWidget::on_frame_changed(int time)
             this->update();
 
         m_forced_update = false;
+    }
+}
+
+AnimationViewWidget::AnimationViewWidget(QWidget *parent)
+{
+    QVBoxLayout* mainLayout = new QVBoxLayout();
+    m_animation_widget = new AnimationWidget();
+    m_timeline_widget = new TimeLineWidget();
+    mainLayout->addWidget(m_animation_widget);
+    mainLayout->addWidget(m_timeline_widget);
+    setLayout(mainLayout);
+
+    connect(m_timeline_widget, SIGNAL(frameChanged(int)),
+            m_animation_widget, SLOT(on_frame_changed(int)));
+
+    connect(m_animation_widget, SIGNAL(animation_loaded(QSize,float,float,float)),
+            this, SLOT(slot_animation_loaded(QSize,float,float,float)));
+
+    m_animation_widget->load(QDir::home().absolutePath() + "/Downloads/skia_repeater.json");
+}
+
+AnimationViewWidget::~AnimationViewWidget()
+{
+
+}
+
+void AnimationViewWidget::slot_animation_loaded(QSize size, float in_point,
+                                                float out_point, float framerate)
+{
+    size.setWidth(std::max(size.width(), m_timeline_widget->width()));
+    size.setHeight(size.height() + m_timeline_widget->height());
+    resize(size);
+
+    m_timeline_widget->setFrameInfo(in_point, out_point, framerate);
+}
+
+QSize AnimationViewWidget::sizeHint() const
+{
+    QSize size = m_animation_widget->minimumSizeHint();
+    size.setHeight(size.height() + m_timeline_widget->height());
+    return size;
+}
+
+void AnimationViewWidget::keyPressEvent(QKeyEvent *event)
+{
+    if ((event->modifiers() & Qt::ControlModifier) and (event->key() == Qt::Key_O)) {
+        QString file_path = QFileDialog::getOpenFileName(this,
+                                                         "select file",
+                                                         QDir::homePath() + "/Downloads",
+                                                         "*.json");
+        m_animation_widget->load(file_path);
     }
 }
 
