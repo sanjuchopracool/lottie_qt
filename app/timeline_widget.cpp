@@ -1,5 +1,6 @@
 #include "timeline_widget.h"
 #include "ui_timelinewidget.h"
+#include <QSignalBlocker>
 
 namespace eao {
 
@@ -71,13 +72,11 @@ void TimeLineWidget::toggle_timeline()
 
 void TimeLineWidget::slot_frame_changed(int t)
 {
-    ui->slider_progress->blockSignals(true);
-    ui->spnbox_current->blockSignals(true);
+    QSignalBlocker bl1(ui->slider_progress);
+    QSignalBlocker bl2(ui->spnbox_current);
     int value = t/1000;
     ui->spnbox_current->setValue(value);
     ui->slider_progress->setValue(value);
-    ui->slider_progress->blockSignals(false);
-    ui->spnbox_current->blockSignals(false);
 }
 
 void TimeLineWidget::slot_reset()
@@ -87,7 +86,7 @@ void TimeLineWidget::slot_reset()
 
 void TimeLineWidget::slot_slider_value_changed(int value)
 {
-    m_timeline.setCurrentTime(value*1000);
+    m_timeline.setCurrentTime((m_timeline.duration()*value)/(ui->slider_progress->maximum() - ui->slider_progress->minimum()));
 }
 
 
