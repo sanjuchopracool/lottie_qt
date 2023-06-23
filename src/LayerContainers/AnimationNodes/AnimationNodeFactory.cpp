@@ -5,6 +5,7 @@
 #include "../../Model/ShapeItems/Ellipse.h"
 #include "../../Model/ShapeItems/rectangle.h"
 #include "../../Model/ShapeItems/polystar.h"
+#include "../../Model/ShapeItems/repeater.h"
 #include "../../Model/ShapeItems/Fill.h"
 #include "../../Model/ShapeItems/Stroke.h"
 #include "../../Model/ShapeItems/Trim.h"
@@ -19,6 +20,7 @@
 #include "ShapeTransformationNode.h"
 #include "rectangle_node.h"
 #include "polystar_node.h"
+#include "repeater_node.h"
 
 namespace eao {
 namespace AnimationNodeFactory {
@@ -90,6 +92,13 @@ std::unique_ptr<ShapeNodeInterface> node_for_shape(ShapeItem *shape_item, QList<
         result = std::move(trim);
     }
         break;
+    case ShapeType::Repeater:
+    {
+        auto repeater = std::make_unique<RepeaterNode>(static_cast<Repeater*>(shape_item));
+//        repeater->setPaths(paths);
+        result = std::move(repeater);
+    }
+    break;
     default:
         assert(false);
         break;

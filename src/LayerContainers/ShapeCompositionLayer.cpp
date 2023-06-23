@@ -3,6 +3,7 @@
 #include "../Model/Layers/ShapeLayer.h"
 #include "AnimationNodes/TransformationNode.h"
 #include "AnimationNodes/AnimationNodeFactory.h"
+#include "AnimationNodes/repeater_node.h"
 #include <QPainter>
 #include <QDebug>
 
@@ -16,6 +17,10 @@ ShapeCompositionLayer::ShapeCompositionLayer(const ShapeLayer *layer, const Pain
         auto node = AnimationNodeFactory::node_for_shape(shape_item, paths);
         if (node)
         {
+            if (shape_item->m_type == ShapeType::Repeater) {
+                RepeaterNode* repNode = static_cast<RepeaterNode*>(node.get());
+                repNode->set_nodes(m_nodes);
+            }
             m_nodes.emplace_back(std::move(node));
 
         }

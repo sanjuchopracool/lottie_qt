@@ -1,5 +1,5 @@
-#ifndef TRANSFORMNODE_H
-#define TRANSFORMNODE_H
+#ifndef SHAPETRANSFORMNODE_H
+#define SHAPETRANSFORMNODE_H
 
 #include "ShapeNodeInterface.h"
 #include "../../NodeRenderSystem/NodeProperties/NodeProperty.h"
@@ -30,4 +30,4 @@ private:
 };
 }
 
-#endif // TRANSFORMNODE_H
+#endif // SHAPETRANSFORMNODE_H

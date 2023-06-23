@@ -3,14 +3,14 @@
 
 #include <QStringList>
 
-class QJsonObject;
+class QJsonArray;
 namespace eao {
 
 class ShapeItem;
 class ShapeFactory
 {
 public:
-    static ShapeItem* shape_from_object(QJsonObject &in_value, QList<QString>& out_messages);
+    static QList<ShapeItem *> shapes_from_object(QJsonArray &in_array, QList<QString>& out_messages);
 };
 
 }

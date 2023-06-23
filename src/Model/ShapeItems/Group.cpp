@@ -21,14 +21,7 @@ Group::~Group()
 void Group::decode(QJsonObject &in_obj, QList<QString>& out_messages)
 {
     auto shapes= in_obj.take(it_key).toArray();
-    for( auto shape : shapes)
-    {
-        auto shape_obj = shape.toObject();
-        auto shape_item = ShapeFactory::shape_from_object(shape_obj, out_messages);
-        if(shape_item)
-            m_shapes.push_back(shape_item);
-    }
-
+    m_shapes = ShapeFactory::shapes_from_object(shapes, out_messages);
     ShapeItem::decode(in_obj, out_messages);
 }
 

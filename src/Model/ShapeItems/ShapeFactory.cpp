@@ -11,6 +11,7 @@
 #include "Trim.h"
 #include "rectangle.h"
 #include "polystar.h"
+#include "repeater.h"
 #include "ShapeTransformation.h"
 
 #include <QMap>
@@ -46,7 +47,7 @@ ShapeType from_key(const QString& key)
     return  ShapeType::None;
 }
 
-ShapeItem *ShapeFactory::shape_from_object(QJsonObject &in_value, QList<QString> &out_messages)
+ShapeItem *shape_from_object(QJsonObject &in_value, QList<QString> &out_messages)
 {
     ShapeItem * result = nullptr;
     auto key = in_value.value(type_key).toString();
@@ -82,6 +83,9 @@ ShapeItem *ShapeFactory::shape_from_object(QJsonObject &in_value, QList<QString>
     case ShapeType::Trim:
         result = new Trim;
         break;
+    case ShapeType::Repeater:
+        result = new Repeater;
+        break;
     default:
         const static QString msg("Error: Unsupproted shape item type: %1");
         auto arg = type == ShapeType::None ? key : shape_type_names[static_cast<int>(type)];
@@ -96,6 +100,21 @@ ShapeItem *ShapeFactory::shape_from_object(QJsonObject &in_value, QList<QString>
     }
 
     return  result;
+}
+
+QList<ShapeItem *> ShapeFactory::shapes_from_object(QJsonArray &in_array, QList<QString> &out_messages)
+{
+    QList<ShapeItem *> result;
+    for( auto shape : in_array)
+    {
+        auto shape_object = shape.toObject();
+        auto shape_item = shape_from_object(shape_object, out_messages);
+        if(shape_item)
+        {
+            result.push_back(shape_item);
+        }
+    }
+    return result;
 }
 
 }

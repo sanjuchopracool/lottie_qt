@@ -1,6 +1,7 @@
 #include "GroupNode.h"
 
 #include "../../Model/ShapeItems/Group.h"
+#include "repeater_node.h"
 #include "AnimationNodeFactory.h"
 #include <QPainter>
 #include <algorithm>
@@ -14,7 +15,13 @@ GroupNode::GroupNode(const Group *group)
     {
         auto node = AnimationNodeFactory::node_for_shape(shape_item, m_group_paths);
         if (node)
+        {
+            if (shape_item->m_type == ShapeType::Repeater) {
+                RepeaterNode* repNode = static_cast<RepeaterNode*>(node.get());
+                repNode->set_nodes(m_nodes);
+            }
             m_nodes.emplace_back(std::move(node));
+        }
     }
 
     m_is_static = std::all_of(m_nodes.cbegin(), m_nodes.cend(),
