@@ -58,20 +58,27 @@ bool PolyStarNode::update(FrameType t, bool force_update)
 
         auto half_angle = M_PI/num_points;
 
-        qDebug() << inner_radius << outer_radius;
-        for(int i = 0; i < num_points; ++i) {
-            auto angle = 2 * i * half_angle;
-            auto x1 = inner_radius * std::cosf(angle);
-            auto y1 = inner_radius * std::sinf(angle);
-            if (i == 0)
-                m_star_path.moveTo(x1, y1);
-            else
-                m_star_path.lineTo(x1, y1);
+//        qDebug() << inner_radius << outer_radius;
+        auto angle = half_angle/2;
+        auto x1 = inner_radius * std::cosf(angle);
+        auto y1 = inner_radius * std::sinf(angle);
+        m_star_path.moveTo(x1, y1);
+        int i = 0;
+        for(; i < num_points - 1; ++i) {
             angle += half_angle;
             auto x2 = outer_radius * std::cosf(angle);
             auto y2 = outer_radius * std::sinf(angle);
             m_star_path.lineTo(x2, y2);
+
+            angle += half_angle;
+            auto x1 = inner_radius * std::cosf(angle);
+            auto y1 = inner_radius * std::sinf(angle);
+            m_star_path.lineTo(x1, y1);
         }
+        angle += half_angle;
+        auto x2 = outer_radius * std::cosf(angle);
+        auto y2 = outer_radius * std::sinf(angle);
+        m_star_path.lineTo(x2, y2);
         m_star_path.closeSubpath();
         m_star_path.translate(center.x(), center.y());
 
