@@ -18,7 +18,7 @@ public:
 public:
     KeyFrameGroup<Vector1D> m_copies;
     KeyFrameGroup<Vector1D> m_offset;
-    Transformation m_transformation;
+    RepeaterTransformation m_transformation;
     int m_composite = 1;
 };
 }

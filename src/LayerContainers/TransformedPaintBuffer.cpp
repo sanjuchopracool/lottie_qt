@@ -9,10 +9,10 @@
 
 namespace eao {
 
-TransformedPaintBuffer::TransformedPaintBuffer(const Transformation& transformation, const PaintBufferInfo &info, const LayerModel *layer_mode)
+TransformedPaintBuffer::TransformedPaintBuffer(const Transformation3D& transformation, const PaintBufferInfo &info, const LayerModel *layer_mode)
     : CompositionLayer(info),
       m_layer_model(layer_mode),
-      m_transformation(std::make_unique<TransformationNode>(transformation))
+    m_transformation(std::make_unique<TransformationNode3D>(transformation))
 {
     m_is_static = m_transformation->is_static();
 }
@@ -43,7 +43,7 @@ bool TransformedPaintBuffer::update(FrameType t, bool force_update)
     return result;
 }
 
-void TransformedPaintBuffer::set_parent_transform(const TransformationNode *parent_transform)
+void TransformedPaintBuffer::set_parent_transform(const TransformationNode3D *parent_transform)
 {
     m_transformation->set_parent_transform(parent_transform);
 }

@@ -6,7 +6,7 @@
 
 namespace eao {
 
-class Transformation
+class Transformation3D
 {
 public:
 
@@ -21,6 +21,23 @@ public:
     KeyFrameGroup<Vector1D> m_skew;
     KeyFrameGroup<Vector1D> m_skew_axis;
 };
+
+class RepeaterTransformation
+{
+public:
+
+    virtual void decode(const QJsonObject& in_obj);
+
+public:
+    KeyFrameGroup<QVector2D> m_anchor;
+    KeyFrameGroup<QVector2D> m_position;
+    KeyFrameGroup<QVector2D> m_scale;
+    KeyFrameGroup<Vector1D> m_rotation;
+    KeyFrameGroup<Vector1D> m_opacity;
+    KeyFrameGroup<Vector1D> m_skew;
+    KeyFrameGroup<Vector1D> m_skew_axis;
+};
+
 
 }
 

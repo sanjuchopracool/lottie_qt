@@ -47,7 +47,7 @@ bool RepeaterNode::update(FrameType t, bool force_update)
             node->update(t, force_update);
         }
     }
-//    m_path = m_star_path;
+    //    m_path = m_star_path;
     return result;
 }
 
@@ -59,21 +59,20 @@ void RepeaterNode::set_nodes(std::vector<std::unique_ptr<ShapeNodeInterface> > &
 void RepeaterNode::render(QPainter *painter)
 {
     painter->save();
-    int size = m_nodes.size();
-//    int offset = m_offset->value();
+    int offset = m_offset->value();
     int copies = m_copies->value();
-//    qDebug() << offset << " " << copies;
-    qDebug() << copies;
+    qDebug() << offset << " " << copies;
     auto tr = m_transformation.tranform();
-    qDebug() << tr;
-    for (int i = 0; i < copies; ++i)
+    for (int i = 0; i < copies + offset; ++i)
     {
-        for( int i = size - 1; i >= 0; --i)
-        {
-//            if (i < offset)
-//                continue;
-            m_nodes[i]->render(painter);
+        if (i >= offset) {
+            int nodes_count = m_nodes.size();
+            for( int j = nodes_count - 1; j >= 0; --j)
+            {
+                m_nodes[j]->render(painter);
+            }
         }
+
         painter->setTransform(tr, true);
     }
     painter->restore();

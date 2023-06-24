@@ -25,7 +25,7 @@ private:
     std::unique_ptr<NodeProperty<QVector2D>> m_center;
     std::unique_ptr<NodeProperty<Vector1D>> m_copies;
     std::unique_ptr<NodeProperty<Vector1D>> m_offset;
-    TransformationNode m_transformation;
+    RepeaterTransformationNode m_transformation;
 
     QPainterPath m_star_path;
     std::vector<std::unique_ptr<ShapeNodeInterface>> m_nodes;

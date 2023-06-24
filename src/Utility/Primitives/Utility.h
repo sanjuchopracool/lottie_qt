@@ -40,6 +40,7 @@ inline QPointF json_to_point(const QJsonValue &val)
 inline void decode(QVector3D &val, const QJsonValue &in_value)
 {
     auto in_array = in_value.toArray();
+    Q_ASSERT(in_array.size() == 3);
     if (in_array.size() == 3)
     {
         val.setX(in_array.at(0).toDouble());
@@ -51,6 +52,7 @@ inline void decode(QVector3D &val, const QJsonValue &in_value)
 inline void decode(QVector2D &obj, const QJsonValue &in_value)
 {
     auto in_array = in_value.toArray();
+    Q_ASSERT(in_array.size() == 2);
     if (in_array.size() == 2)
     {
         obj.setX(in_array.at(0).toDouble());
