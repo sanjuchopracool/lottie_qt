@@ -19,7 +19,9 @@ Shape::~Shape()
 
 void Shape::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
-    m_path.decode(in_obj.value(path_key));
+    auto val = in_obj.take(path_key);
+    Q_ASSERT(!val.isUndefined());
+    m_path.decode(val);
     m_direction = static_cast<PathDirection>(in_obj.value(direction_key).toInt());
 }
 }

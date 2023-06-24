@@ -53,7 +53,7 @@ void TimeLineWidget::setFrameInfo(float in_point, float out_point, float framera
                      (out_point - in_point)));
     m_timeline.setUpdateInterval(20);
     m_timeline.setLoopCount(0);
-    m_timeline.start();
+//    m_timeline.start();
 
     qDebug() << m_timeline.startFrame() << m_timeline.endFrame() << m_timeline.updateInterval()
              << m_timeline.duration();

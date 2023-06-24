@@ -10,7 +10,7 @@ class Transformation3D
 {
 public:
 
-    virtual void decode(const QJsonObject& in_obj);
+    virtual void decode(QJsonObject &in_obj, QList<QString> &out_messages);
 
 public:
     KeyFrameGroup<QVector3D> m_anchor;

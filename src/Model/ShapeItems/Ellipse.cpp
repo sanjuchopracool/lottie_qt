@@ -15,9 +15,9 @@ Ellipse::Ellipse()
 
 void Ellipse::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
-    m_direction = static_cast<Direction>(in_obj.value(direction_key).toInt());
-    m_size.decode(in_obj.value(size_key));
-    m_position.decode(in_obj.value(position_key));
+    m_size.decode(in_obj.take(size_key));
+    m_position.decode(in_obj.take(position_key));
+    m_direction = static_cast<PathDirection>(in_obj.take(direction_key).toInt(1));
 }
 
 }

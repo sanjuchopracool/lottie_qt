@@ -11,6 +11,7 @@ const QString lineCap_key ="lc";
 const QString lineJoin_key ="lj";
 const QString miterLimit_key ="ml";
 const QString dashPattern_key ="d";
+const QString fill_enabled_key ="fillEnabled";
 
 Qt::PenCapStyle int_to_cap_style(int i) {
     auto result = Qt::RoundCap;
@@ -49,14 +50,15 @@ Stroke::Stroke()
 
 void Stroke::decode(QJsonObject &in_obj, QList<QString>& out_messages)
 {
-    m_pen.setCapStyle(int_to_cap_style(in_obj.value(lineCap_key).toInt()));
-    m_pen.setJoinStyle(int_to_join_style(in_obj.value(lineJoin_key).toInt()));
-    m_pen.setMiterLimit(in_obj.value(miterLimit_key).toDouble(4));
-    m_opacity.decode(in_obj.value(opacity_key));
-    m_width.decode(in_obj.value(width_key));
-    m_color.decode(in_obj.value(color_key));
+    m_pen.setCapStyle(int_to_cap_style(in_obj.take(lineCap_key).toInt()));
+    m_pen.setJoinStyle(int_to_join_style(in_obj.take(lineJoin_key).toInt()));
+    m_pen.setMiterLimit(in_obj.take(miterLimit_key).toDouble(4));
+    m_opacity.decode(in_obj.take(opacity_key));
+    m_width.decode(in_obj.take(width_key));
+    m_color.decode(in_obj.take(color_key));
     if (in_obj.contains(dashPattern_key))
-        m_dashPattern.decode(in_obj.value(dashPattern_key));
+        m_dashPattern.decode(in_obj.take(dashPattern_key));
+    m_fillEnabled = in_obj.take(fill_enabled_key).toBool();
 }
 
 }

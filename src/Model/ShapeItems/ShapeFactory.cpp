@@ -47,10 +47,12 @@ ShapeType from_key(const QString& key)
     return  ShapeType::None;
 }
 
-ShapeItem *shape_from_object(QJsonObject &in_value, QList<QString> &out_messages)
+ShapeItem *shape_from_object(QJsonObject &in_object, QList<QString> &out_messages)
 {
     ShapeItem * result = nullptr;
-    auto key = in_value.value(type_key).toString();
+    auto val = in_object.take(type_key);
+    Q_ASSERT(!val.isUndefined());
+    auto key = val.toString();
     auto type = from_key(key);
     switch (type) {
     case ShapeType::Group:
@@ -95,8 +97,15 @@ ShapeItem *shape_from_object(QJsonObject &in_value, QList<QString> &out_messages
 
     if (result)
     {
-        result->decode(in_value, out_messages);
-        result->ShapeItem::decode(in_value, out_messages);
+        result->decode(in_object, out_messages);
+        result->ShapeItem::decode(in_object, out_messages);
+
+        const static QString msg("Error: Unsupproted %1 attribute %2");
+        auto arg = type == ShapeType::None ? key : shape_type_names[static_cast<int>(type)];
+
+        for(const auto& element : in_object.keys()) {
+            out_messages.emplace_back(msg.arg(arg).arg(element));
+        }
     }
 
     return  result;

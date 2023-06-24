@@ -25,6 +25,7 @@ public:
     KeyFrameGroup<Vector1D> m_opacity;
     KeyFrameGroup<QVector4D> m_color;
     FillRule m_fill_rule = FillRule::None;
+    bool m_fillEnabled = true;
 };
 }
 

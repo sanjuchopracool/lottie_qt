@@ -18,6 +18,7 @@ public:
     KeyFrameGroup<QVector2D> m_size;
     KeyFrameGroup<QVector2D> m_center;
     KeyFrameGroup<Vector1D> m_corner_radius;
+    PathDirection m_direction;
 };
 }
 

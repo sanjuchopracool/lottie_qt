@@ -5,6 +5,7 @@ const QString start_key = "s";
 const QString end_key = "e";
 const QString offset_key = "o";
 const QString trimType_key = "m";
+const QString index_key = "ix";
 
 Trim::TrimType type_from_int(int i) {
     auto result = Trim::TrimType::Simultaneously;
@@ -21,9 +22,17 @@ Trim::Trim()
 
 void Trim::decode(QJsonObject &in_obj, QList<QString>& out_messages)
 {
-    m_start.decode(in_obj.value(start_key));
-    m_end.decode(in_obj.value(end_key));
-    m_offset.decode(in_obj.value(offset_key));
-    m_trimType = type_from_int(in_obj.value(trimType_key).toInt());
+    m_start.decode(in_obj.take(start_key));
+    m_end.decode(in_obj.take(end_key));
+    m_offset.decode(in_obj.take(offset_key));
+    m_trimType = type_from_int(in_obj.take(trimType_key).toInt());
+    auto index = in_obj.take(index_key);
+    if (!index.isUndefined()) {
+        static bool flag = true;
+        if(flag) {
+            flag = false;
+            out_messages.append("Warning: property index is ignored!");
+        }
+    }
 }
 }

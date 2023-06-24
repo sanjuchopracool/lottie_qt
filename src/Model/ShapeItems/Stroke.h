@@ -27,6 +27,7 @@ public:
     KeyFrameGroup<Vector1D> m_width;
     KeyFrameGroup<QVector4D> m_color;
     KeyFrameGroup<std::vector<DashElement>> m_dashPattern;
+    bool m_fillEnabled = false;
     QPen m_pen;
 };
 }
