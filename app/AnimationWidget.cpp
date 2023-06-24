@@ -104,7 +104,7 @@ AnimationViewWidget::AnimationViewWidget(QWidget *parent)
     connect(m_animation_widget, SIGNAL(animation_loaded(QSize,float,float,float)),
             this, SLOT(slot_animation_loaded(QSize,float,float,float)));
 
-    m_animation_widget->load(QDir::home().absolutePath() + "/Downloads/skia_repeater.json");
+    m_animation_widget->load(QDir::home().absolutePath() + "/Downloads/lottielogo.json");
 }
 
 AnimationViewWidget::~AnimationViewWidget()

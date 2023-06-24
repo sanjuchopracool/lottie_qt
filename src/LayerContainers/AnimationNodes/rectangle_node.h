@@ -3,6 +3,7 @@
 
 #include "ShapeNodeInterface.h"
 #include "../../NodeRenderSystem/NodeProperties/NodeProperty.h"
+#include "../../lottie_qt/src/Utility/Primitives/Vector1D.h"
 
 #include <memory>
 
@@ -19,7 +20,7 @@ public:
 private:
     std::unique_ptr<NodeProperty<QVector2D>> m_size;
     std::unique_ptr<NodeProperty<QVector2D>> m_center;
-    std::unique_ptr<NodeProperty<QVector2D>> m_corner_radius;
+    std::unique_ptr<NodeProperty<Vector1D>> m_corner_radius;
     QPainterPath m_rectangle_path;
 };
 }

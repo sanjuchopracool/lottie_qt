@@ -20,7 +20,7 @@ const QStringView layers_key(u"layers");
 const QStringView name_key(u"nm");
 //const QStringView glyphs_key(u"chars");
 //const QStringView fonts_key(u"fonts");
-//const QStringView asset_library_key(u"assets");
+const QStringView asset_library_key(u"assets");
 //const QStringView markers_key(u"markers");
 
 QList<LayerModel *> load_layers(QJsonObject &in_obj , QList<QString> &out_messages)
@@ -75,6 +75,10 @@ void Composition::decode(QJsonObject &in_obj, QList<QString> &out_messages)
     val = in_obj.take(height_key);
     Q_ASSERT(!val.isUndefined());
     m_height = val.toInt();
+
+    if (in_obj.take(asset_library_key).toArray().size()) {
+       out_messages.emplace_back("Error: assets not supported yet!");
+    }
 
     m_layers = load_layers(in_obj , out_messages);
 

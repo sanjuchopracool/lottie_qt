@@ -26,6 +26,11 @@ void SolidLayer::decode(QJsonObject &in_obj, QList<QString> &out_messages)
     m_width = in_obj.take(width_key).toDouble();
     m_height = in_obj.take(height_key).toDouble();
     LayerModel::decode(in_obj, out_messages);
+
+    for(const auto& element : in_obj.keys()) {
+        const static QString msg("Error: Unsupproted element : %1 in Solid Layer");
+        out_messages.emplace_back(msg.arg(element));
+    }
 }
 
 }
