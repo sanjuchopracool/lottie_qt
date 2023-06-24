@@ -32,7 +32,7 @@ std::unique_ptr<ShapeNodeInterface> node_for_shape(ShapeItem *shape_item, QList<
     case ShapeType::Group:
     {
         auto group =  std::make_unique<GroupNode>(static_cast<Group*>(shape_item));
-        paths.append(group->group_paths());
+//        paths.append(group->group_paths());
         result = std::move(group);
     }
         break;

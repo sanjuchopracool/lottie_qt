@@ -59,6 +59,8 @@ void AnimationWidget::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)
     QPainter painter(this);
+    qreal inverse_pixel_ratio = 1.0/devicePixelRatioF();
+    painter.scale(inverse_pixel_ratio, inverse_pixel_ratio);
     //    painter.fillRect(this->rect(), Qt::darkGreen);
     if (m_animation_container) {
         //        AutoProfiler p("D");
@@ -70,7 +72,8 @@ void AnimationWidget::resizeEvent(QResizeEvent *ev)
 {
     auto size = ev->size();
     if (m_animation_container) {
-        m_animation_container->resize(size.width(), size.height());
+        qreal pixelRatio = devicePixelRatioF();
+        m_animation_container->resize(pixelRatio*size.width(), pixelRatio*size.height());
         m_forced_update = true;
     }
 }
@@ -104,7 +107,7 @@ AnimationViewWidget::AnimationViewWidget(QWidget *parent)
     connect(m_animation_widget, SIGNAL(animation_loaded(QSize,float,float,float)),
             this, SLOT(slot_animation_loaded(QSize,float,float,float)));
 
-    m_animation_widget->load(QDir::home().absolutePath() + "/Downloads/lottielogo.json");
+    m_animation_widget->load(QDir::home().absolutePath() + "/Downloads/gear.json");
 }
 
 AnimationViewWidget::~AnimationViewWidget()
