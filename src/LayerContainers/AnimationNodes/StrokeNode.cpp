@@ -66,9 +66,8 @@ void StrokeNode::render(QPainter *painter)
     //TODO opacity
 
     QPainterPath path;
-    for(auto pathNode : m_pathNodes)
-    {
-        path.addPath(pathNode->path());
+    for (auto path_node : m_pathNodes) {
+        path.addPath(path_node->path());
     }
 
     if (not path.isEmpty())

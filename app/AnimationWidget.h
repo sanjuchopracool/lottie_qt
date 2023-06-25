@@ -30,8 +30,8 @@ signals:
                           float out_point,
                           float framerate);
 
-private slots:
-    void on_frame_changed(int frame);
+public slots:
+    void slot_frame_changed(int frame);
 
 private:
     std::unique_ptr<Composition> m_composition;

@@ -18,8 +18,8 @@ ShapeCompositionLayer::ShapeCompositionLayer(const ShapeLayer *layer, const Pain
         if (node)
         {
             if (shape_item->m_type == ShapeType::Repeater) {
-                RepeaterNode* repNode = static_cast<RepeaterNode*>(node.get());
-                repNode->set_nodes(m_nodes);
+                RepeaterNode *rep_node = static_cast<RepeaterNode *>(node.get());
+                rep_node->set_nodes(m_nodes);
             }
             m_nodes.emplace_back(std::move(node));
 

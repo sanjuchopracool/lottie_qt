@@ -9,17 +9,17 @@
 #include <QKeyEvent>
 #include <QPainter>
 
+#include "timeline_widget.h"
 #include <AutoProfiler.h>
 #include <QJsonObject>
 #include <QVBoxLayout>
-#include "timeline_widget.h"
 
 namespace eao {
 
 AnimationWidget::AnimationWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setMinimumSize(200,200);
+    setMinimumSize(200, 200);
     setAttribute(Qt::WA_TransparentForMouseEvents);
 }
 
@@ -34,7 +34,7 @@ bool AnimationWidget::load(const QString &file_path)
         QStringList messages;
         QJsonObject obj = doc.object();
         m_composition->decode(obj, messages);
-        for(const auto& message : messages)
+        for (const auto &message : messages)
             qDebug() << message;
 
         m_animation_container = std::make_unique<AnimationContainer>(m_composition.get());
@@ -59,7 +59,7 @@ void AnimationWidget::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)
     QPainter painter(this);
-    qreal inverse_pixel_ratio = 1.0/devicePixelRatioF();
+    qreal inverse_pixel_ratio = 1.0 / devicePixelRatioF();
     painter.scale(inverse_pixel_ratio, inverse_pixel_ratio);
     //    painter.fillRect(this->rect(), Qt::darkGreen);
     if (m_animation_container) {
@@ -72,17 +72,17 @@ void AnimationWidget::resizeEvent(QResizeEvent *ev)
 {
     auto size = ev->size();
     if (m_animation_container) {
-        qreal pixelRatio = devicePixelRatioF();
-        m_animation_container->resize(pixelRatio*size.width(), pixelRatio*size.height());
+        qreal pixel_ratio = devicePixelRatioF();
+        m_animation_container->resize(pixel_ratio * size.width(), pixel_ratio * size.height());
         m_forced_update = true;
     }
 }
 
-void AnimationWidget::on_frame_changed(int time)
+void AnimationWidget::slot_frame_changed(int time)
 {
-//    static int counter = 1;
+    //    static int counter = 1;
     FrameType t = static_cast<FrameType>(time) / 1000.0;
-//    qDebug() << t << counter++;
+    //    qDebug() << t << counter++;
     if (m_animation_container) {
         //        AutoProfiler p("U");
         if (m_animation_container->update(t, m_forced_update))
@@ -94,35 +94,38 @@ void AnimationWidget::on_frame_changed(int time)
 
 AnimationViewWidget::AnimationViewWidget(QWidget *parent)
 {
-    QVBoxLayout* mainLayout = new QVBoxLayout();
+    QVBoxLayout *main_layout = new QVBoxLayout();
     m_animation_widget = new AnimationWidget();
     m_timeline_widget = new TimeLineWidget();
-    mainLayout->addWidget(m_animation_widget);
-    mainLayout->addWidget(m_timeline_widget);
-    setLayout(mainLayout);
+    main_layout->addWidget(m_animation_widget);
+    main_layout->addWidget(m_timeline_widget);
+    setLayout(main_layout);
 
-    connect(m_timeline_widget, SIGNAL(frameChanged(int)),
-            m_animation_widget, SLOT(on_frame_changed(int)));
+    connect(m_timeline_widget,
+            &TimeLineWidget::frame_changed,
+            m_animation_widget,
+            &AnimationWidget::slot_frame_changed);
 
-    connect(m_animation_widget, SIGNAL(animation_loaded(QSize,float,float,float)),
-            this, SLOT(slot_animation_loaded(QSize,float,float,float)));
+    connect(m_animation_widget,
+            &AnimationWidget::animation_loaded,
+            this,
+            &AnimationViewWidget::slot_animation_loaded);
 
     m_animation_widget->load(QDir::home().absolutePath() + "/Downloads/gear.json");
 }
 
-AnimationViewWidget::~AnimationViewWidget()
-{
+AnimationViewWidget::~AnimationViewWidget() {}
 
-}
-
-void AnimationViewWidget::slot_animation_loaded(QSize size, float in_point,
-                                                float out_point, float framerate)
+void AnimationViewWidget::slot_animation_loaded(QSize size,
+                                                float in_point,
+                                                float out_point,
+                                                float framerate)
 {
     size.setWidth(std::max(size.width(), m_timeline_widget->width()));
     size.setHeight(size.height() + m_timeline_widget->height());
     resize(size);
 
-    m_timeline_widget->setFrameInfo(in_point, out_point, framerate);
+    m_timeline_widget->set_frame_info(in_point, out_point, framerate);
 }
 
 QSize AnimationViewWidget::sizeHint() const

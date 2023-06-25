@@ -16,9 +16,7 @@ class TimeLineWidget : public QWidget
 public:
     explicit TimeLineWidget(QWidget *parent = nullptr);
     ~TimeLineWidget();
-    void setFrameInfo(float in_point,
-                      float out_point,
-                      float framerate);
+    void set_frame_info(float in_point, float out_point, float framerate);
 
 private slots:
     void toggle_timeline();
@@ -28,10 +26,10 @@ private slots:
     void slot_slider_value_changed(int);
 
 signals:
-    void frameChanged(int);
+    void frame_changed(int);
 
 private:
-    Ui::TimeLineWidget *ui;
+    Ui::TimeLineWidget *m_ui;
     QTimeLine m_timeline;
 };
 

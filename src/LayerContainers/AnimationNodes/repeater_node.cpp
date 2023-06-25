@@ -24,13 +24,14 @@ bool RepeaterNode::need_update(FrameType t) const
     if (m_is_static)
         return false;
 
-    bool needUpdate =  m_copies->needs_update(t) || m_offset->needs_update(t) ||
-                      m_transformation.need_update(t);
-    return needUpdate || std::any_of(m_nodes.cbegin(), m_nodes.cend(),
-                                     [=](const std::unique_ptr<ShapeNodeInterface>& node)
-                                     {
-                                         return node->need_update(t);
-                                     });
+    bool need_update = m_copies->needs_update(t) || m_offset->needs_update(t)
+                       || m_transformation.need_update(t);
+    return need_update
+           || std::any_of(m_nodes.cbegin(),
+                          m_nodes.cend(),
+                          [=](const std::unique_ptr<ShapeNodeInterface> &node) {
+                              return node->need_update(t);
+                          });
 }
 
 bool RepeaterNode::update(FrameType t, bool force_update)

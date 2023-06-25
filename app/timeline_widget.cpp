@@ -16,50 +16,47 @@ int ms_for_frame(double frame_rate, double in_value)
 //}
 } // namespace
 
-
-TimeLineWidget::TimeLineWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::TimeLineWidget)
+TimeLineWidget::TimeLineWidget(QWidget *parent)
+    : QWidget(parent)
+    , m_ui(new Ui::TimeLineWidget)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
     m_timeline.setEasingCurve(QEasingCurve::Linear);
-    connect(&m_timeline, SIGNAL(frameChanged(int)),
-            this, SIGNAL(frameChanged(int)));
-    connect(&m_timeline, SIGNAL(frameChanged(int)),
-            this, SLOT(slot_frame_changed(int)));
+    connect(&m_timeline, SIGNAL(frameChanged(int)), this, SIGNAL(frame_changed(int)));
+    connect(&m_timeline, SIGNAL(frameChanged(int)), this, SLOT(slot_frame_changed(int)));
 
     setFixedHeight(minimumSizeHint().height());
-    connect(ui->pb_play, &QPushButton::clicked,
-            this, &TimeLineWidget::toggle_timeline);
-    connect(ui->pb_reset, &QPushButton::clicked,
-            this, &TimeLineWidget::slot_reset);
-    connect(ui->slider_progress, &QSlider::valueChanged,
-            this, &TimeLineWidget::slot_slider_value_changed);
-    connect(ui->spnbox_current, &QSpinBox::valueChanged,
-            this, &TimeLineWidget::slot_slider_value_changed);
+    connect(m_ui->pb_play, &QPushButton::clicked, this, &TimeLineWidget::toggle_timeline);
+    connect(m_ui->pb_reset, &QPushButton::clicked, this, &TimeLineWidget::slot_reset);
+    connect(m_ui->slider_progress,
+            &QSlider::valueChanged,
+            this,
+            &TimeLineWidget::slot_slider_value_changed);
+    connect(m_ui->spnbox_current,
+            &QSpinBox::valueChanged,
+            this,
+            &TimeLineWidget::slot_slider_value_changed);
 }
 
 TimeLineWidget::~TimeLineWidget()
 {
-    delete ui;
+    delete m_ui;
 }
 
-void TimeLineWidget::setFrameInfo(float in_point, float out_point, float framerate)
+void TimeLineWidget::set_frame_info(float in_point, float out_point, float framerate)
 {
     m_timeline.setStartFrame(in_point * 1000);
     m_timeline.setEndFrame(out_point * 1000);
-    m_timeline.setDuration(
-        ms_for_frame(framerate,
-                     (out_point - in_point)));
+    m_timeline.setDuration(ms_for_frame(framerate, (out_point - in_point)));
     m_timeline.setUpdateInterval(20);
     m_timeline.setLoopCount(0);
-//    m_timeline.start();
+    //    m_timeline.start();
 
     qDebug() << m_timeline.startFrame() << m_timeline.endFrame() << m_timeline.updateInterval()
              << m_timeline.duration();
-    ui->lbl_totalFrames->setText(QString::number((int)out_point));
-    ui->spnbox_current->setRange(in_point, out_point);
-    ui->slider_progress->setRange(in_point, out_point);
+    m_ui->lbl_totalFrames->setText(QString::number((int) out_point));
+    m_ui->spnbox_current->setRange(in_point, out_point);
+    m_ui->slider_progress->setRange(in_point, out_point);
 }
 
 void TimeLineWidget::toggle_timeline()
@@ -72,11 +69,11 @@ void TimeLineWidget::toggle_timeline()
 
 void TimeLineWidget::slot_frame_changed(int t)
 {
-    QSignalBlocker bl1(ui->slider_progress);
-    QSignalBlocker bl2(ui->spnbox_current);
-    int value = t/1000;
-    ui->spnbox_current->setValue(value);
-    ui->slider_progress->setValue(value);
+    QSignalBlocker bl1(m_ui->slider_progress);
+    QSignalBlocker bl2(m_ui->spnbox_current);
+    int value = t / 1000;
+    m_ui->spnbox_current->setValue(value);
+    m_ui->slider_progress->setValue(value);
 }
 
 void TimeLineWidget::slot_reset()
@@ -86,8 +83,9 @@ void TimeLineWidget::slot_reset()
 
 void TimeLineWidget::slot_slider_value_changed(int value)
 {
-    m_timeline.setCurrentTime((m_timeline.duration()*value)/(ui->slider_progress->maximum() - ui->slider_progress->minimum()));
+    m_timeline.setCurrentTime(
+        (m_timeline.duration() * value)
+        / (m_ui->slider_progress->maximum() - m_ui->slider_progress->minimum()));
 }
 
-
-}
+} // namespace eao

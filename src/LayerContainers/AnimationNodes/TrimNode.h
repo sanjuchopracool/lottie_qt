@@ -16,9 +16,7 @@ public:
     TrimNode(const Trim* trim);
     bool need_update(FrameType t) const override;
     bool update(FrameType t, bool force_update) override;
-    void setPaths(const QList<PathNode*> targets) {
-        m_target_nodes = targets;
-    }
+    void set_paths(const QList<PathNode *> targets) { m_target_nodes = targets; }
 
 public:
     std::unique_ptr<NodeProperty<Vector1D>> m_start;

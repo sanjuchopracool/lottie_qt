@@ -15,9 +15,7 @@ public:
     const QPainterPath& path() {
         return m_path;
     }
-    void setPath(const QPainterPath& path) {
-        m_path = path;
-    }
+    void set_path(const QPainterPath &path) { m_path = path; }
 
 protected:
     QPainterPath m_path;
@@ -26,9 +24,7 @@ protected:
 class RenderNode
 {
 public:
-    void setPaths(const QList<PathNode*> paths) {
-        m_pathNodes = paths;
-    }
+    void set_paths(const QList<PathNode *> paths) { m_pathNodes = paths; }
 
 protected:
     QList<PathNode*> m_pathNodes;

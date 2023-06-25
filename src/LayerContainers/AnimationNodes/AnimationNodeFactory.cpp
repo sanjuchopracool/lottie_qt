@@ -53,14 +53,14 @@ std::unique_ptr<ShapeNodeInterface> node_for_shape(ShapeItem *shape_item, QList<
     case ShapeType::Fill:
     {
         auto fill = std::make_unique<FillNode>(static_cast<Fill*>(shape_item));
-        fill->setPaths(paths);
+        fill->set_paths(paths);
         result = std::move(fill);
     }
         break;
     case ShapeType::Stroke:
     {
         auto stroke = std::make_unique<StrokeNode>(static_cast<Stroke*>(shape_item));
-        stroke->setPaths(paths);
+        stroke->set_paths(paths);
         result = std::move(stroke);
     }
         break;
@@ -88,7 +88,7 @@ std::unique_ptr<ShapeNodeInterface> node_for_shape(ShapeItem *shape_item, QList<
     case ShapeType::Trim:
     {
         auto trim = std::make_unique<TrimNode>(static_cast<Trim*>(shape_item));
-        trim->setPaths(paths);
+        trim->set_paths(paths);
         result = std::move(trim);
     }
         break;

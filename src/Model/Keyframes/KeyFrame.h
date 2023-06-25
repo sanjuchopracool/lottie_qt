@@ -83,9 +83,11 @@ public:
                 in_point.setY(1);
             }
 
-            QEasingCurve easingCurve(QEasingCurve::BezierSpline);
-            easingCurve.addCubicBezierSegment(out_point.toPointF(), in_point.toPointF(), QPointF(1, 1));
-            progress = easingCurve.valueForProgress(progress);
+            QEasingCurve easing_curve(QEasingCurve::BezierSpline);
+            easing_curve.addCubicBezierSegment(out_point.toPointF(),
+                                               in_point.toPointF(),
+                                               QPointF(1, 1));
+            progress = easing_curve.valueForProgress(progress);
         }
 
         return progress;

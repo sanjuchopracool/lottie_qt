@@ -4,7 +4,7 @@ namespace eao {
 const QString start_key = "s";
 const QString end_key = "e";
 const QString offset_key = "o";
-const QString trimType_key = "m";
+const QString trim_type_key = "m";
 const QString index_key = "ix";
 
 Trim::TrimType type_from_int(int i) {
@@ -25,7 +25,7 @@ void Trim::decode(QJsonObject &in_obj, QList<QString>& out_messages)
     m_start.decode(in_obj.take(start_key));
     m_end.decode(in_obj.take(end_key));
     m_offset.decode(in_obj.take(offset_key));
-    m_trimType = type_from_int(in_obj.take(trimType_key).toInt());
+    m_trimType = type_from_int(in_obj.take(trim_type_key).toInt());
     auto index = in_obj.take(index_key);
     if (!index.isUndefined()) {
         static bool flag = true;

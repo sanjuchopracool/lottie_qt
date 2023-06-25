@@ -1,15 +1,10 @@
-#include <QApplication>
-
 #include "AnimationWidget.h"
-#include <QDir>
 
-using namespace std;
-using namespace eao;
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
     eao::AnimationViewWidget w;
     w.show();
 

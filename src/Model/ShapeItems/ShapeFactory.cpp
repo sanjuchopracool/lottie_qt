@@ -20,8 +20,7 @@
 namespace eao {
 
 const QString type_key = "ty";
-const QMap<QString, ShapeType> keyToType
-{
+const QMap<QString, ShapeType> key_to_type{
     {"el", ShapeType::Ellipse},
     {"fl", ShapeType::Fill},
     {"gf", ShapeType::GradientFill},
@@ -40,8 +39,8 @@ const QMap<QString, ShapeType> keyToType
 
 ShapeType from_key(const QString& key)
 {
-    auto found = keyToType.find(key);
-    if( found != keyToType.end())
+    auto found = key_to_type.find(key);
+    if (found != key_to_type.end())
         return  found.value();
 
     return  ShapeType::None;

@@ -31,8 +31,7 @@ bool FillNode::need_update(FrameType t) const
 bool FillNode::update(FrameType t, bool force_update)
 {
     bool result = false;
-    if (force_update or need_update(t))
-    {
+    if (force_update or need_update(t)) {
         result = true;
         m_color->update(t);
     }
@@ -43,12 +42,11 @@ void FillNode::render(QPainter *painter)
 {
     painter->save();
     painter->setBrush(to_color(m_color->value()));
-        //TODO opacity
+    //TODO opacity
 
     QPainterPath path;
-    for(auto pathNode : m_pathNodes)
-    {
-        path.addPath(pathNode->path());
+    for (auto path_node : m_pathNodes) {
+        path.addPath(path_node->path());
     }
 
     if (not path.isEmpty())
@@ -57,4 +55,4 @@ void FillNode::render(QPainter *painter)
     painter->restore();
 }
 
-}
+} // namespace eao
