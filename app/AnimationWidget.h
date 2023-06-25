@@ -37,7 +37,7 @@ private:
     std::unique_ptr<Composition> m_composition;
     std::unique_ptr<AnimationContainer> m_animation_container;
     bool m_forced_update = false;
-
+    int m_current_frame = 0;
 };
 
 

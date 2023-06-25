@@ -76,10 +76,12 @@ void AnimationWidget::resizeEvent(QResizeEvent *ev)
         m_animation_container->resize(pixel_ratio * size.width(), pixel_ratio * size.height());
         m_forced_update = true;
     }
+    slot_frame_changed(m_current_frame);
 }
 
 void AnimationWidget::slot_frame_changed(int time)
 {
+    m_current_frame = time;
     //    static int counter = 1;
     FrameType t = static_cast<FrameType>(time) / 1000.0;
     //    qDebug() << t << counter++;

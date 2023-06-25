@@ -71,7 +71,7 @@ void TimeLineWidget::slot_frame_changed(int t)
 {
     QSignalBlocker bl1(m_ui->slider_progress);
     QSignalBlocker bl2(m_ui->spnbox_current);
-    int value = t / 1000;
+    int value = (t + 500) / 1000;
     m_ui->spnbox_current->setValue(value);
     m_ui->slider_progress->setValue(value);
 }
@@ -83,9 +83,10 @@ void TimeLineWidget::slot_reset()
 
 void TimeLineWidget::slot_slider_value_changed(int value)
 {
-    m_timeline.setCurrentTime(
-        (m_timeline.duration() * value)
-        / (m_ui->slider_progress->maximum() - m_ui->slider_progress->minimum()));
+    int current_time = (m_timeline.duration() * value);
+    int range = (m_ui->slider_progress->maximum() - m_ui->slider_progress->minimum());
+    current_time /= range;
+    m_timeline.setCurrentTime(current_time);
 }
 
 } // namespace eao
