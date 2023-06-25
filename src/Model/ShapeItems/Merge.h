@@ -23,8 +23,6 @@ public:
 
 private:
     MergeMode m_mode = MergeMode::None;
-    QString m_name;
-    QString m_match_name;
 };
 }
 

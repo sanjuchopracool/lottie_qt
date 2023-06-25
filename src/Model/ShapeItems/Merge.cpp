@@ -5,7 +5,6 @@
 namespace eao {
 
 const QString mode_key("mm");
-const QString match_name_key("mn");
 
 Merge::Merge()
 {
@@ -14,8 +13,7 @@ Merge::Merge()
 
 void Merge::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
-    m_mode = static_cast<MergeMode>(in_obj.value(mode_key).toInt());
-    m_match_name = in_obj.value(match_name_key).toString();
+    m_mode = static_cast<MergeMode>(in_obj.take(mode_key).toInt());
 }
 
 }
