@@ -1,9 +1,9 @@
 #ifndef ANIMATIONWIDGET_H
 #define ANIMATIONWIDGET_H
 
-#include <QWidget>
-
 #include <memory>
+#include <QSettings>
+#include <QWidget>
 
 namespace eao {
 class Composition;
@@ -60,6 +60,7 @@ protected:
 private:
     AnimationWidget* m_animation_widget = nullptr;
     TimeLineWidget* m_timeline_widget = nullptr;
+    QSettings m_settings;
 };
 
 } // namespace eao

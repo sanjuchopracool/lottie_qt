@@ -12,12 +12,16 @@ public:
     SolidLayer();
     ~SolidLayer() override;
 
-    void decode(QJsonObject& in_obj,QList<QString> &out_messages) override;
+    int width() const { return m_width; }
+    int height() const { return m_height; }
+    QColor color() const { return m_color; }
 
-public:
+    void decode(QJsonObject &in_obj, QList<QString> &out_messages) override;
+
+private:
     QColor m_color;
-    float m_width;
-    float m_height;
+    int m_width;
+    int m_height;
 };
 }
 #endif // SOLIDLAYER_H

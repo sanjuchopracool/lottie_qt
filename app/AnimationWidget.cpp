@@ -16,6 +16,8 @@
 
 namespace eao {
 
+const QStringView last_file_key(u"last_file");
+
 AnimationWidget::AnimationWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -95,6 +97,7 @@ void AnimationWidget::slot_frame_changed(int time)
 }
 
 AnimationViewWidget::AnimationViewWidget(QWidget *parent)
+    : m_settings("chops", "app", this)
 {
     QVBoxLayout *main_layout = new QVBoxLayout();
     m_animation_widget = new AnimationWidget();
@@ -113,7 +116,7 @@ AnimationViewWidget::AnimationViewWidget(QWidget *parent)
             this,
             &AnimationViewWidget::slot_animation_loaded);
 
-    m_animation_widget->load(QDir::home().absolutePath() + "/Downloads/gear.json");
+    m_animation_widget->load(m_settings.value(last_file_key).toString());
 }
 
 AnimationViewWidget::~AnimationViewWidget() {}
@@ -144,6 +147,7 @@ void AnimationViewWidget::keyPressEvent(QKeyEvent *event)
                                                          "select file",
                                                          QDir::homePath() + "/Downloads",
                                                          "*.json");
+        m_settings.setValue(last_file_key, file_path);
         m_animation_widget->load(file_path);
     }
 }

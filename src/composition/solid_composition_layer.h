@@ -15,7 +15,7 @@ public:
     void draw_layer(QPainter *painter, int alpha) override;
 
 private:
-    const SolidLayer &m_solid_layer;
+    const SolidLayer &m_layer;
 };
 
 }

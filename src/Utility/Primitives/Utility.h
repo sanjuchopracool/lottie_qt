@@ -23,6 +23,12 @@ inline void decode(Vector1D &val, const QJsonValue &in_value)
     val = in_value.isArray() ? in_value.toArray().at(0).toDouble() : in_value.toDouble();
 }
 
+using Vector1D = float;
+inline void decode(int &val, const QJsonValue &in_value)
+{
+    val = in_value.isArray() ? in_value.toArray().at(0).toInt() : in_value.toInt();
+}
+
 template <typename T>
 T remap(T value, T from_low, T from_high, T to_low, T to_high)
 {

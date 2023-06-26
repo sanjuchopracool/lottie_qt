@@ -11,7 +11,7 @@ namespace eao {
 
 BaseCompositionLayer::BaseCompositionLayer(const LayerModel &layer_model)
     : m_layer_model(layer_model)
-    , m_transformation(std::make_unique<TransformationNode3D>(layer_model.m_transform))
+    , m_transformation(std::make_unique<LayerTransformationNode>(layer_model.m_transform))
 {}
 
 BaseCompositionLayer::~BaseCompositionLayer() {}
@@ -35,6 +35,16 @@ void BaseCompositionLayer::draw(QPainter *painter, int alpha)
 void BaseCompositionLayer::update(FrameType t, bool force_update)
 {
     m_transformation->update(t, force_update);
+}
+
+QTransform BaseCompositionLayer::tranform() const
+{
+    return m_transformation->tranform();
+}
+
+int BaseCompositionLayer::opacity() const
+{
+    return m_transformation->opacity();
 }
 
 } // namespace eao

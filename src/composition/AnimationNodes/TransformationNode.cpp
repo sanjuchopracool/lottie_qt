@@ -8,19 +8,22 @@
 
 namespace eao {
 
-TransformationNode3D::TransformationNode3D(const Transformation3D &transformation)
+LayerTransformationNode::LayerTransformationNode(const Transformation3D &transformation)
 {
     using Prop3D = NodeProperty<QVector3D>;
     using Prop1D = NodeProperty<Vector1D>;
     using KFVP3D = KeyFrameValueProvider<QVector3D>;
     using KFVP1D = KeyFrameValueProvider<Vector1D>;
 
+    using Prop1DInt = NodeProperty<int>;
+    using KFVP1DInt = KeyFrameValueProvider<int>;
+
     m_anchor = std::make_unique<Prop3D>(new KFVP3D(transformation.m_anchor));
     m_position = std::make_unique<Prop3D>(new KFVP3D(transformation.m_position));
     m_scale = std::make_unique<Prop3D>(new KFVP3D(transformation.m_scale));
 
     m_rotation = std::make_unique<Prop1D>(new KFVP1D(transformation.m_rotation));
-    m_opacity = std::make_unique<Prop1D>(new KFVP1D(transformation.m_opacity));
+    m_opacity = std::make_unique<Prop1DInt>(new KFVP1DInt(transformation.m_opacity));
     m_skew = std::make_unique<Prop1D>(new KFVP1D(transformation.m_skew));
     m_skew_axis = std::make_unique<Prop1D>(new KFVP1D(transformation.m_skew_axis));
 
@@ -28,7 +31,7 @@ TransformationNode3D::TransformationNode3D(const Transformation3D &transformatio
             m_rotation->is_static() and m_opacity->is_static() and m_skew->is_static() and m_skew_axis->is_static();
 }
 
-bool TransformationNode3D::need_update(FrameType t) const
+bool LayerTransformationNode::need_update(FrameType t) const
 {
     if (m_is_static)
         return false;
@@ -45,7 +48,7 @@ bool TransformationNode3D::need_update(FrameType t) const
             m_skew_axis->needs_update(t);
 }
 
-bool TransformationNode3D::update(FrameType t, bool force_update)
+bool LayerTransformationNode::update(FrameType t, bool force_update)
 {
     bool result = false;
     if (force_update or need_update(t))
@@ -57,18 +60,18 @@ bool TransformationNode3D::update(FrameType t, bool force_update)
     return result;
 }
 
-void TransformationNode3D::update(FrameType t, QPainter *painter)
+void LayerTransformationNode::update(FrameType t, QPainter *painter)
 {
     update_transform(t);
     update_painter(painter);
 }
 
-void TransformationNode3D::update_painter(QPainter *painter)
+void LayerTransformationNode::update_painter(QPainter *painter)
 {
     painter->setTransform(tranform(), true);
 }
 
-void TransformationNode3D::update_transform(FrameType t)
+void LayerTransformationNode::update_transform(FrameType t)
 {
     m_anchor->update(t);
     m_position->update(t);
@@ -79,7 +82,7 @@ void TransformationNode3D::update_transform(FrameType t)
     m_skew_axis->update(t);
 }
 
-void TransformationNode3D::set_parent_transform(const TransformationNode3D *parent_transform)
+void LayerTransformationNode::set_parent_transform(const LayerTransformationNode *parent_transform)
 {
     m_parent_transformation = parent_transform;
 //    if (m_parent_transformation)
@@ -88,7 +91,7 @@ void TransformationNode3D::set_parent_transform(const TransformationNode3D *pare
 //    }
 }
 
-QTransform TransformationNode3D::tranform() const
+QTransform LayerTransformationNode::tranform() const
 {
     auto anchor = m_anchor->value();
     auto pos = m_position->value();
@@ -119,12 +122,15 @@ RepeaterTransformationNode::RepeaterTransformationNode(const RepeaterTransformat
     using KFVP2D = KeyFrameValueProvider<QVector2D>;
     using KFVP1D = KeyFrameValueProvider<Vector1D>;
 
+    using Prop1DInt = NodeProperty<int>;
+    using KFVP1DInt = KeyFrameValueProvider<int>;
+
     m_anchor = std::make_unique<Prop2D>(new KFVP2D(transformation.m_anchor));
     m_position = std::make_unique<Prop2D>(new KFVP2D(transformation.m_position));
     m_scale = std::make_unique<Prop2D>(new KFVP2D(transformation.m_scale));
 
     m_rotation = std::make_unique<Prop1D>(new KFVP1D(transformation.m_rotation));
-    m_opacity = std::make_unique<Prop1D>(new KFVP1D(transformation.m_opacity));
+    m_opacity = std::make_unique<Prop1DInt>(new KFVP1DInt(transformation.m_opacity));
     m_skew = std::make_unique<Prop1D>(new KFVP1D(transformation.m_skew));
     m_skew_axis = std::make_unique<Prop1D>(new KFVP1D(transformation.m_skew_axis));
 
@@ -183,7 +189,7 @@ void RepeaterTransformationNode::update_transform(FrameType t)
     m_skew_axis->update(t);
 }
 
-void RepeaterTransformationNode::set_parent_transform(const TransformationNode3D *parent_transform)
+void RepeaterTransformationNode::set_parent_transform(const LayerTransformationNode *parent_transform)
 {
     m_parent_transformation = parent_transform;
     //    if (m_parent_transformation)

@@ -17,7 +17,7 @@ public:
     KeyFrameGroup<QVector3D> m_position;
     KeyFrameGroup<QVector3D> m_scale;
     KeyFrameGroup<Vector1D> m_rotation;
-    KeyFrameGroup<Vector1D> m_opacity;
+    KeyFrameGroup<int> m_opacity;
     KeyFrameGroup<Vector1D> m_skew;
     KeyFrameGroup<Vector1D> m_skew_axis;
 };
@@ -33,7 +33,7 @@ public:
     KeyFrameGroup<QVector2D> m_position;
     KeyFrameGroup<QVector2D> m_scale;
     KeyFrameGroup<Vector1D> m_rotation;
-    KeyFrameGroup<Vector1D> m_opacity;
+    KeyFrameGroup<int> m_opacity;
     KeyFrameGroup<Vector1D> m_skew;
     KeyFrameGroup<Vector1D> m_skew_axis;
 };

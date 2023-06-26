@@ -5,11 +5,12 @@
 #include "lottielib.h"
 
 #include <memory>
+#include <QTransform>
 
 namespace eao {
 
 class LayerModel;
-class TransformationNode3D;
+class LayerTransformationNode;
 
 class BaseCompositionLayer : public PaintingElement
 {
@@ -23,9 +24,12 @@ public:
     virtual void draw_layer(QPainter *painter, int alpha) = 0;
     virtual void update(FrameType t, bool force_update);
 
+    QTransform tranform() const;
+    int opacity() const;
+
 private:
     const LayerModel &m_layer_model;
-    std::unique_ptr<TransformationNode3D> m_transformation;
+    std::unique_ptr<LayerTransformationNode> m_transformation;
 };
 
 } // namespace eao
