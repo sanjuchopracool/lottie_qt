@@ -67,8 +67,8 @@ std::unique_ptr<Composition> LottieParser::parse(QJsonObject &in_obj, QList<QStr
     Q_ASSERT(!val.isUndefined());
     int height = val.toInt();
 
-    auto comp = std::make_unique<eao::Composition>(name,
-                                                   version,
+    auto comp = std::make_unique<eao::Composition>(std::move(name),
+                                                   std::move(version),
                                                    width,
                                                    height,
                                                    in_point,
