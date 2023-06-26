@@ -5,8 +5,8 @@ file(GLOB_RECURSE SRC_FILES
 #    ${CMAKE_CURRENT_SOURCE_DIR}/Model/Layers/*.cpp
 #    ${CMAKE_CURRENT_SOURCE_DIR}/Model/Keyframes/*.cpp
 #    ${CMAKE_CURRENT_SOURCE_DIR}/Model/ShapeItems/*.cpp
-#    ${CMAKE_CURRENT_SOURCE_DIR}/LayerContainers/*.cpp
-#    ${CMAKE_CURRENT_SOURCE_DIR}/LayerContainers/AnimationNodes/*.cpp
+#    ${CMAKE_CURRENT_SOURCE_DIR}/composition/*.cpp
+#    ${CMAKE_CURRENT_SOURCE_DIR}/composition/AnimationNodes/*.cpp
 #    ${CMAKE_CURRENT_SOURCE_DIR}/NodeRenderSystem/NodeProperties/*.cpp
 #    ${CMAKE_CURRENT_SOURCE_DIR}/NodeRenderSystem/ValueProviders/*.cpp
 #    ${CMAKE_CURRENT_SOURCE_DIR}/Utility/Primitives/*.cpp

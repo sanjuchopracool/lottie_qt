@@ -4,14 +4,14 @@
 #include <memory>
 
 namespace  eao {
-class TransformedPaintBuffer;
+class BaseCompositionLayer;
 class LayerModel;
 struct PaintBufferInfo;
 
 class CompositionLayerFactory
 {
 public:
-static std::unique_ptr<TransformedPaintBuffer> composition_layer(const LayerModel* model, const PaintBufferInfo& info);
+    static std::unique_ptr<BaseCompositionLayer> composition_layer(const LayerModel &model);
 };
 
 }

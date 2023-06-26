@@ -1,24 +1,22 @@
 #ifndef SHAPECOMPOSITIONLAYER_H
 #define SHAPECOMPOSITIONLAYER_H
 
-#include "TransformedPaintBuffer.h"
 #include "AnimationNodes/ShapeNodeInterface.h"
-#include <vector>
+#include "base_composition_layer.h"
 #include <memory>
+#include <vector>
 
 namespace  eao {
 class ShapeLayer;
 class ShapeItem;
 
-class ShapeCompositionLayer : public TransformedPaintBuffer
+class ShapeCompositionLayer : public BaseCompositionLayer
 {
 public:
-    ShapeCompositionLayer(const ShapeLayer *layer, const PaintBufferInfo &info);
-
-    bool update(FrameType t, bool force_update) override;
+    ShapeCompositionLayer(const ShapeLayer &layer);
 
 protected:
-    bool need_update(FrameType t) const override;
+    void draw_layer(QPainter *painter, int alpha) override;
 
 private:
     std::vector<std::unique_ptr<ShapeNodeInterface>> m_nodes;

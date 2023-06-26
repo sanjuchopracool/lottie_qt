@@ -1,6 +1,6 @@
 #include "AnimationWidget.h"
-#include <LayerContainers/AnimationContainer.h>
 #include <Model/composition.h>
+#include <composition/AnimationContainer.h>
 
 #include <QDebug>
 #include <QFile>

@@ -6,7 +6,7 @@
 #include <QPixmap>
 #include <vector>
 
-#include "TransformedPaintBuffer.h"
+#include "base_composition_layer.h"
 
 class QPainter;
 
@@ -29,11 +29,18 @@ private:
 
 private:
     const Composition* m_animation;
-    PaintBufferInfo m_buffer_info;
     FrameType m_last_updated_frame = -1;
 
     // layers
-    std::vector<std::unique_ptr<TransformedPaintBuffer>> m_layers;
+    std::vector<std::unique_ptr<BaseCompositionLayer>> m_layers;
+
+    // scaling information to fit into rendering canvas (painter)
+    QSize m_size;
+    qreal m_scale_x;
+    qreal m_scale_y;
+
+    // if need rendering again
+    bool m_dirty = true;
 };
 }
 

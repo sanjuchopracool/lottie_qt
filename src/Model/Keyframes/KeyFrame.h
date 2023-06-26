@@ -15,14 +15,14 @@ template<typename T>
 class KeyFrame
 {
 public:
-    KeyFrame(const T& value,
-             const QVector3D& in_sp_tangent = QVector3D(),
-             const QVector3D& out_sp_tangent= QVector3D())
-        : m_value(value),
-          m_time(0),
-          m_is_hold(true),
-          m_spatial_in_tangent(in_sp_tangent),
-          m_spatial_out_tangent(out_sp_tangent)
+    KeyFrame(const T &value,
+             const QVector3D &in_sp_tangent = QVector3D(),
+             const QVector3D &out_sp_tangent = QVector3D())
+        : m_value(value)
+        , m_time(0)
+        , m_is_hold(true)
+        , m_spatial_in_tangent(in_sp_tangent)
+        , m_spatial_out_tangent(out_sp_tangent)
     {
 
     }
