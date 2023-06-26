@@ -1,6 +1,6 @@
 #include "base_composition_layer.h"
 #include "AnimationNodes/TransformationNode.h"
-#include "Model/Layers/LayerModel.h"
+#include "Model/Layers/layer.h"
 #include "Utility/Primitives/Transformation.h"
 
 #include <QDebug>
@@ -9,7 +9,7 @@
 
 namespace eao {
 
-BaseCompositionLayer::BaseCompositionLayer(const LayerModel &layer_model)
+BaseCompositionLayer::BaseCompositionLayer(const Layer &layer_model)
     : m_layer_model(layer_model)
     , m_transformation(std::make_unique<LayerTransformationNode>(layer_model.m_transform))
 {}

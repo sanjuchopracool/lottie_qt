@@ -24,7 +24,7 @@ void ShapeLayer::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
     auto shapes= in_obj.take(shapes_key).toArray();
     m_shapes = ShapeFactory::shapes_from_object(shapes, out_messages);
-    LayerModel::decode(in_obj, out_messages);
+    Layer::decode(in_obj, out_messages);
 }
 
 }

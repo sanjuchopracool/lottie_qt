@@ -2,7 +2,7 @@
 
 namespace eao {
 
-NullCompositionLayer::NullCompositionLayer(const LayerModel &layer)
+NullCompositionLayer::NullCompositionLayer(const Layer &layer)
     : BaseCompositionLayer(layer)
 {
 }

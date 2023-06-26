@@ -1,12 +1,12 @@
 #ifndef SOLIDLAYER_H
 #define SOLIDLAYER_H
 
-#include "LayerModel.h"
+#include "layer.h"
 #include <QList>
 
 namespace eao {
 
-class SolidLayer : public LayerModel
+class SolidLayer : public Layer
 {
 public:
     SolidLayer();

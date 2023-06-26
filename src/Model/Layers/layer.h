@@ -1,5 +1,5 @@
-#ifndef LAYERMODEL_H
-#define LAYERMODEL_H
+#ifndef LAYER_H
+#define LAYER_H
 
 #include "Utility/Primitives/Transformation.h"
 #include "lottielib.h"
@@ -31,22 +31,27 @@ enum class BlendMode
     Luminosity
 };
 
-class LayerModel
+class Layer
 {
 public:
-    LayerModel();
-    virtual ~LayerModel();
+    Layer();
+    virtual ~Layer();
 
     virtual void decode(QJsonObject& in_obj, QList<QString> &out_messages);
 
     bool in_range(FrameType t) const;
+
+    LayerType layer_type() const { return m_type; }
+    FrameType in_point() const { return m_in_point; }
+    FrameType out_point() const { return m_out_point; }
+    FrameType start_time() const { return m_start_time; }
+
 public:
     QString m_name;
     int m_index;
     LayerType m_type;
-    CoordinateSpace m_coordinate_space;
-    FrameType m_in_frame;
-    FrameType m_out_frame;
+    FrameType m_in_point;
+    FrameType m_out_point;
     FrameType m_start_time;
     Transformation3D m_transform;
     int m_parent_index = -1;
@@ -59,4 +64,4 @@ public:
 
 }
 
-#endif // LAYERMODEL_H
+#endif // LAYER_H

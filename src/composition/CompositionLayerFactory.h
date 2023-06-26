@@ -5,13 +5,13 @@
 
 namespace  eao {
 class BaseCompositionLayer;
-class LayerModel;
+class Layer;
 struct PaintBufferInfo;
 
 class CompositionLayerFactory
 {
 public:
-    static std::unique_ptr<BaseCompositionLayer> composition_layer(const LayerModel &model);
+    static std::unique_ptr<BaseCompositionLayer> composition_layer(const Layer &model);
 };
 
 }

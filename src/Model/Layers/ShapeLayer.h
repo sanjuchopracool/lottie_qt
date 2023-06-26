@@ -1,14 +1,14 @@
 #ifndef SHAPELAYER_H
 #define SHAPELAYER_H
 
-#include "LayerModel.h"
 #include "Model/ShapeItems/ShapeItem.h"
+#include "layer.h"
 
 #include <QList>
 
 namespace eao {
 
-class ShapeLayer : public LayerModel
+class ShapeLayer : public Layer
 {
 public:
     ShapeLayer();

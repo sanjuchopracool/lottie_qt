@@ -4,12 +4,12 @@
 #include "base_composition_layer.h"
 
 namespace eao {
-class LayerModel;
+class Layer;
 
 class NullCompositionLayer : public BaseCompositionLayer
 {
 public:
-    NullCompositionLayer(const LayerModel &layer);
+    NullCompositionLayer(const Layer &layer);
 
 protected:
     void draw_layer(QPainter *painter, int alpha) override;

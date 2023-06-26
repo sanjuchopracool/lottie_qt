@@ -24,9 +24,9 @@ const QStringView name_key(u"nm");
 const QStringView asset_library_key(u"assets");
 //const QStringView markers_key(u"markers");
 
-Composition::LayerModelList load_layers(QJsonObject &in_obj, QList<QString> &out_messages)
+Composition::LayerList load_layers(QJsonObject &in_obj, QList<QString> &out_messages)
 {
-    Composition::LayerModelList result;
+    Composition::LayerList result;
     auto val = in_obj.take(layers_key);
     Q_ASSERT(!val.isUndefined());
     const auto &layers = val.toArray();

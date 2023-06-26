@@ -1,6 +1,6 @@
 #include "LayerFactory.h"
 
-#include "LayerModel.h"
+#include "layer.h"
 #include "ShapeLayer.h"
 #include "solid_layer.h"
 #include <QJsonObject>
@@ -12,9 +12,9 @@ namespace {
 const QString type_key = "ty";
 }
 
-LayerModel *layer_from_object(QJsonObject &in_value , QList<QString> &out_messages)
+Layer *layer_from_object(QJsonObject &in_value , QList<QString> &out_messages)
 {
-    LayerModel* result = nullptr;
+    Layer* result = nullptr;
     int t = in_value.value(type_key).toInt();
     LayerType type = static_cast<LayerType>(t);
 
@@ -28,7 +28,7 @@ LayerModel *layer_from_object(QJsonObject &in_value , QList<QString> &out_messag
     }
     case LayerType::Null:
     {
-        result = new LayerModel;
+        result = new Layer;
         result->decode(in_value, out_messages);
     }
         break;

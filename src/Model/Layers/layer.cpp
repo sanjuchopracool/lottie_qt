@@ -1,4 +1,4 @@
-#include "LayerModel.h"
+#include "layer.h"
 
 namespace eao {
 
@@ -20,24 +20,18 @@ const QString hidden_key = "hd";
 const QStringView auto_orient_key = u"ao";
 }
 
-LayerModel::LayerModel()
-{
+Layer::Layer() {}
 
-}
+Layer::~Layer() {}
 
-LayerModel::~LayerModel()
-{
-
-}
-
-void LayerModel::decode(QJsonObject &in_obj, QList<QString> &out_messages)
+void Layer::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
     m_name = in_obj.take(name_key).toString();
     m_index = in_obj.take(index_key).toInt();
     m_type = static_cast<LayerType>(in_obj.take(type_key).toInt());
-    m_coordinate_space = static_cast<CoordinateSpace>(in_obj.take(coordinate_space_key).toInt());
-    m_in_frame = in_obj.take(in_frame_key).toDouble();
-    m_out_frame = in_obj.take(out_frame_key).toDouble();
+    //    m_coordinate_space = static_cast<CoordinateSpace>(in_obj.take(coordinate_space_key).toInt());
+    m_in_point = in_obj.take(in_frame_key).toDouble();
+    m_out_point = in_obj.take(out_frame_key).toDouble();
     m_start_time = in_obj.take(start_time_key).toDouble();
     auto tr = in_obj.take(transform_key).toObject();
     m_transform.decode(tr, out_messages);
@@ -73,9 +67,9 @@ void LayerModel::decode(QJsonObject &in_obj, QList<QString> &out_messages)
     }
 }
 
-bool LayerModel::in_range(FrameType t) const
+bool Layer::in_range(FrameType t) const
 {
-    return (m_in_frame <= t) and (t <= m_out_frame);
+    return (m_in_point <= t) and (t <= m_out_point);
 }
 
 }

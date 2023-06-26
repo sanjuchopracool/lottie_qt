@@ -1,6 +1,6 @@
 #include "CompositionLayerFactory.h"
 
-#include "Model/Layers/LayerModel.h"
+#include "Model/Layers/layer.h"
 #include "Model/Layers/ShapeLayer.h"
 #include "Model/Layers/solid_layer.h"
 
@@ -12,7 +12,7 @@
 namespace  eao {
 
 std::unique_ptr<BaseCompositionLayer> CompositionLayerFactory::composition_layer(
-    const LayerModel &model)
+    const Layer &model)
 {
     std::unique_ptr<BaseCompositionLayer> layer;
     switch (model.m_type) {

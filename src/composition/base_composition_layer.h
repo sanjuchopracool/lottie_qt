@@ -9,13 +9,13 @@
 
 namespace eao {
 
-class LayerModel;
+class Layer;
 class LayerTransformationNode;
 
 class BaseCompositionLayer : public PaintingElement
 {
 public:
-    BaseCompositionLayer(const LayerModel &layer_model);
+    BaseCompositionLayer(const Layer &layer_model);
     ~BaseCompositionLayer() override;
 
     FrameType local_frame(FrameType t) const;
@@ -28,7 +28,7 @@ public:
     int opacity() const;
 
 private:
-    const LayerModel &m_layer_model;
+    const Layer &m_layer_model;
     std::unique_ptr<LayerTransformationNode> m_transformation;
 };
 

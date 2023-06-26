@@ -1,7 +1,7 @@
 #ifndef EAO_COMPOSITION_H
 #define EAO_COMPOSITION_H
 
-#include "Layers/LayerModel.h"
+#include "Layers/layer.h"
 #include "lottielib.h"
 #include <memory>
 #include <vector>
@@ -11,8 +11,8 @@ namespace eao {
 class Composition
 {
 public:
-    using LayerModelPtr = std::unique_ptr<LayerModel>;
-    using LayerModelList = std::vector<LayerModelPtr>;
+    using LayerPtr = std::unique_ptr<Layer>;
+    using LayerList = std::vector<LayerPtr>;
 
     Composition(QString name,
                 QString version,
@@ -30,8 +30,8 @@ public:
     FrameType out_point() const { return m_out_point; }
     FrameType framerate() const { return m_framerate; }
 
-    const LayerModelList &layers() const { return m_layers; }
-    void set_layers(LayerModelList &layers) { m_layers = std::move(layers); }
+    const LayerList &layers() const { return m_layers; }
+    void set_layers(LayerList &layers) { m_layers = std::move(layers); }
 
 private:
     QString m_name;
@@ -43,7 +43,7 @@ private:
     FrameType m_in_point;
     FrameType m_out_point;
     FrameType m_framerate;
-    LayerModelList m_layers;
+    LayerList m_layers;
 };
 
 } // namespace eao

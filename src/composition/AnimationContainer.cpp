@@ -1,6 +1,6 @@
 #include "AnimationContainer.h"
 #include "CompositionLayerFactory.h"
-#include "Model/Layers/LayerModel.h"
+#include "Model/Layers/layer.h"
 #include "Model/composition.h"
 
 #include <algorithm>
