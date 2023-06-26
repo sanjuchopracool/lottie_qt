@@ -1,8 +1,8 @@
 #ifndef LAYERMODEL_H
 #define LAYERMODEL_H
 
-#include "../../Utility/Primitives/Transformation.h"
-#include "../../lottielib.h"
+#include "Utility/Primitives/Transformation.h"
+#include "lottielib.h"
 #include <QJsonObject>
 
 namespace eao {

@@ -6,7 +6,6 @@
 #include <memory>
 #include <QBrush>
 
-#include "../CompositionLayer.h"
 
 namespace eao {
 class Group;
@@ -18,15 +17,10 @@ public:
     bool need_update(FrameType t) const override;
     bool update(FrameType t, bool force_update) override;
 
-    QList<PathNode*> group_paths() {
-        return m_group_paths;
-    }
-
     void render(QPainter *painter) override;
 private:
     const Group *m_group;
     std::vector<std::unique_ptr<ShapeNodeInterface>> m_nodes;
-    QList<PathNode*> m_group_paths;
 };
 
 }

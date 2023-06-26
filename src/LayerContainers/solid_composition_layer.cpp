@@ -1,6 +1,6 @@
 #include "solid_composition_layer.h"
 
-#include "../Model/Layers/solid_layer.h"
+#include "Model/Layers/solid_layer.h"
 #include "AnimationNodes/TransformationNode.h"
 #include "AnimationNodes/AnimationNodeFactory.h"
 #include <QPainter>

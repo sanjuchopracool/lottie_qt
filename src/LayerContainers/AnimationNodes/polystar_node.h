@@ -1,10 +1,9 @@
 #ifndef POLYSTARNODE_H
 #define POLYSTARNODE_H
 
+#include "NodeRenderSystem/NodeProperties/NodeProperty.h"
 #include "ShapeNodeInterface.h"
-#include "../../NodeRenderSystem/NodeProperties/NodeProperty.h"
-#include "../../Utility/Primitives/Vector1D.h"
-
+#include "Utility/Primitives/Utility.h"
 
 #include <memory>
 

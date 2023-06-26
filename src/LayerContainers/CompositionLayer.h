@@ -1,7 +1,7 @@
 #ifndef COMPOSITION_LAYER_H
 #define COMPOSITION_LAYER_H
 
-#include "../lottielib.h"
+#include "lottielib.h"
 
 #include <QPixmap>
 #include <memory>

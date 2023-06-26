@@ -1,10 +1,10 @@
 #ifndef REPEATER_H
 #define REPEATER_H
 
+#include "Model/Keyframes/KeyFrameGroup.h"
 #include "ShapeItem.h"
-#include "../Keyframes/KeyFrameGroup.h"
-#include "../../Utility/Primitives/Transformation.h"
 #include "ShapeTransformation.h"
+#include "Utility/Primitives/Transformation.h"
 
 namespace eao {
 

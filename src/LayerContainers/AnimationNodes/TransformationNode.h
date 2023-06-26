@@ -2,8 +2,8 @@
 #define TRANSFORMNODE_H
 
 #include "ShapeNodeInterface.h"
-#include "../../NodeRenderSystem/NodeProperties/NodeProperty.h"
-#include "../../Utility/Primitives/Utility.h"
+#include "NodeRenderSystem/NodeProperties/NodeProperty.h"
+#include "Utility/Primitives/Utility.h"
 
 #include <memory>
 

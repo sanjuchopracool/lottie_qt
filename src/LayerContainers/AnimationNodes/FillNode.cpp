@@ -1,7 +1,7 @@
 #include "FillNode.h"
 
-#include "../..//NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
-#include "../../Model/ShapeItems/Fill.h"
+#include "Model/ShapeItems/Fill.h"
+#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 
 #include <QPainter>
 
@@ -44,13 +44,13 @@ void FillNode::render(QPainter *painter)
     painter->setBrush(to_color(m_color->value()));
     //TODO opacity
 
-    QPainterPath path;
-    for (auto path_node : m_pathNodes) {
-        path.addPath(path_node->path());
-    }
+    //    QPainterPath path;
+    //    for (auto path_node : m_pathNodes) {
+    //        path.addPath(path_node->path());
+    //    }
 
-    if (not path.isEmpty())
-        painter->drawPath(path);
+    //    if (not path.isEmpty())
+    //        painter->drawPath(path);
 
     painter->restore();
 }

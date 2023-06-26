@@ -1,7 +1,7 @@
 #ifndef SINGLEVALUEPROVIDER_H
 #define SINGLEVALUEPROVIDER_H
 
-#include "../AnyValueProvider.h"
+#include "NodeRenderSystem/NodeProperties/AnyValueProvider.h"
 
 namespace eao {
 template <typename T>

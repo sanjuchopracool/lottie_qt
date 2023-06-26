@@ -1,9 +1,7 @@
 #include "CompositionLayer.h"
-#include "../Model/Layers/LayerModel.h"
 #include <QDebug>
 #include <QPainter>
 
-#include "../NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 
 namespace eao {
 

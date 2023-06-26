@@ -1,5 +1,5 @@
 #include "lottie_parser.h"
-#include "../Model/composition.h"
+#include "Model/composition.h"
 
 #include <QList>
 #include <QStringView>

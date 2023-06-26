@@ -2,14 +2,14 @@
 #define FILLNODE_H
 
 #include "ShapeNodeInterface.h"
-#include "../../NodeRenderSystem/NodeProperties/NodeProperty.h"
-#include "../../Utility/Primitives/Utility.h"
+#include "NodeRenderSystem/NodeProperties/NodeProperty.h"
+#include "Utility/Primitives/Utility.h"
 
 #include <memory>
 
 namespace eao {
 class Fill;
-class FillNode : public ShapeNodeInterface, public RenderNode
+class FillNode : public ShapeNodeInterface
 {
 public:
     FillNode(const Fill *fill);

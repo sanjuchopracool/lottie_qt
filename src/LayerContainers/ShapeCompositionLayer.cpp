@@ -1,6 +1,6 @@
 #include "ShapeCompositionLayer.h"
 
-#include "../Model/Layers/ShapeLayer.h"
+#include "Model/Layers/ShapeLayer.h"
 #include "AnimationNodes/TransformationNode.h"
 #include "AnimationNodes/AnimationNodeFactory.h"
 #include "AnimationNodes/repeater_node.h"
@@ -11,10 +11,9 @@ namespace  eao {
 ShapeCompositionLayer::ShapeCompositionLayer(const ShapeLayer *layer, const PaintBufferInfo &info)
     : TransformedPaintBuffer(layer->m_transform, info, layer)
 {
-    QList<PathNode*> paths;
     for (const auto& shape_item : layer->m_shapes)
     {
-        auto node = AnimationNodeFactory::node_for_shape(shape_item, paths);
+        auto node = AnimationNodeFactory::node_for_shape(shape_item);
         if (node)
         {
             if (shape_item->m_type == ShapeType::Repeater) {

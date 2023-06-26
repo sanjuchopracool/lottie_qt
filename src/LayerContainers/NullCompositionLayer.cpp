@@ -1,6 +1,6 @@
 #include "NullCompositionLayer.h"
 
-#include "../Model/Layers/ShapeLayer.h"
+#include "Model/Layers/ShapeLayer.h"
 #include "AnimationNodes/TransformationNode.h"
 
 namespace eao {

@@ -1,7 +1,7 @@
 #ifndef ANIMATIONNODE_H
 #define ANIMATIONNODE_H
 
-#include "lottielib.h"
+#include "../../lottielib.h"
 #include <QList>
 #include <QPainterPath>
 

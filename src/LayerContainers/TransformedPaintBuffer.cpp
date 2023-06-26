@@ -1,8 +1,8 @@
 #include "TransformedPaintBuffer.h"
 #include "AnimationNodes/TransformationNode.h"
 
-#include "../Utility/Primitives/Transformation.h"
-#include "../Model/Layers/LayerModel.h"
+#include "Model/Layers/LayerModel.h"
+#include "Utility/Primitives/Transformation.h"
 
 #include <QPainter>
 #include <QDebug>

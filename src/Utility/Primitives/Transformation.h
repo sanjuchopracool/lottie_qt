@@ -1,7 +1,7 @@
 #ifndef TRANSFORMATION_H
 #define TRANSFORMATION_H
 
-#include "../../Model//Keyframes/KeyFrameGroup.h"
+#include "Model//Keyframes/KeyFrameGroup.h"
 #include "Utility.h"
 
 namespace eao {

@@ -1,11 +1,9 @@
 #ifndef REPEATERNODE_H
 #define REPEATERNODE_H
 
+#include "NodeRenderSystem/NodeProperties/NodeProperty.h"
 #include "ShapeNodeInterface.h"
-#include "../../NodeRenderSystem/NodeProperties/NodeProperty.h"
-#include "../../Utility/Primitives/Vector1D.h"
 #include "TransformationNode.h"
-
 
 #include <memory>
 

@@ -1,6 +1,6 @@
 #include "GroupNode.h"
 
-#include "../../Model/ShapeItems/Group.h"
+#include "Model/ShapeItems/Group.h"
 #include "repeater_node.h"
 #include "AnimationNodeFactory.h"
 #include <QPainter>
@@ -13,7 +13,7 @@ GroupNode::GroupNode(const Group *group)
 {
     for (const auto& shape_item : m_group->m_shapes)
     {
-        auto node = AnimationNodeFactory::node_for_shape(shape_item, m_group_paths);
+        auto node = AnimationNodeFactory::node_for_shape(shape_item);
         if (node)
         {
             if (shape_item->m_type == ShapeType::Repeater) {

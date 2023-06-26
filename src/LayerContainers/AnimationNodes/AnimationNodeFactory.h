@@ -11,8 +11,7 @@ class ShapeItem;
 
 namespace AnimationNodeFactory {
 
-std::unique_ptr<ShapeNodeInterface> node_for_shape(ShapeItem *shape_item, QList<PathNode *> &paths);
-
+std::unique_ptr<ShapeNodeInterface> node_for_shape(ShapeItem *shape_item);
 }
 }
 #endif // ANIMATIONNODEFACTORY_H

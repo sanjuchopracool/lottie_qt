@@ -2,7 +2,6 @@
 #define UTILITY_H
 
 #include "BezierPath.h"
-#include "Vector1D.h"
 
 #include <QColor>
 #include <QtMath>
@@ -17,6 +16,12 @@
 namespace  eao {
 class BezierPath;
 struct DashElement;
+
+using Vector1D = float;
+inline void decode(Vector1D &val, const QJsonValue &in_value)
+{
+    val = in_value.isArray() ? in_value.toArray().at(0).toDouble() : in_value.toDouble();
+}
 
 template <typename T>
 T remap(T value, T from_low, T from_high, T to_low, T to_high)

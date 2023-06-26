@@ -1,7 +1,7 @@
 #include "StrokeNode.h"
 
-#include "../../Model/ShapeItems/Stroke.h"
-#include "../../NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
+#include "Model/ShapeItems/Stroke.h"
+#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 #include <QPainter>
 
 namespace eao {
@@ -65,13 +65,13 @@ void StrokeNode::render(QPainter *painter)
     painter->setPen(m_pen);
     //TODO opacity
 
-    QPainterPath path;
-    for (auto path_node : m_pathNodes) {
-        path.addPath(path_node->path());
-    }
+    //    QPainterPath path;
+    //    for (auto path_node : m_pathNodes) {
+    //        path.addPath(path_node->path());
+    //    }
 
-    if (not path.isEmpty())
-        painter->drawPath(path);
+    //    if (not path.isEmpty())
+    //        painter->drawPath(path);
 
     painter->restore();
 }

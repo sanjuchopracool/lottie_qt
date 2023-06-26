@@ -1,10 +1,8 @@
 #ifndef DASHELEMENT_H
 #define DASHELEMENT_H
 
+#include "Model/Keyframes/KeyFrameGroup.h"
 #include <vector>
-#include "Vector1D.h"
-
-#include "../../Model/Keyframes/KeyFrameGroup.h"
 
 class QJsonValue;
 

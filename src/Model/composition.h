@@ -1,7 +1,7 @@
 #ifndef EAO_COMPOSITION_H
 #define EAO_COMPOSITION_H
 
-#include "../lottielib.h"
+#include "lottielib.h"
 #include <QList>
 
 class QJsonObject;

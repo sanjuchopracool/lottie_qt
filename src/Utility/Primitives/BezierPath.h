@@ -3,11 +3,11 @@
 
 #include "PathElement.h"
 
-#include <QList>
+#include "AutoProfiler.h"
+#include "Utility/Interpolatable/Interpolatable.h"
 #include <QJsonObject>
+#include <QList>
 #include <QPainterPath>
-#include "../Interpolatable/Interpolatable.h"
-#include "../../AutoProfiler.h"
 
 namespace eao {
 

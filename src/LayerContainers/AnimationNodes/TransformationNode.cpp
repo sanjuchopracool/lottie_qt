@@ -1,7 +1,7 @@
 #include "TransformationNode.h"
 
-#include "../../NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
-#include "../../Utility/Primitives/Transformation.h"
+#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
+#include "Utility/Primitives/Transformation.h"
 
 #include <QPainter>
 #include <QVector2D>

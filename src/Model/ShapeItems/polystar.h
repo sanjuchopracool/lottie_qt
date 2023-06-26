@@ -1,8 +1,8 @@
 #ifndef POLYSTAR_H
 #define POLYSTAR_H
 
+#include "Model/Keyframes/KeyFrameGroup.h"
 #include "ShapeItem.h"
-#include "../Keyframes/KeyFrameGroup.h"
 
 namespace eao {
 

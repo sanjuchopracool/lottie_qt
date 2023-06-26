@@ -1,8 +1,8 @@
 #ifndef KEYFRAMEVALUEPROVIDER_H
 #define KEYFRAMEVALUEPROVIDER_H
 
-#include "../AnyValueProvider.h"
-#include "../../../Model/Keyframes/KeyFrameGroup.h"
+#include "Model/Keyframes/KeyFrameGroup.h"
+#include "NodeRenderSystem/NodeProperties/AnyValueProvider.h"
 
 #include <QDebug>
 

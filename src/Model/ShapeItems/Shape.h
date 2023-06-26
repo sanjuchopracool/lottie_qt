@@ -1,9 +1,9 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
+#include "Model/Keyframes/KeyFrameGroup.h"
 #include "ShapeItem.h"
-#include "../Keyframes/KeyFrameGroup.h"
-#include "../../Utility/Primitives/BezierPath.h"
+#include "Utility/Primitives/BezierPath.h"
 
 namespace eao {
 

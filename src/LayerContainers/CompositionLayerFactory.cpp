@@ -1,8 +1,8 @@
 #include "CompositionLayerFactory.h"
 
-#include "../Model/Layers/LayerModel.h"
-#include "../Model/Layers/ShapeLayer.h"
-#include "../Model/Layers/solid_layer.h"
+#include "Model/Layers/LayerModel.h"
+#include "Model/Layers/ShapeLayer.h"
+#include "Model/Layers/solid_layer.h"
 
 #include "TransformedPaintBuffer.h"
 #include "ShapeCompositionLayer.h"

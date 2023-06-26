@@ -1,10 +1,9 @@
 #ifndef STROKENODE_H
 #define STROKENODE_H
 
+#include "NodeRenderSystem/NodeProperties/NodeProperty.h"
 #include "ShapeNodeInterface.h"
-#include "../../NodeRenderSystem/NodeProperties/NodeProperty.h"
-#include "../../Utility/Primitives/Vector1D.h"
-#include "../../Utility/Primitives/DashElement.h"
+#include "Utility/Primitives/DashElement.h"
 
 #include <QPen>
 #include <memory>
@@ -12,7 +11,7 @@
 namespace eao {
 class Stroke;
 
-class StrokeNode : public ShapeNodeInterface, public RenderNode
+class StrokeNode : public ShapeNodeInterface
 {
 public:
     StrokeNode(const Stroke* stroke);

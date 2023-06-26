@@ -1,5 +1,5 @@
 #include "ShapeLayer.h"
-#include "../ShapeItems/ShapeFactory.h"
+#include "Model/ShapeItems/ShapeFactory.h"
 
 #include <QJsonObject>
 #include <QJsonArray>

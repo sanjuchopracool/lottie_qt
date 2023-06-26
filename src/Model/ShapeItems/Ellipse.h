@@ -1,9 +1,8 @@
 #ifndef ELLIPSE_H
 #define ELLIPSE_H
 
+#include "Model/Keyframes/KeyFrameGroup.h"
 #include "ShapeItem.h"
-#include "../Keyframes/KeyFrameGroup.h"
-#include "../../Utility/Primitives/Utility.h"
 
 namespace eao {
 

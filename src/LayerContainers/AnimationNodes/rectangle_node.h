@@ -1,10 +1,9 @@
 #ifndef RECTANGLENODE_H
 #define RECTANGLENODE_H
 
+#include "NodeRenderSystem/NodeProperties/NodeProperty.h"
 #include "ShapeNodeInterface.h"
-#include "../../NodeRenderSystem/NodeProperties/NodeProperty.h"
-#include "../../lottie_qt/src/Utility/Primitives/Vector1D.h"
-
+#include "Utility/Primitives/Utility.h"
 #include <memory>
 
 namespace eao {

@@ -1,6 +1,6 @@
 #include "CurveVertex.h"
 #include "Utility.h"
-#include "../Interpolatable/Interpolatable.h"
+#include "Utility/Interpolatable/Interpolatable.h"
 
 namespace eao {
 

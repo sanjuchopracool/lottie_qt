@@ -1,8 +1,8 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
+#include "Model/Keyframes/KeyFrameGroup.h"
 #include "ShapeItem.h"
-#include "../Keyframes/KeyFrameGroup.h"
 
 namespace eao {
 

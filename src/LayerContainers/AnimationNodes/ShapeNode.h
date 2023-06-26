@@ -4,8 +4,8 @@
 #include "ShapeNodeInterface.h"
 #include <vector>
 
-#include "../../NodeRenderSystem/NodeProperties/NodeProperty.h"
-#include "../../Utility/Primitives/Utility.h"
+#include "NodeRenderSystem/NodeProperties/NodeProperty.h"
+#include "Utility/Primitives/Utility.h"
 #include <memory>
 
 namespace eao {

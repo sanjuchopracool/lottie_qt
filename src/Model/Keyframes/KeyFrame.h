@@ -1,9 +1,9 @@
 #ifndef KEYFRAME_H
 #define KEYFRAME_H
 
-#include "../../Utility/Interpolatable/Interpolatable.h"
-#include "../../Utility/Primitives/Utility.h"
-#include "../../lottielib.h"
+#include "Utility/Interpolatable/Interpolatable.h"
+#include "Utility/Primitives/Utility.h"
+#include "lottielib.h"
 
 #include <QVector2D>
 #include <QVector3D>

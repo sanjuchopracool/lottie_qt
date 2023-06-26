@@ -1,9 +1,9 @@
 #ifndef STROKE_H
 #define STROKE_H
 
+#include "Model/Keyframes/KeyFrameGroup.h"
 #include "ShapeItem.h"
-#include "../../Utility/Primitives/DashElement.h"
-#include "../Keyframes/KeyFrameGroup.h"
+#include "Utility/Primitives/DashElement.h"
 #include <QPen>
 
 namespace eao {

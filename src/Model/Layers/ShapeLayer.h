@@ -2,7 +2,7 @@
 #define SHAPELAYER_H
 
 #include "LayerModel.h"
-#include "../ShapeItems/ShapeItem.h"
+#include "Model/ShapeItems/ShapeItem.h"
 
 #include <QList>
 
