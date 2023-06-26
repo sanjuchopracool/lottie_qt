@@ -3,7 +3,7 @@
 
 namespace eao {
 
-using FrameType = double;
+using FrameType = float;
 
 enum class CoordinateSpace {
     Type2D,

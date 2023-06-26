@@ -1,33 +1,50 @@
 #ifndef EAO_COMPOSITION_H
 #define EAO_COMPOSITION_H
 
+#include "Layers/LayerModel.h"
 #include "lottielib.h"
+#include <memory>
+#include <vector>
 #include <QList>
-
-class QJsonObject;
 
 namespace eao {
 
-class LayerModel;
 class Composition
 {
 public:
-    Composition();
+    using LayerModelPtr = std::unique_ptr<LayerModel>;
+    using LayerModelList = std::vector<LayerModelPtr>;
+
+    Composition(QString name,
+                QString version,
+                int width,
+                int height,
+                FrameType in_point,
+                FrameType out_point,
+                FrameType framerate);
     ~Composition();
 
-    void decode(QJsonObject &in_obj, QList<QString> &out_messages);
+    int width() const { return m_width; }
+    int height() const { return m_height; }
 
-public:
-    QString m_version;
+    FrameType in_point() const { return m_in_point; }
+    FrameType out_point() const { return m_out_point; }
+    FrameType framerate() const { return m_framerate; }
+
+    const LayerModelList &layers() const { return m_layers; }
+    void set_layers(LayerModelList &layers) { m_layers = std::move(layers); }
+
+private:
     QString m_name;
-    FrameType m_in_point;
-    FrameType m_out_point;
-    FrameType m_framerate;
-    CoordinateSpace m_type;
+    QString m_version;
+
     int m_width;
     int m_height;
 
-    QList<LayerModel*> m_layers;
+    FrameType m_in_point;
+    FrameType m_out_point;
+    FrameType m_framerate;
+    LayerModelList m_layers;
 };
 
 } // namespace eao

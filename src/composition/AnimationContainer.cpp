@@ -37,19 +37,19 @@ bool AnimationContainer::update(FrameType t, bool force_update)
 
 void AnimationContainer::resize(int x, int y)
 {
-    double an_width = m_animation->m_width;
-    double an_height = m_animation->m_height;
+    double width = m_animation->width();
+    double height = m_animation->height();
 
-    int h = (an_height / an_width) * x;
+    int h = (height / width) * x;
     int w = 0;
     qreal scale;
     if (h > y) {
         h = y;
-        scale = h / an_height;
-        w = (an_width / an_height) * y;
+        scale = h / height;
+        w = (width / height) * y;
     } else {
         w = x;
-        scale = w / an_width;
+        scale = w / width;
     }
     m_size = QSize(w, h);
     m_scale_x = scale;
@@ -70,7 +70,7 @@ void AnimationContainer::load_layers()
     QMap<int, int> index_to_parent;
     QMap<int, int> model_index_to_index;
     int i = 0;
-    for (const auto &layer : m_animation->m_layers) {
+    for (const auto &layer : m_animation->layers()) {
         m_layers.emplace_back(CompositionLayerFactory::composition_layer(*layer));
         if (layer->m_parent_index >= 0)
             index_to_parent[i] = layer->m_parent_index;

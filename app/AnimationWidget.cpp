@@ -1,4 +1,5 @@
 #include "AnimationWidget.h"
+#include "parser/lottie/composition_parser.h"
 #include <Model/composition.h>
 #include <composition/AnimationContainer.h>
 
@@ -32,19 +33,18 @@ bool AnimationWidget::load(const QString &file_path)
     QFile file(file_path);
     if (file.open(QIODevice::ReadOnly)) {
         QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
-        m_composition = std::make_unique<Composition>();
         QStringList messages;
         QJsonObject obj = doc.object();
-        m_composition->decode(obj, messages);
+        m_composition = eao::Lottie::LottieParser::parse(obj, messages);
         for (const auto &message : messages)
             qDebug() << message;
 
         m_animation_container = std::make_unique<AnimationContainer>(m_composition.get());
         m_forced_update = true;
-        emit animation_loaded(QSize(m_composition->m_width, m_composition->m_height),
-                              m_composition->m_in_point,
-                              m_composition->m_out_point,
-                              m_composition->m_framerate);
+        emit animation_loaded(QSize(m_composition->width(), m_composition->height()),
+                              m_composition->in_point(),
+                              m_composition->out_point(),
+                              m_composition->framerate());
         return true;
     }
     return false;
@@ -53,7 +53,7 @@ bool AnimationWidget::load(const QString &file_path)
 QSize AnimationWidget::sizeHint() const
 {
     if (m_composition)
-        return QSize(m_composition->m_width, m_composition->m_height);
+        return QSize(m_composition->width(), m_composition->height());
     return QSize(350, 350);
 }
 
