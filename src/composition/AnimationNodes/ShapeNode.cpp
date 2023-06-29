@@ -1,7 +1,6 @@
 #include "ShapeNode.h"
 
 #include "Model/ShapeItems/Shape.h"
-#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 #include "Utility/Primitives/BezierPath.h"
 
 namespace eao {

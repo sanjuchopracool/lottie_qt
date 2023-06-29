@@ -1,7 +1,6 @@
 #include "repeater_node.h"
 
 #include "Model/ShapeItems/repeater.h"
-#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 #include <cmath>
 #include <QPainter>
 

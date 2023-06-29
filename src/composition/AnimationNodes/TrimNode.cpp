@@ -4,7 +4,6 @@
 
 #include "AutoProfiler.h"
 #include "Model/ShapeItems/Trim.h"
-#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 namespace eao {
 TrimNode::TrimNode(const Trim &trim)
     : m_start(trim.m_start->create_animator(this))

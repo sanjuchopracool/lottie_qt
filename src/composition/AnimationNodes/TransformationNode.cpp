@@ -1,6 +1,5 @@
 #include "TransformationNode.h"
 
-#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 #include "Utility/Primitives/Transformation.h"
 
 #include <QPainter>

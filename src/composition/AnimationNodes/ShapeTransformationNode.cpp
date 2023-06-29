@@ -1,7 +1,6 @@
 #include "ShapeTransformationNode.h"
 
 #include "Model/ShapeItems/ShapeTransformation.h"
-#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 
 #include <QPainter>
 

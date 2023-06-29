@@ -1,7 +1,6 @@
 #include "polystar_node.h"
 
 #include "Model/ShapeItems/polystar.h"
-#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 #include <cmath>
 
 namespace eao {

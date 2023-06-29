@@ -1,7 +1,6 @@
 #include "rectangle_node.h"
 
 #include "Model/ShapeItems/rectangle.h"
-#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 #include "Utility/Primitives/Utility.h"
 
 namespace eao {

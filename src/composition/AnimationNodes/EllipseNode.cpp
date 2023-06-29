@@ -1,7 +1,6 @@
 #include "EllipseNode.h"
 
 #include "Model/ShapeItems/Ellipse.h"
-#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 
 namespace eao {
 EllipseNode::EllipseNode(const Ellipse &ellipse)

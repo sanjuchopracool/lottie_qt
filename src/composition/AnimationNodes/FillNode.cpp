@@ -1,8 +1,6 @@
 #include "FillNode.h"
 
 #include "Model/ShapeItems/Fill.h"
-#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
-
 #include <QPainter>
 
 namespace eao {

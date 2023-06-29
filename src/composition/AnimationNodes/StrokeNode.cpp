@@ -1,7 +1,6 @@
 #include "StrokeNode.h"
 
 #include "Model/ShapeItems/Stroke.h"
-#include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 #include <QPainter>
 
 namespace eao {
