@@ -2,24 +2,10 @@
 #define PROPERTY_H
 
 #include "lottielib.h"
+#include "update_listener.h"
 #include <memory>
 
 namespace eao {
-
-class PropertyUpdateListener
-{
-public:
-    virtual ~PropertyUpdateListener() {}
-    virtual void on_update() = 0;
-};
-
-class SimpleUpdateListener : public PropertyUpdateListener
-{
-    void on_update() override { m_dirty = true; }
-
-protected:
-    bool m_dirty = false;
-};
 
 template<typename T>
 class PropertyAnimator

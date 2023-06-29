@@ -11,7 +11,7 @@
 namespace eao {
 class Stroke;
 
-class StrokeNode : public ShapeNodeInterface, public SimpleUpdateListener
+class StrokeNode : public ShapeNodeInterface, public CascadeUpdateListener
 {
 public:
     StrokeNode(const Stroke &stroke);

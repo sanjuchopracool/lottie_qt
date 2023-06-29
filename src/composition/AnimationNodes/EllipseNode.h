@@ -10,7 +10,7 @@
 namespace eao {
 class Ellipse;
 
-class EllipseNode : public ShapeNodeInterface, public PathNode, public SimpleUpdateListener
+class EllipseNode : public ShapeNodeInterface, public PathNode, public CascadeUpdateListener
 {
 public:
     EllipseNode(const Ellipse &ellipse);

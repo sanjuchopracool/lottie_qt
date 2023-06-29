@@ -9,7 +9,7 @@
 
 namespace eao {
 struct LayerTransformation;
-class LayerTransformationNode : public ShapeNodeInterface, public SimpleUpdateListener
+class LayerTransformationNode : public ShapeNodeInterface, public CascadeUpdateListener
 {
 public:
     LayerTransformationNode(const LayerTransformation &transformation);
@@ -33,7 +33,7 @@ private:
 };
 
 struct RepeaterTransformation;
-class RepeaterTransformationNode : public ShapeNodeInterface, public SimpleUpdateListener
+class RepeaterTransformationNode : public ShapeNodeInterface, public CascadeUpdateListener
 {
 public:
     RepeaterTransformationNode(const RepeaterTransformation& transformation);

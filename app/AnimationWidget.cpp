@@ -116,7 +116,8 @@ AnimationViewWidget::AnimationViewWidget(QWidget *parent)
             this,
             &AnimationViewWidget::slot_animation_loaded);
 
-    m_animation_widget->load(m_settings.value(last_file_key).toString());
+    auto last_file_opened = m_settings.value(last_file_key).toString();
+    load(last_file_opened);
 }
 
 AnimationViewWidget::~AnimationViewWidget() {}
@@ -148,8 +149,14 @@ void AnimationViewWidget::keyPressEvent(QKeyEvent *event)
                                                          QDir::homePath() + "/Downloads",
                                                          "*.json");
         m_settings.setValue(last_file_key, file_path);
-        m_animation_widget->load(file_path);
+        load(file_path);
     }
+}
+
+void AnimationViewWidget::load(const QString &file)
+{
+    m_animation_widget->load(file);
+    setWindowTitle(file);
 }
 
 } // namespace eao

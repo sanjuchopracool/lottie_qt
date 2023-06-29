@@ -3,6 +3,7 @@
 
 #include "composition/interfaces/painting_element.h"
 #include "lottielib.h"
+#include <Model/property_system/update_listener.h>
 
 #include <memory>
 #include <QTransform>
@@ -12,7 +13,7 @@ namespace eao {
 class Layer;
 class LayerTransformationNode;
 
-class BaseCompositionLayer : public PaintingElement
+class BaseCompositionLayer : public PaintingElement, public CascadeUpdateListener
 {
 public:
     BaseCompositionLayer(const Layer &layer_model);
@@ -24,7 +25,7 @@ public:
     virtual void draw_layer(QPainter *painter, int alpha) = 0;
     virtual void update(FrameType t, bool force_update);
 
-    QTransform tranform() const;
+    QTransform transform() const;
     int opacity() const;
 
 private:

@@ -7,13 +7,14 @@
 #include <vector>
 
 #include "base_composition_layer.h"
+#include <Model/property_system/update_listener.h>
 
 class QPainter;
 
 namespace eao {
 class Composition;
 
-class AnimationContainer
+class AnimationContainer : public SimpleUpdateListener
 {
 public:
     AnimationContainer(const Composition *animation);
@@ -38,9 +39,6 @@ private:
     QSize m_size;
     qreal m_scale_x;
     qreal m_scale_y;
-
-    // if need rendering again
-    bool m_dirty = true;
 };
 }
 

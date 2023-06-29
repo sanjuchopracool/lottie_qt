@@ -9,7 +9,7 @@
 
 namespace eao {
 class ShapeTransformation;
-class ShapeTransformationNode : public ShapeNodeInterface, public SimpleUpdateListener
+class ShapeTransformationNode : public ShapeNodeInterface, public CascadeUpdateListener
 {
 public:
     ShapeTransformationNode(const ShapeTransformation &transformation);

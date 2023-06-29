@@ -9,7 +9,7 @@
 namespace eao {
 class Rectangle;
 
-class RectangleNode : public ShapeNodeInterface, public PathNode, public SimpleUpdateListener
+class RectangleNode : public ShapeNodeInterface, public PathNode, public CascadeUpdateListener
 {
 public:
     RectangleNode(const Rectangle &rectangle);

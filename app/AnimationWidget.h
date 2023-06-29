@@ -58,6 +58,9 @@ protected:
     void keyPressEvent(QKeyEvent *event) override;
 
 private:
+    void load(const QString &file);
+
+private:
     AnimationWidget* m_animation_widget = nullptr;
     TimeLineWidget* m_timeline_widget = nullptr;
     QSettings m_settings;

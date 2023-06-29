@@ -10,7 +10,7 @@
 
 namespace eao {
 class Trim;
-class TrimNode : public ShapeNodeInterface, public SimpleUpdateListener
+class TrimNode : public ShapeNodeInterface, public CascadeUpdateListener
 {
 public:
     TrimNode(const Trim &trim);

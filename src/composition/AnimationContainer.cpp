@@ -28,11 +28,12 @@ void AnimationContainer::draw(QPainter *painter)
 
 bool AnimationContainer::update(FrameType t, bool force_update)
 {
+    m_dirty = false;
     m_last_updated_frame = t;
     for (const auto &layer : m_layers) {
         layer->update(layer->local_frame(t), force_update);
     }
-    return true;
+    return m_dirty;
 }
 
 void AnimationContainer::resize(int x, int y)
@@ -72,6 +73,7 @@ void AnimationContainer::load_layers()
     int i = 0;
     for (const auto &layer : m_animation->layers()) {
         m_layers.emplace_back(CompositionLayerFactory::composition_layer(*layer));
+        m_layers.back()->set_listener(this);
         if (layer->m_parent_index >= 0)
             index_to_parent[i] = layer->m_parent_index;
         model_index_to_index[layer->m_index] = i;

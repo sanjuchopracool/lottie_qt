@@ -10,7 +10,7 @@
 namespace eao {
 class Repeater;
 
-class RepeaterNode : public ShapeNodeInterface, public PathNode, public SimpleUpdateListener
+class RepeaterNode : public ShapeNodeInterface, public PathNode, public CascadeUpdateListener
 {
 public:
     RepeaterNode(const Repeater &repeater);

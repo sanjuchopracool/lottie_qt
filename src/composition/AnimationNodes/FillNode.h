@@ -9,7 +9,7 @@
 
 namespace eao {
 class Fill;
-class FillNode : public ShapeNodeInterface, public SimpleUpdateListener
+class FillNode : public ShapeNodeInterface, public CascadeUpdateListener
 {
 public:
     FillNode(const Fill &fill);

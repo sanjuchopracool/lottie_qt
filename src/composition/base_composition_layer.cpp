@@ -12,7 +12,9 @@ namespace eao {
 BaseCompositionLayer::BaseCompositionLayer(const Layer &layer_model)
     : m_layer_model(layer_model)
     , m_transformation(std::make_unique<LayerTransformationNode>(layer_model.m_transform))
-{}
+{
+    m_transformation->set_listener(this);
+}
 
 BaseCompositionLayer::~BaseCompositionLayer() {}
 
@@ -34,10 +36,12 @@ void BaseCompositionLayer::draw(QPainter *painter, int alpha)
 
 void BaseCompositionLayer::update(FrameType t, bool force_update)
 {
+    // TODO check hidden layer
+    m_dirty = false;
     m_transformation->update(t, force_update);
 }
 
-QTransform BaseCompositionLayer::tranform() const
+QTransform BaseCompositionLayer::transform() const
 {
     return m_transformation->tranform();
 }

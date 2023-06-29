@@ -10,7 +10,7 @@
 namespace eao {
 class PolyStar;
 
-class PolyStarNode : public ShapeNodeInterface, public PathNode, public SimpleUpdateListener
+class PolyStarNode : public ShapeNodeInterface, public PathNode, public CascadeUpdateListener
 {
 public:
     PolyStarNode(const PolyStar &polystar);

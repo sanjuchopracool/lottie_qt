@@ -20,13 +20,9 @@ LayerTransformationNode::LayerTransformationNode(const LayerTransformation &tran
 
 bool LayerTransformationNode::update(FrameType t, bool force_update)
 {
-    bool result = false;
-    if (force_update || m_dirty) {
-        update_transform(t);
-        result = true;
-    }
-
-    return result;
+    m_dirty = false;
+    update_transform(t);
+    return m_dirty;
 }
 
 void LayerTransformationNode::update_transform(FrameType t)

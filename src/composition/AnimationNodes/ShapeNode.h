@@ -11,7 +11,7 @@
 namespace eao {
 class Shape;
 
-class ShapeNode : public ShapeNodeInterface, public PathNode, public SimpleUpdateListener
+class ShapeNode : public ShapeNodeInterface, public PathNode, public CascadeUpdateListener
 {
 public:
     ShapeNode(const Shape &shape);
