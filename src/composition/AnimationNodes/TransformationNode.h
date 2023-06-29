@@ -1,15 +1,15 @@
 #ifndef TRANSFORMNODE_H
 #define TRANSFORMNODE_H
 
-#include "ShapeNodeInterface.h"
 #include "Utility/Primitives/Utility.h"
+#include "animation_node.h"
 #include <Model/property_system/property.h>
 
 #include <memory>
 
 namespace eao {
 struct LayerTransformation;
-class LayerTransformationNode : public ShapeNodeInterface, public CascadeUpdateListener
+class LayerTransformationNode : public ShapeItemNode
 {
 public:
     LayerTransformationNode(const LayerTransformation &transformation);
@@ -33,7 +33,7 @@ private:
 };
 
 struct RepeaterTransformation;
-class RepeaterTransformationNode : public ShapeNodeInterface, public CascadeUpdateListener
+class RepeaterTransformationNode : public ShapeItemNode
 {
 public:
     RepeaterTransformationNode(const RepeaterTransformation& transformation);

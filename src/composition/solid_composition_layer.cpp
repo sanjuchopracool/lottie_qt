@@ -19,7 +19,6 @@ void SolidCompositionLayer::draw_layer(QPainter *painter, int alpha)
         alpha = (alpha * 255) / 100;
         color.setAlpha(alpha);
     }
-    qDebug() << color;
     painter->setBrush(color);
     painter->drawRect(0, 0, m_layer.width(), m_layer.height());
 }

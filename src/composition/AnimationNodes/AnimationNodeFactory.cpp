@@ -11,23 +11,23 @@
 #include "Model/ShapeItems/rectangle.h"
 #include "Model/ShapeItems/repeater.h"
 
-#include "GroupNode.h"
 #include "ShapeNode.h"
-#include "FillNode.h"
-#include "StrokeNode.h"
-#include "EllipseNode.h"
-#include "TrimNode.h"
 #include "ShapeTransformationNode.h"
-#include "rectangle_node.h"
+#include "StrokeNode.h"
+#include "TrimNode.h"
+#include "ellipse_node.h"
+#include "fill_node.h"
+#include "group_node.h"
 #include "polystar_node.h"
+#include "rectangle_node.h"
 #include "repeater_node.h"
 
 namespace eao {
 namespace AnimationNodeFactory {
 
-std::unique_ptr<ShapeNodeInterface> node_for_shape_item(const ShapeItem &shape_item)
+std::unique_ptr<ShapeItemNode> node_for_shape_item(const ShapeItem &shape_item)
 {
-    std::unique_ptr<ShapeNodeInterface> result;
+    std::unique_ptr<ShapeItemNode> result;
     switch (shape_item.m_type) {
     case ShapeType::Group:
     {

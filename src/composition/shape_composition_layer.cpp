@@ -1,4 +1,4 @@
-#include "ShapeCompositionLayer.h"
+#include "shape_composition_layer.h"
 
 #include "Model/Layers/ShapeLayer.h"
 #include "AnimationNodes/TransformationNode.h"

@@ -30,29 +30,29 @@ bool RepeaterNode::update(FrameType t, bool force_update)
     return result;
 }
 
-void RepeaterNode::set_nodes(std::vector<std::unique_ptr<ShapeNodeInterface> > &nodes)
+void RepeaterNode::set_nodes(std::vector<std::unique_ptr<ShapeItemNode> > &nodes)
 {
     m_nodes = std::move(nodes);
 }
 
-void RepeaterNode::render(QPainter *painter)
-{
-    painter->save();
-    int offset = m_offset->value();
-    int copies = m_copies->value();
-    qDebug() << offset << " " << copies;
-    auto tr = m_transformation.tranform();
-    for (int i = 0; i < copies + offset; ++i)
-    {
-        if (i >= offset) {
-            auto nodes_count = m_nodes.size();
-            for (auto j = nodes_count - 1; j >= 0; --j) {
-                m_nodes[j]->render(painter);
-            }
-        }
+//void RepeaterNode::render(QPainter *painter)
+//{
+//    painter->save();
+//    int offset = m_offset->value();
+//    int copies = m_copies->value();
+//    qDebug() << offset << " " << copies;
+//    auto tr = m_transformation.tranform();
+//    for (int i = 0; i < copies + offset; ++i)
+//    {
+//        if (i >= offset) {
+//            auto nodes_count = m_nodes.size();
+//            for (auto j = nodes_count - 1; j >= 0; --j) {
+//                m_nodes[j]->render(painter);
+//            }
+//        }
 
-        painter->setTransform(tr, true);
-    }
-    painter->restore();
-}
+//        painter->setTransform(tr, true);
+//    }
+//    painter->restore();
+//}
 }

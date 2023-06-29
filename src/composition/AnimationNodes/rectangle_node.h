@@ -1,7 +1,7 @@
 #ifndef RECTANGLENODE_H
 #define RECTANGLENODE_H
 
-#include "ShapeNodeInterface.h"
+#include "animation_node.h"
 #include "Utility/Primitives/Utility.h"
 #include <Model/property_system/property.h>
 #include <memory>
@@ -9,7 +9,7 @@
 namespace eao {
 class Rectangle;
 
-class RectangleNode : public ShapeNodeInterface, public PathNode, public CascadeUpdateListener
+class RectangleNode : public ShapeItemNode, public PathNode
 {
 public:
     RectangleNode(const Rectangle &rectangle);

@@ -44,21 +44,20 @@ bool StrokeNode::update(FrameType t, bool force_update)
     return result;
 }
 
-void StrokeNode::render(QPainter *painter)
-{
-    painter->save();
-    painter->setPen(m_pen);
-    //TODO opacity
+//void StrokeNode::render(QPainter *painter)
+//{
+//    painter->save();
+//    painter->setPen(m_pen);
+//    //TODO opacity
 
-    //    QPainterPath path;
-    //    for (auto path_node : m_pathNodes) {
-    //        path.addPath(path_node->path());
-    //    }
+//    //    QPainterPath path;
+//    //    for (auto path_node : m_pathNodes) {
+//    //        path.addPath(path_node->path());
+//    //    }
 
-    //    if (not path.isEmpty())
-    //        painter->drawPath(path);
+//    //    if (not path.isEmpty())
+//    //        painter->drawPath(path);
 
-    painter->restore();
-}
-
+//    painter->restore();
+//}
 }

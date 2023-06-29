@@ -1,7 +1,7 @@
 #ifndef SHAPENODE_H
 #define SHAPENODE_H
 
-#include "ShapeNodeInterface.h"
+#include "animation_node.h"
 #include <vector>
 
 #include "Utility/Primitives/Utility.h"
@@ -11,7 +11,7 @@
 namespace eao {
 class Shape;
 
-class ShapeNode : public ShapeNodeInterface, public PathNode, public CascadeUpdateListener
+class ShapeNode : public ShapeItemNode, public PathNode
 {
 public:
     ShapeNode(const Shape &shape);

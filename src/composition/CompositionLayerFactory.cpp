@@ -5,8 +5,8 @@
 #include "Model/Layers/solid_layer.h"
 
 #include "NullCompositionLayer.h"
-#include "ShapeCompositionLayer.h"
 #include "base_composition_layer.h"
+#include "shape_composition_layer.h"
 #include "solid_composition_layer.h"
 
 namespace  eao {

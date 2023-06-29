@@ -1,7 +1,7 @@
 #ifndef STROKENODE_H
 #define STROKENODE_H
 
-#include "ShapeNodeInterface.h"
+#include "animation_node.h"
 #include "Utility/Primitives/DashElement.h"
 #include <Model/property_system/property.h>
 
@@ -11,13 +11,13 @@
 namespace eao {
 class Stroke;
 
-class StrokeNode : public ShapeNodeInterface, public CascadeUpdateListener
+class StrokeNode : public ShapeItemNode
 {
 public:
     StrokeNode(const Stroke &stroke);
     bool update(FrameType t, bool force_update) override;
 
-    void render(QPainter *painter) override;
+    //    void render(QPainter *painter) override;
 private:
     PropertyAnimatorPtr<Vector1D> m_opacity;
     PropertyAnimatorPtr<Vector1D> m_width;

@@ -35,21 +35,4 @@ bool ShapeTransformationNode::update(FrameType t, bool force_update)
     return result;
 }
 
-void ShapeTransformationNode::render(QPainter *painter)
-{
-    auto anchor = m_anchor->value();
-    auto pos = m_position->value();
-    auto rotation = m_rotation->value();
-    auto scale = m_scale->value()/100;
-
-    // TODO other proeprties
-
-    QTransform tr;
-    tr.translate(pos.x(), pos.y());
-    tr.rotate(rotation);
-    tr.scale(scale.x(), scale.y());
-    tr.translate(-anchor.x(), - anchor.y());
-    painter->setTransform(tr, true);
-}
-
 }

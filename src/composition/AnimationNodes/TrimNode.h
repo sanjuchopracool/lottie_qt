@@ -1,7 +1,7 @@
 #ifndef TRIMNODE_H
 #define TRIMNODE_H
 
-#include "ShapeNodeInterface.h"
+#include "animation_node.h"
 #include "Utility/Primitives/Utility.h"
 #include <Model/property_system/property.h>
 
@@ -10,7 +10,7 @@
 
 namespace eao {
 class Trim;
-class TrimNode : public ShapeNodeInterface, public CascadeUpdateListener
+class TrimNode : public ShapeItemNode
 {
 public:
     TrimNode(const Trim &trim);

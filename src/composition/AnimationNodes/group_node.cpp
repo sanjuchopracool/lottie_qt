@@ -1,10 +1,10 @@
-#include "GroupNode.h"
+#include "group_node.h"
 
+#include "AnimationNodeFactory.h"
 #include "Model/ShapeItems/Group.h"
 #include "repeater_node.h"
-#include "AnimationNodeFactory.h"
-#include <QPainter>
 #include <algorithm>
+#include <QPainter>
 
 namespace eao {
 
@@ -24,7 +24,7 @@ GroupNode::GroupNode(const Group &group)
     }
 
     m_is_static = std::all_of(m_nodes.cbegin(), m_nodes.cend(),
-    [](const std::unique_ptr<ShapeNodeInterface>& node)
+    [](const std::unique_ptr<ShapeItemNode>& node)
     {
         return node->is_static();
     });
@@ -64,15 +64,24 @@ bool GroupNode::update(FrameType t, bool force_update)
     return false;
 }
 
-void GroupNode::render(QPainter *painter)
+void GroupNode::set_content(const std::vector<ShapeItemNode *> &items_before,
+                            const std::vector<ShapeItemNode *> &items_after)
 {
-    painter->save();
-    int size = m_nodes.size();
-    for( int i = size - 1; i >= 0; --i)
-    {
-        m_nodes[i]->render(painter);
+    // TODO same in shape_layer
+    std::vector<ShapeItemNode *> group_items_before(items_before);
+    group_items_before.reserve(items_before.size() + m_nodes.size());
+    std::vector<ShapeItemNode *> group_items_after;
+    group_items_after.reserve(m_nodes.size());
+    std::transform(m_nodes.cbegin(),
+                   m_nodes.cend(),
+                   std::back_inserter(group_items_after),
+                   [](const auto &it) { return it.get(); });
+    auto it = m_nodes.rbegin();
+    while (group_items_after.size()) {
+        ShapeItemNode *item = group_items_after.back();
+        group_items_after.pop_back();
+        item->set_content(group_items_before, group_items_after);
+        group_items_before.emplace_back(item);
     }
-    painter->restore();
 }
-
-}
+} // namespace eao

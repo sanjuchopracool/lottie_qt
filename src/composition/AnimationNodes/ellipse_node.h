@@ -1,8 +1,8 @@
 #ifndef ELLIPSENODE_H
 #define ELLIPSENODE_H
 
-#include "ShapeNodeInterface.h"
 #include "Utility/Primitives/Utility.h"
+#include "animation_node.h"
 #include <Model/property_system/property.h>
 
 #include <memory>
@@ -10,7 +10,7 @@
 namespace eao {
 class Ellipse;
 
-class EllipseNode : public ShapeNodeInterface, public PathNode, public CascadeUpdateListener
+class EllipseNode : public ShapeItemNode, public PathNode
 {
 public:
     EllipseNode(const Ellipse &ellipse);
@@ -19,7 +19,6 @@ public:
 private:
     PropertyAnimatorPtr<QVector2D> m_size;
     PropertyAnimatorPtr<QVector2D> m_position;
-    QPainterPath m_ellipse_path;
 };
 }
 

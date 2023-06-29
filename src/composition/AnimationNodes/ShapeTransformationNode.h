@@ -1,7 +1,7 @@
 #ifndef SHAPETRANSFORMNODE_H
 #define SHAPETRANSFORMNODE_H
 
-#include "ShapeNodeInterface.h"
+#include "animation_node.h"
 #include "Utility/Primitives/Utility.h"
 #include <Model/property_system/property.h>
 
@@ -9,13 +9,12 @@
 
 namespace eao {
 class ShapeTransformation;
-class ShapeTransformationNode : public ShapeNodeInterface, public CascadeUpdateListener
+class ShapeTransformationNode : public ShapeItemNode
 {
 public:
     ShapeTransformationNode(const ShapeTransformation &transformation);
     bool update(FrameType t, bool force_update) override;
 
-    void render(QPainter *painter) override;
 private:
     PropertyAnimatorPtr<QVector2D> m_anchor;
     PropertyAnimatorPtr<QVector2D> m_position;

@@ -1,7 +1,8 @@
-#ifndef ANIMATIONNODE_H
-#define ANIMATIONNODE_H
+#ifndef ANIMATION_NODE_H
+#define ANIMATION_NODE_H
 
 #include "lottielib.h"
+#include <Model/property_system/update_listener.h>
 #include <QList>
 #include <QPainterPath>
 
@@ -15,27 +16,26 @@ public:
     const QPainterPath& path() {
         return m_path;
     }
-    void set_path(const QPainterPath &path) { m_path = path; }
 
 protected:
     QPainterPath m_path;
 };
 
-class ShapeNodeInterface
+class ShapeItemNode : public CascadeUpdateListener
 {
 public:
-    virtual ~ShapeNodeInterface() {}
+    virtual ~ShapeItemNode() {}
     virtual bool update(FrameType t, bool force_update) = 0;
     inline bool is_static() const { return m_is_static; }
 
-    virtual void render(QPainter *painter) {
-        Q_UNUSED(painter)
-    }
+    //
+    virtual void set_content(const std::vector<ShapeItemNode *> &items_before,
+                             const std::vector<ShapeItemNode *> &items_after)
+    {}
 
 protected:
     bool m_is_static = false;
-
 };
 }
 
-#endif // ANIMATIONNODE_H
+#endif // ANIMATION_NODE_H
