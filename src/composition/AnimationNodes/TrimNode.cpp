@@ -6,17 +6,12 @@
 #include "Model/ShapeItems/Trim.h"
 #include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 namespace eao {
-TrimNode::TrimNode(const Trim *trim)
-    : m_trim(trim)
+TrimNode::TrimNode(const Trim &trim)
+    : m_start(trim.m_start->create_animator(this))
+    , m_end(trim.m_end->create_animator(this))
+    , m_offset(trim.m_offset->create_animator(this))
+    , m_trim(trim)
 {
-    using Prop1D = NodeProperty<Vector1D>;
-    using KFVP1D = KeyFrameValueProvider<Vector1D>;
-
-    m_start = std::make_unique<Prop1D>(new KFVP1D(trim->m_start));
-    m_end = std::make_unique<Prop1D>(new KFVP1D(trim->m_end));
-    m_offset = std::make_unique<Prop1D>(new KFVP1D(trim->m_offset));
-
-    m_is_static = m_start->is_static() and m_end->is_static() and m_offset->is_static();
 }
 
 bool TrimNode::update(FrameType t, bool force_update)

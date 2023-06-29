@@ -1,8 +1,9 @@
 #ifndef POLYSTAR_H
 #define POLYSTAR_H
 
-#include "Model/Keyframes/KeyFrameGroup.h"
 #include "ShapeItem.h"
+#include <Model/property_system/property.h>
+#include <QVector2D>
 
 namespace eao {
 
@@ -20,13 +21,13 @@ public:
     virtual void decode(QJsonObject& in_obj, QList<QString>& out_messages) override;
 
 public:
-    KeyFrameGroup<QVector2D> m_center;
-    KeyFrameGroup<Vector1D> m_rotation;
-    KeyFrameGroup<Vector1D> m_outer_radius;
-    KeyFrameGroup<Vector1D> m_outer_roundness;
-    KeyFrameGroup<Vector1D> m_inner_radius;
-    KeyFrameGroup<Vector1D> m_inner_roundness;
-    KeyFrameGroup<Vector1D> m_num_points;
+    PropertyPtr<QVector2D> m_center;
+    PropertyPtr<Vector1D> m_rotation;
+    PropertyPtr<Vector1D> m_outer_radius;
+    PropertyPtr<Vector1D> m_outer_roundness;
+    PropertyPtr<Vector1D> m_inner_radius;
+    PropertyPtr<Vector1D> m_inner_roundness;
+    PropertyPtr<Vector1D> m_num_points;
 
     Type m_star_type;
 };

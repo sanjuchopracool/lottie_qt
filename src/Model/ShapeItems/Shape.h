@@ -1,7 +1,7 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include "Model/Keyframes/KeyFrameGroup.h"
+#include <Model/property_system/property.h>
 #include "ShapeItem.h"
 #include "Utility/Primitives/BezierPath.h"
 
@@ -17,7 +17,7 @@ public:
 
 public:
     PathDirection m_direction = PathDirection::None;
-    KeyFrameGroup<BezierPath> m_path;
+    PropertyPtr<BezierPath> m_path;
 };
 
 }

@@ -2,27 +2,27 @@
 #define TRIMNODE_H
 
 #include "ShapeNodeInterface.h"
-#include "NodeRenderSystem/NodeProperties/NodeProperty.h"
 #include "Utility/Primitives/Utility.h"
+#include <Model/property_system/property.h>
 
 #include <memory>
 #include <QPainterPath>
 
 namespace eao {
 class Trim;
-class TrimNode : public ShapeNodeInterface
+class TrimNode : public ShapeNodeInterface, public SimpleUpdateListener
 {
 public:
-    TrimNode(const Trim* trim);
+    TrimNode(const Trim &trim);
     bool update(FrameType t, bool force_update) override;
     void set_paths(const QList<PathNode *> targets) { m_target_nodes = targets; }
 
 public:
-    std::unique_ptr<NodeProperty<Vector1D>> m_start;
-    std::unique_ptr<NodeProperty<Vector1D>> m_end;
-    std::unique_ptr<NodeProperty<Vector1D>> m_offset;
+    PropertyAnimatorPtr<Vector1D> m_start;
+    PropertyAnimatorPtr<Vector1D> m_end;
+    PropertyAnimatorPtr<Vector1D> m_offset;
 
-    const Trim *m_trim = nullptr;
+    const Trim &m_trim;
     QList<PathNode*> m_target_nodes;
 };
 }

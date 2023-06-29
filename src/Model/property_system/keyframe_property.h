@@ -34,23 +34,31 @@ public:
     using CRefFrames = const KeyFrames<T> &;
     using CRefValueType = const T &;
 
-    KeyFramePropertyAnimator(CRefFrames frames)
+    KeyFramePropertyAnimator(CRefFrames frames, PropertyUpdateListener *listener)
         : value_provider(frames)
+        , m_listener(listener)
     {}
 
     ~KeyFramePropertyAnimator() override {}
-    void update(eao::FrameType frame) override { value_provider.update(frame); }
+    void update(eao::FrameType frame) override
+    {
+        if (value_provider.has_update(frame)) {
+            value_provider.update(frame);
+            m_listener->on_update();
+        }
+    }
     CRefValueType value() const override { return value_provider.value(); }
 
 private:
-    TempValueProvider<T> value_provider;
+    KeyFrameValueProvider<T> value_provider;
+    PropertyUpdateListener *m_listener;
 };
 
 template<typename T>
 std::unique_ptr<PropertyAnimator<T>> KeyFrameProperty<T>::create_animator(
-    PropertyUpdateListener *) const
+    PropertyUpdateListener *listener) const
 {
-    return std::make_unique<KeyFramePropertyAnimator<T>>(m_frames);
+    return std::make_unique<KeyFramePropertyAnimator<T>>(m_frames, listener);
 }
 
 } // namespace eao

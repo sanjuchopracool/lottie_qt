@@ -1,4 +1,5 @@
 #include "Stroke.h"
+#include <parser/lottie/property_parser.h>
 
 #include <QJsonObject>
 
@@ -53,11 +54,11 @@ void Stroke::decode(QJsonObject &in_obj, QList<QString>& out_messages)
     m_pen.setCapStyle(int_to_cap_style(in_obj.take(line_cap_key).toInt()));
     m_pen.setJoinStyle(int_to_join_style(in_obj.take(line_join_key).toInt()));
     m_pen.setMiterLimit(in_obj.take(miter_limit_key).toDouble(4));
-    m_opacity.decode(in_obj.take(opacity_key));
-    m_width.decode(in_obj.take(width_key));
-    m_color.decode(in_obj.take(color_key));
-    if (in_obj.contains(dash_pattern_key))
-        m_dashPattern.decode(in_obj.take(dash_pattern_key));
+    Lottie::decode(m_opacity, in_obj.take(opacity_key), out_messages);
+    Lottie::decode(m_width, in_obj.take(width_key), out_messages);
+    Lottie::decode(m_color, in_obj.take(color_key), out_messages);
+    //    if (in_obj.contains(dash_pattern_key))
+    //        decode_dashes(m_dashPattern, in_obj.take(dash_pattern_key), out_messages);
     m_fillEnabled = in_obj.take(fill_enabled_key).toBool();
 }
 

@@ -4,6 +4,7 @@
 namespace eao {
 
 using FrameType = float;
+using Vector1D = float;
 
 enum class CoordinateSpace {
     Type2D,

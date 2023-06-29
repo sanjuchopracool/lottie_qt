@@ -4,14 +4,10 @@
 #include "NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h"
 
 namespace eao {
-EllipseNode::EllipseNode(const Ellipse *ellipse)
+EllipseNode::EllipseNode(const Ellipse &ellipse)
+    : m_size(ellipse.m_size->create_animator(this))
+    , m_position(ellipse.m_position->create_animator(this))
 {
-    using Prop2D = NodeProperty<QVector2D>;
-    using KFVP2D = KeyFrameValueProvider<QVector2D>;
-
-    m_size = std::make_unique<Prop2D>(new KFVP2D(ellipse->m_size));
-    m_position = std::make_unique<Prop2D>(new KFVP2D(ellipse->m_position));
-    m_is_static = m_size->is_static() and m_position->is_static();
 }
 
 bool EllipseNode::update(FrameType t, bool force_update)

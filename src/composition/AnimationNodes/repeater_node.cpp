@@ -6,17 +6,11 @@
 #include <QPainter>
 
 namespace eao {
-RepeaterNode::RepeaterNode(const Repeater *repeater)
-    : m_transformation(repeater->m_transformation)
+RepeaterNode::RepeaterNode(const Repeater &repeater)
+    : m_transformation(repeater.m_transformation)
+    , m_copies(repeater.m_copies->create_animator(this))
+    , m_offset(repeater.m_offset->create_animator(this))
 {
-    using Prop1D = NodeProperty<Vector1D>;
-    using KFVP1D = KeyFrameValueProvider<Vector1D>;
-
-    m_copies = std::make_unique<Prop1D>(new KFVP1D(repeater->m_copies));
-    m_offset = std::make_unique<Prop1D>(new KFVP1D(repeater->m_offset));
-    m_is_static = m_copies->is_static() && m_offset->is_static() &&
-                  m_transformation.is_static();
-
 }
 
 bool RepeaterNode::update(FrameType t, bool force_update)

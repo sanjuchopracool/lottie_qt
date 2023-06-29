@@ -1,5 +1,6 @@
 #include "Shape.h"
 
+#include <parser/lottie/property_parser.h>
 #include <QJsonObject>
 
 namespace eao {
@@ -21,7 +22,7 @@ void Shape::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
     auto val = in_obj.take(path_key);
     Q_ASSERT(!val.isUndefined());
-    m_path.decode(val);
+    Lottie::decode(m_path, val, out_messages);
     m_direction = static_cast<PathDirection>(in_obj.value(direction_key).toInt());
 }
 }

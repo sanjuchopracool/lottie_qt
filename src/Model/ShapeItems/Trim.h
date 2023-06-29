@@ -1,7 +1,7 @@
 #ifndef TRIM_H
 #define TRIM_H
 
-#include "Model/Keyframes/KeyFrameGroup.h"
+#include <Model/property_system/property.h>
 #include "ShapeItem.h"
 #include "Utility/Primitives/Utility.h"
 
@@ -20,9 +20,9 @@ public:
     virtual void decode(QJsonObject& in_obj, QList<QString>& out_messages) override;
 
 public:
-    KeyFrameGroup<Vector1D> m_start;
-    KeyFrameGroup<Vector1D> m_end;
-    KeyFrameGroup<Vector1D> m_offset;
+    PropertyPtr<Vector1D> m_start;
+    PropertyPtr<Vector1D> m_end;
+    PropertyPtr<Vector1D> m_offset;
     TrimType m_trimType;
 };
 }

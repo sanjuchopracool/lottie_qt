@@ -1,4 +1,5 @@
 #include "Trim.h"
+#include <parser/lottie/property_parser.h>
 
 namespace eao {
 const QString start_key = "s";
@@ -22,9 +23,9 @@ Trim::Trim()
 
 void Trim::decode(QJsonObject &in_obj, QList<QString>& out_messages)
 {
-    m_start.decode(in_obj.take(start_key));
-    m_end.decode(in_obj.take(end_key));
-    m_offset.decode(in_obj.take(offset_key));
+    Lottie::decode(m_start, in_obj.take(start_key), out_messages);
+    Lottie::decode(m_end, in_obj.take(end_key), out_messages);
+    Lottie::decode(m_offset, in_obj.take(offset_key), out_messages);
     m_trimType = type_from_int(in_obj.take(trim_type_key).toInt());
     auto index = in_obj.take(index_key);
     if (!index.isUndefined()) {

@@ -1,5 +1,6 @@
 #include "Ellipse.h"
 
+#include <parser/lottie/property_parser.h>
 #include <QJsonObject>
 
 namespace eao {
@@ -15,8 +16,8 @@ Ellipse::Ellipse()
 
 void Ellipse::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
-    m_size.decode(in_obj.take(size_key));
-    m_position.decode(in_obj.take(position_key));
+    Lottie::decode(m_size, in_obj.take(size_key), out_messages);
+    Lottie::decode(m_position, in_obj.take(position_key), out_messages);
     m_direction = static_cast<PathDirection>(in_obj.take(direction_key).toInt(1));
 }
 

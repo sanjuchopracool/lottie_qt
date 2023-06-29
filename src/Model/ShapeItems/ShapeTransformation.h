@@ -1,7 +1,7 @@
 #ifndef SHAPETRANSFORMATION_H
 #define SHAPETRANSFORMATION_H
 
-#include "Model/Keyframes/KeyFrameGroup.h"
+#include <Model/property_system/property.h>
 #include "ShapeItem.h"
 #include "Utility/Primitives/Utility.h"
 
@@ -15,13 +15,13 @@ public:
     virtual void decode(QJsonObject& in_obj, QList<QString>& out_messages) override;
 
 public:
-    KeyFrameGroup<QVector2D> m_anchor;
-    KeyFrameGroup<QVector2D> m_position;
-    KeyFrameGroup<QVector2D> m_scale;
-    KeyFrameGroup<Vector1D> m_rotation;
-    KeyFrameGroup<Vector1D> m_opacity;
-    KeyFrameGroup<Vector1D> m_skew;
-    KeyFrameGroup<Vector1D> m_skew_axis;
+    PropertyPtr<QVector2D> m_anchor;
+    PropertyPtr<QVector2D> m_position;
+    PropertyPtr<QVector2D> m_scale;
+    PropertyPtr<Vector1D> m_rotation;
+    PropertyPtr<Vector1D> m_opacity;
+    PropertyPtr<Vector1D> m_skew;
+    PropertyPtr<Vector1D> m_skew_axis;
 };
 
 }

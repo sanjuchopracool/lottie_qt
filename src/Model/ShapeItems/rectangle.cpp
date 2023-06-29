@@ -1,4 +1,5 @@
 #include "rectangle.h"
+#include <parser/lottie/property_parser.h>
 
 #include <QJsonObject>
 
@@ -16,9 +17,9 @@ Rectangle::Rectangle()
 
 void Rectangle::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
-    m_center.decode(in_obj.take(center_key));
-    m_size.decode(in_obj.take(size_key));
-    m_corner_radius.decode(in_obj.take(radius_key));
+    Lottie::decode(m_center, in_obj.take(center_key), out_messages);
+    Lottie::decode(m_size, in_obj.take(size_key), out_messages);
+    Lottie::decode(m_corner_radius, in_obj.take(radius_key), out_messages);
     m_direction = static_cast<PathDirection>(in_obj.take(direction_key).toInt(1));
 }
 

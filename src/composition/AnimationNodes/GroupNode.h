@@ -13,12 +13,12 @@ class Group;
 class GroupNode : public ShapeNodeInterface
 {
 public:
-    GroupNode(const Group *group);
+    GroupNode(const Group &group);
     bool update(FrameType t, bool force_update) override;
 
     void render(QPainter *painter) override;
 private:
-    const Group *m_group;
+    const Group &m_group;
     std::vector<std::unique_ptr<ShapeNodeInterface>> m_nodes;
 };
 

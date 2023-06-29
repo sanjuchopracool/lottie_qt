@@ -1,8 +1,9 @@
 #ifndef DASHELEMENT_H
 #define DASHELEMENT_H
 
-#include "Model/Keyframes/KeyFrameGroup.h"
+#include <Model/property_system/property.h>
 #include <vector>
+#include <QJsonArray>
 
 class QJsonValue;
 
@@ -21,17 +22,14 @@ struct DashElement
     };
 
     Type m_type;
-    KeyFrameGroup<Vector1D> m_value;
+    PropertyPtr<Vector1D> m_value;
 
-    void decode(const QJsonValue& in_value);
+    void decode(const QJsonValue &in_value, QList<QString> &out_messages);
 };
 
-static void decode(std::vector<DashElement>& elements, const QJsonValue& in_value) {
-    QJsonArray array = in_value.toArray();
-    elements.resize(array.size());
-    for(int i = 0; i < array.size(); ++i)
-        elements[i].decode(array.at(i));
-}
-}
+void decode_dashes(std::vector<DashElement> &elements,
+                   QJsonValue &in_value,
+                   QList<QString> &out_messages);
+} // namespace eao
 
 #endif // DASHELEMENT_H

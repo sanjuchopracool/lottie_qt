@@ -11,7 +11,7 @@ class ShapeItem;
 
 namespace AnimationNodeFactory {
 
-std::unique_ptr<ShapeNodeInterface> node_for_shape(ShapeItem *shape_item);
+std::unique_ptr<ShapeNodeInterface> node_for_shape_item(const ShapeItem &shape_item);
 }
 }
 #endif // ANIMATIONNODEFACTORY_H

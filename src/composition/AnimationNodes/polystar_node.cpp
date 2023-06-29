@@ -5,25 +5,15 @@
 #include <cmath>
 
 namespace eao {
-PolyStarNode::PolyStarNode(const PolyStar *polystar)
+PolyStarNode::PolyStarNode(const PolyStar &polystar)
+    : m_center(polystar.m_center->create_animator(this))
+    , m_rotation(polystar.m_rotation->create_animator(this))
+    , m_outer_radius(polystar.m_outer_radius->create_animator(this))
+    , m_outer_roundness(polystar.m_outer_roundness->create_animator(this))
+    , m_inner_radius(polystar.m_inner_radius->create_animator(this))
+    , m_inner_roundness(polystar.m_inner_roundness->create_animator(this))
+    , m_num_points(polystar.m_num_points->create_animator(this))
 {
-    using Prop1D = NodeProperty<Vector1D>;
-    using KFVP1D = KeyFrameValueProvider<Vector1D>;
-
-    using Prop2D = NodeProperty<QVector2D>;
-    using KFVP2D = KeyFrameValueProvider<QVector2D>;
-
-    m_center = std::make_unique<Prop2D>(new KFVP2D(polystar->m_center));
-    m_rotation = std::make_unique<Prop1D>(new KFVP1D(polystar->m_rotation));
-    m_outer_radius = std::make_unique<Prop1D>(new KFVP1D(polystar->m_outer_radius));
-    m_outer_roundness = std::make_unique<Prop1D>(new KFVP1D(polystar->m_outer_roundness));
-    m_inner_radius = std::make_unique<Prop1D>(new KFVP1D(polystar->m_inner_radius));
-    m_inner_roundness = std::make_unique<Prop1D>(new KFVP1D(polystar->m_inner_roundness));
-    m_num_points = std::make_unique<Prop1D>(new KFVP1D(polystar->m_num_points));
-    m_is_static = m_center->is_static() && m_rotation->is_static() && m_outer_radius->is_static()
-                  && m_outer_roundness->is_static() && m_inner_radius->is_static() && m_inner_roundness->is_static()
-                  && m_num_points->is_static();
-
 }
 
 bool PolyStarNode::update(FrameType t, bool force_update)

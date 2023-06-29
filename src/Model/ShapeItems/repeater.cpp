@@ -1,4 +1,5 @@
 #include "repeater.h"
+#include <parser/lottie/property_parser.h>
 
 #include <QJsonObject>
 
@@ -16,10 +17,10 @@ Repeater::Repeater()
 
 void Repeater::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
-    m_copies.decode(in_obj.take(copies_key));
-    m_offset.decode(in_obj.take(offset_key));
+    Lottie::decode(m_copies, in_obj.take(copies_key), out_messages);
+    Lottie::decode(m_offset, in_obj.take(offset_key), out_messages);
     auto tr_obj = in_obj.take(transform_key).toObject();
-    m_transformation.decode(tr_obj);
+    m_transformation.decode(tr_obj, out_messages);
     m_composite = in_obj.take(composite_key).toInt();
     if (m_composite != 1)
         out_messages.append("Error: Unsupported composite type for repeater");

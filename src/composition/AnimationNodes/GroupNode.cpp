@@ -8,12 +8,11 @@
 
 namespace eao {
 
-GroupNode::GroupNode(const Group *group)
+GroupNode::GroupNode(const Group &group)
     : m_group(group)
 {
-    for (const auto& shape_item : m_group->m_shapes)
-    {
-        auto node = AnimationNodeFactory::node_for_shape(shape_item);
+    for (const auto &shape_item : m_group.m_shapes) {
+        auto node = AnimationNodeFactory::node_for_shape_item(*shape_item);
         if (node)
         {
             if (shape_item->m_type == ShapeType::Repeater) {

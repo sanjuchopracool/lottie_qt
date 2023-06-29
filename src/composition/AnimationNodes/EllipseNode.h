@@ -2,23 +2,23 @@
 #define ELLIPSENODE_H
 
 #include "ShapeNodeInterface.h"
-#include "NodeRenderSystem/NodeProperties/NodeProperty.h"
 #include "Utility/Primitives/Utility.h"
+#include <Model/property_system/property.h>
 
 #include <memory>
 
 namespace eao {
 class Ellipse;
 
-class EllipseNode : public ShapeNodeInterface, public PathNode
+class EllipseNode : public ShapeNodeInterface, public PathNode, public SimpleUpdateListener
 {
 public:
-    EllipseNode(const Ellipse* ellipse);
+    EllipseNode(const Ellipse &ellipse);
     bool update(FrameType t, bool force_update) override;
 
 private:
-    std::unique_ptr<NodeProperty<QVector2D>> m_size;
-    std::unique_ptr<NodeProperty<QVector2D>> m_position;
+    PropertyAnimatorPtr<QVector2D> m_size;
+    PropertyAnimatorPtr<QVector2D> m_position;
     QPainterPath m_ellipse_path;
 };
 }

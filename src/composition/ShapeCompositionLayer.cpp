@@ -12,7 +12,7 @@ ShapeCompositionLayer::ShapeCompositionLayer(const ShapeLayer &layer)
     : BaseCompositionLayer(layer)
 {
     for (const auto &shape_item : layer.m_shapes) {
-        auto node = AnimationNodeFactory::node_for_shape(shape_item);
+        auto node = AnimationNodeFactory::node_for_shape_item(*shape_item);
         if (node)
         {
             if (shape_item->m_type == ShapeType::Repeater) {

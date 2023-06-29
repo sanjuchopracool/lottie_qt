@@ -7,17 +7,10 @@
 
 namespace eao {
 
-FillNode::FillNode(const Fill *fill)
+FillNode::FillNode(const Fill &fill)
+    : m_color(fill.m_color->create_animator(this))
+    , m_opacity(fill.m_opacity->create_animator(this))
 {
-    using PropColor = NodeProperty<QVector4D>;
-    using Prop1D = NodeProperty<Vector1D>;
-    using KFVPCOLOR = KeyFrameValueProvider<QVector4D>;
-    using KFVP1D = KeyFrameValueProvider<Vector1D>;
-
-    m_color = std::make_unique<PropColor>(new KFVPCOLOR(fill->m_color));
-    m_opacity = std::make_unique<Prop1D>(new KFVP1D(fill->m_opacity));
-
-    m_is_static = m_color->is_static() && m_opacity->is_static();
 }
 
 bool FillNode::update(FrameType t, bool force_update)

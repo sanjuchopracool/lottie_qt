@@ -5,24 +5,18 @@
 #include <QPainter>
 
 namespace eao {
-StrokeNode::StrokeNode(const Stroke* stroke)
+StrokeNode::StrokeNode(const Stroke &stroke)
+    : m_color(stroke.m_color->create_animator(this))
+    , m_opacity(stroke.m_opacity->create_animator(this))
+    , m_width(stroke.m_width->create_animator(this))
 {
-    using PropColor = NodeProperty<QVector4D>;
-    using Prop1D = NodeProperty<Vector1D>;
-    using KFVPCOLOR = KeyFrameValueProvider<QVector4D>;
-    using KFVP1D = KeyFrameValueProvider<Vector1D>;
-
-    m_pen = stroke->m_pen;
-    m_color = std::make_unique<PropColor>(new KFVPCOLOR(stroke->m_color));
-    m_opacity = std::make_unique<Prop1D>(new KFVP1D(stroke->m_opacity));
-    m_width = std::make_unique<Prop1D>(new KFVP1D(stroke->m_width));
-
+    m_pen = stroke.m_pen;
     //TODO animate dash pattern also
-    if (stroke->m_dashPattern.m_keyframes.size())
-        m_dashPattern = stroke->m_dashPattern.m_keyframes[0].m_value;
-    m_is_static = m_color->is_static() and
-            m_opacity->is_static() and
-            m_width->is_static();
+    //    if (stroke->m_dashPattern.m_keyframes.size())
+    //        m_dashPattern = stroke->m_dashPattern.m_keyframes[0].m_value;
+    //    m_is_static = m_color->is_static() and
+    //            m_opacity->is_static() and
+    //            m_width->is_static();
 }
 
 bool StrokeNode::update(FrameType t, bool force_update)
