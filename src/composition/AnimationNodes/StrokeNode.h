@@ -15,7 +15,6 @@ class StrokeNode : public ShapeNodeInterface
 {
 public:
     StrokeNode(const Stroke* stroke);
-    bool need_update(FrameType t) const override;
     bool update(FrameType t, bool force_update) override;
 
     void render(QPainter *painter) override;

@@ -1,0 +1,58 @@
+#ifndef KEYFRAME_PROPERTY_H
+#define KEYFRAME_PROPERTY_H
+
+#include "property.h"
+#include <Model/Keyframes/KeyFrame.h>
+#include <NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h>
+
+namespace eao {
+
+template<typename T>
+class KeyFrameProperty : public Property<T>
+{
+public:
+    using CRefFrames = const KeyFrames<T> &;
+    using RefFrames = KeyFrames<T> &;
+
+    KeyFrameProperty(RefFrames frames)
+        : m_frames(std::move(frames))
+    {}
+
+    ~KeyFrameProperty() override {}
+
+    std::unique_ptr<PropertyAnimator<T>> create_animator(PropertyUpdateListener *) const override;
+
+private:
+    KeyFrames<T> m_frames;
+};
+
+template<typename T>
+class KeyFramePropertyAnimator : public PropertyAnimator<T>
+{
+public:
+    using CRefProperty = const KeyFrameProperty<T> &;
+    using CRefFrames = const KeyFrames<T> &;
+    using CRefValueType = const T &;
+
+    KeyFramePropertyAnimator(CRefFrames frames)
+        : value_provider(frames)
+    {}
+
+    ~KeyFramePropertyAnimator() override {}
+    void update(eao::FrameType frame) override { value_provider.update(frame); }
+    CRefValueType value() const override { return value_provider.value(); }
+
+private:
+    TempValueProvider<T> value_provider;
+};
+
+template<typename T>
+std::unique_ptr<PropertyAnimator<T>> KeyFrameProperty<T>::create_animator(
+    PropertyUpdateListener *) const
+{
+    return std::make_unique<KeyFramePropertyAnimator<T>>(m_frames);
+}
+
+} // namespace eao
+
+#endif // KEYFRAME_PROPERTY_H

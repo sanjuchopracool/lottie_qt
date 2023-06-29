@@ -25,7 +25,6 @@ class ShapeNodeInterface
 {
 public:
     virtual ~ShapeNodeInterface() {}
-    virtual bool need_update(FrameType t) const = 0;
     virtual bool update(FrameType t, bool force_update) = 0;
     inline bool is_static() const { return m_is_static; }
 

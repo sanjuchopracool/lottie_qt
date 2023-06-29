@@ -20,21 +20,13 @@ FillNode::FillNode(const Fill *fill)
     m_is_static = m_color->is_static() && m_opacity->is_static();
 }
 
-bool FillNode::need_update(FrameType t) const
-{
-    if (m_is_static)
-        return false;
-
-    return m_color->needs_update(t) or m_opacity->needs_update(t);
-}
-
 bool FillNode::update(FrameType t, bool force_update)
 {
     bool result = false;
-    if (force_update or need_update(t)) {
-        result = true;
-        m_color->update(t);
-    }
+    //    if (force_update or need_update(t)) {
+    //        result = true;
+    //        m_color->update(t);
+    //    }
     return result;
 }
 

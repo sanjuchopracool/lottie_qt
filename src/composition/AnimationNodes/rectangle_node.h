@@ -13,7 +13,6 @@ class RectangleNode : public ShapeNodeInterface, public PathNode
 {
 public:
     RectangleNode(const Rectangle* rectangle);
-    bool need_update(FrameType t) const override;
     bool update(FrameType t, bool force_update) override;
 
 private:

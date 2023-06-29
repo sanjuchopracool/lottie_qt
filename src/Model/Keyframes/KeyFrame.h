@@ -5,9 +5,10 @@
 #include "Utility/Primitives/Utility.h"
 #include "lottielib.h"
 
+#include <vector>
+#include <QEasingCurve>
 #include <QVector2D>
 #include <QVector3D>
-#include <QEasingCurve>
 
 namespace eao {
 
@@ -23,28 +24,23 @@ public:
         , m_is_hold(true)
         , m_spatial_in_tangent(in_sp_tangent)
         , m_spatial_out_tangent(out_sp_tangent)
-    {
+    {}
 
-    }
-
-    KeyFrame(const T& value,
+    KeyFrame(const T &value,
              FrameType time,
              bool is_hold,
-             const QVector2D& in_tangent,
-             const QVector2D& out_tangent,
-             const QVector3D& in_sp_tangent = QVector3D(),
-             const QVector3D& out_sp_tangent= QVector3D())
-        : m_value(value),
-          m_time(time),
-          m_is_hold(is_hold),
-          m_in_tangent(in_tangent),
-          m_out_tangent(out_tangent),
-          m_spatial_in_tangent(in_sp_tangent),
-          m_spatial_out_tangent(out_sp_tangent)
-    {
-
-    }
-
+             const QVector2D &in_tangent,
+             const QVector2D &out_tangent,
+             const QVector3D &in_sp_tangent = QVector3D(),
+             const QVector3D &out_sp_tangent = QVector3D())
+        : m_value(value)
+        , m_time(time)
+        , m_is_hold(is_hold)
+        , m_in_tangent(in_tangent)
+        , m_out_tangent(out_tangent)
+        , m_spatial_in_tangent(in_sp_tangent)
+        , m_spatial_out_tangent(out_sp_tangent)
+    {}
 
     T m_value;
     FrameType m_time;
@@ -54,7 +50,7 @@ public:
     QVector3D m_spatial_in_tangent;
     QVector3D m_spatial_out_tangent;
 
-    double interpolated_progress(const KeyFrame& to, FrameType time) const
+    double interpolated_progress(const KeyFrame &to, FrameType time) const
     {
         if (time < m_time)
             return 0.0;
@@ -65,20 +61,16 @@ public:
         if (m_is_hold)
             return 0.0;
 
-
         double progress = remap<FrameType>(time, m_time, to.m_time, 0, 1);
-        if ((not m_out_tangent.isNull()) or (not m_in_tangent.isNull()))
-        {
+        if ((not m_out_tangent.isNull()) or (not m_in_tangent.isNull())) {
             QVector2D out_point = m_out_tangent;
-            if (out_point.isNull())
-            {
+            if (out_point.isNull()) {
                 out_point.setX(0);
                 out_point.setY(0);
             }
 
             QVector2D in_point = to.m_in_tangent;
-            if (in_point.isNull())
-            {
+            if (in_point.isNull()) {
                 in_point.setX(1);
                 in_point.setY(1);
             }
@@ -93,11 +85,15 @@ public:
         return progress;
     }
 
-    T interpolate_to(const KeyFrame& to, double progress) const {
+    T interpolate_to(const KeyFrame &to, double progress) const
+    {
         return interpolate<T>(m_value, to.m_value, progress);
     }
 };
 
-}
+template<typename T>
+using KeyFrames = std::vector<KeyFrame<T>>;
+
+} // namespace eao
 
 #endif // KEYFRAME_H

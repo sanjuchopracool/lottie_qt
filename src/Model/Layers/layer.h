@@ -53,7 +53,7 @@ public:
     FrameType m_in_point;
     FrameType m_out_point;
     FrameType m_start_time;
-    Transformation3D m_transform;
+    LayerTransformation m_transform;
     int m_parent_index = -1;
     BlendMode m_blend_mode;
     // array masks

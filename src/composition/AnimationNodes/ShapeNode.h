@@ -15,7 +15,6 @@ class ShapeNode : public ShapeNodeInterface, public PathNode
 {
 public:
     ShapeNode(const Shape* shape);
-    bool need_update(FrameType t) const override;
     bool update(FrameType t, bool force_update) override;
 
 private:

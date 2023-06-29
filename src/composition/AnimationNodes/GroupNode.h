@@ -14,7 +14,6 @@ class GroupNode : public ShapeNodeInterface
 {
 public:
     GroupNode(const Group *group);
-    bool need_update(FrameType t) const override;
     bool update(FrameType t, bool force_update) override;
 
     void render(QPainter *painter) override;

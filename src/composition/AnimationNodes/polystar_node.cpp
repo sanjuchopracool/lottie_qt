@@ -26,66 +26,54 @@ PolyStarNode::PolyStarNode(const PolyStar *polystar)
 
 }
 
-bool PolyStarNode::need_update(FrameType t) const
-{
-    if (m_is_static)
-        return false;
-
-    return m_center->needs_update(t) && m_rotation->needs_update(t) && m_outer_radius->needs_update(t)
-           && m_outer_roundness->needs_update(t) && m_inner_radius->needs_update(t) && m_inner_roundness->needs_update(t)
-           && m_num_points->needs_update(t);
-}
-
 bool PolyStarNode::update(FrameType t, bool force_update)
 {
     bool result = false;
-    if (force_update or need_update(t))
-    {
-        result = true;
-        m_center->update(t);
-        m_rotation->update(t);
-        m_outer_radius->update(t);
-        m_outer_roundness->update(t);
-        m_inner_radius->update(t);
-        m_inner_roundness->update(t);
-        m_num_points->update(t);
-        
-        m_star_path = QPainterPath();
-        auto center = m_center->value();
-        auto inner_radius = m_inner_radius->value();
-        auto outer_radius = m_outer_radius->value();
-        auto num_points = m_num_points->value();
+    //    if (force_update or need_update(t))
+    //    {
+    //        result = true;
+    //        m_center->update(t);
+    //        m_rotation->update(t);
+    //        m_outer_radius->update(t);
+    //        m_outer_roundness->update(t);
+    //        m_inner_radius->update(t);
+    //        m_inner_roundness->update(t);
+    //        m_num_points->update(t);
 
-        auto half_angle = M_PI/num_points;
+    //        m_star_path = QPainterPath();
+    //        auto center = m_center->value();
+    //        auto inner_radius = m_inner_radius->value();
+    //        auto outer_radius = m_outer_radius->value();
+    //        auto num_points = m_num_points->value();
 
-//        qDebug() << inner_radius << outer_radius;
-        auto angle = half_angle/2;
-        auto x1 = inner_radius * std::cosf(angle);
-        auto y1 = inner_radius * std::sinf(angle);
-        m_star_path.moveTo(x1, y1);
-        int i = 0;
-        for(; i < num_points - 1; ++i) {
-            angle += half_angle;
-            auto x2 = outer_radius * std::cosf(angle);
-            auto y2 = outer_radius * std::sinf(angle);
-            m_star_path.lineTo(x2, y2);
+    //        auto half_angle = M_PI/num_points;
 
-            angle += half_angle;
-            auto x1 = inner_radius * std::cosf(angle);
-            auto y1 = inner_radius * std::sinf(angle);
-            m_star_path.lineTo(x1, y1);
-        }
-        angle += half_angle;
-        auto x2 = outer_radius * std::cosf(angle);
-        auto y2 = outer_radius * std::sinf(angle);
-        m_star_path.lineTo(x2, y2);
-        m_star_path.closeSubpath();
-        m_star_path.translate(center.x(), center.y());
+    ////        qDebug() << inner_radius << outer_radius;
+    //        auto angle = half_angle/2;
+    //        auto x1 = inner_radius * std::cosf(angle);
+    //        auto y1 = inner_radius * std::sinf(angle);
+    //        m_star_path.moveTo(x1, y1);
+    //        int i = 0;
+    //        for(; i < num_points - 1; ++i) {
+    //            angle += half_angle;
+    //            auto x2 = outer_radius * std::cosf(angle);
+    //            auto y2 = outer_radius * std::sinf(angle);
+    //            m_star_path.lineTo(x2, y2);
 
+    //            angle += half_angle;
+    //            auto x1 = inner_radius * std::cosf(angle);
+    //            auto y1 = inner_radius * std::sinf(angle);
+    //            m_star_path.lineTo(x1, y1);
+    //        }
+    //        angle += half_angle;
+    //        auto x2 = outer_radius * std::cosf(angle);
+    //        auto y2 = outer_radius * std::sinf(angle);
+    //        m_star_path.lineTo(x2, y2);
+    //        m_star_path.closeSubpath();
+    //        m_star_path.translate(center.x(), center.y());
 
-
-    }
-    m_path = m_star_path;
+    //    }
+    //    m_path = m_star_path;
     return result;
 }
 }

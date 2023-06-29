@@ -14,7 +14,6 @@ class RepeaterNode : public ShapeNodeInterface, public PathNode
 {
 public:
     RepeaterNode(const Repeater* repeater);
-    bool need_update(FrameType t) const override;
     bool update(FrameType t, bool force_update) override;
 
     void set_nodes(std::vector<std::unique_ptr<ShapeNodeInterface>>& nodes);

@@ -14,7 +14,6 @@ class TrimNode : public ShapeNodeInterface
 {
 public:
     TrimNode(const Trim* trim);
-    bool need_update(FrameType t) const override;
     bool update(FrameType t, bool force_update) override;
     void set_paths(const QList<PathNode *> targets) { m_target_nodes = targets; }
 

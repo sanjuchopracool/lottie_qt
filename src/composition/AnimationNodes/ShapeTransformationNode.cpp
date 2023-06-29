@@ -28,34 +28,20 @@ ShapeTransformationNode::ShapeTransformationNode(const ShapeTransformation* tran
             m_rotation->is_static() and m_opacity->is_static() and m_skew->is_static() and m_skew_axis->is_static();
 }
 
-bool ShapeTransformationNode::need_update(FrameType t) const
-{
-    if (m_is_static)
-        return false;
-
-    return m_anchor->needs_update(t) or
-            m_position->needs_update(t) or
-            m_rotation->needs_update(t) or
-            m_scale->needs_update(t) or
-            m_opacity->needs_update(t) or
-            m_skew->needs_update(t) or
-            m_skew_axis->needs_update(t);
-}
-
 bool ShapeTransformationNode::update(FrameType t, bool force_update)
 {
     bool result = false;
-    if (force_update or need_update(t))
-    {
-        result = true;
-        m_anchor->update(t);
-        m_position->update(t);
-        m_rotation->update(t);
-        m_scale->update(t);
-        m_opacity->update(t);
-        m_skew->update(t);
-        m_skew_axis->update(t);
-    }
+    //    if (force_update or need_update(t))
+    //    {
+    //        result = true;
+    //        m_anchor->update(t);
+    //        m_position->update(t);
+    //        m_rotation->update(t);
+    //        m_scale->update(t);
+    //        m_opacity->update(t);
+    //        m_skew->update(t);
+    //        m_skew_axis->update(t);
+    //    }
 
     return result;
 }

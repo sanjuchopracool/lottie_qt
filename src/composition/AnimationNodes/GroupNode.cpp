@@ -31,18 +31,6 @@ GroupNode::GroupNode(const Group *group)
     });
 }
 
-bool GroupNode::need_update(FrameType t) const
-{
-    if (m_is_static)
-        return false;
-
-    return std::any_of(m_nodes.cbegin(), m_nodes.cend(),
-                [=](const std::unique_ptr<ShapeNodeInterface>& node)
-    {
-        return node->need_update(t);
-    });
-}
-
 bool GroupNode::update(FrameType t, bool force_update)
 {
     for( auto& node : m_nodes)
@@ -50,31 +38,31 @@ bool GroupNode::update(FrameType t, bool force_update)
         node->update(t, force_update);
     }
 
-    return force_update or need_update(t);
+    //    return force_update or need_update(t);
 
+    //    bool render = force_update or need_update(t);
+    //    if (render)
+    //    {
+    //        painter->save();
+    //        painter->setTransform(QTransform());
+    //        QPainterPath temp_path;
+    //        for( auto& node : m_nodes)
+    //        {
+    //            node->update(t, painter, temp_path, force_update);
+    //        }
 
-//    bool render = force_update or need_update(t);
-//    if (render)
-//    {
-//        painter->save();
-//        painter->setTransform(QTransform());
-//        QPainterPath temp_path;
-//        for( auto& node : m_nodes)
-//        {
-//            node->update(t, painter, temp_path, force_update);
-//        }
+    //        m_transform = painter->transform();
+    //        m_brush = painter->brush();
+    //        m_path = std::move(temp_path);
+    //        painter->restore();
 
-//        m_transform = painter->transform();
-//        m_brush = painter->brush();
-//        m_path = std::move(temp_path);
-//        painter->restore();
+    //    }
 
-//    }
-
-//    path.addPath(m_path);
-//    painter->setTransform(m_transform, true);
-//    painter->setBrush(m_brush);
+    //    path.addPath(m_path);
+    //    painter->setTransform(m_transform, true);
+    //    painter->setBrush(m_brush);
     //    return render;
+    return false;
 }
 
 void GroupNode::render(QPainter *painter)
