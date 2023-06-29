@@ -29,7 +29,7 @@ void BaseCompositionLayer::draw(QPainter *painter, int alpha)
         return;
 
     painter->save();
-    painter->setTransform(m_transformation->tranform());
+    painter->setTransform(m_transformation->tranform(), true);
     draw_layer(painter, alpha);
     painter->restore();
 }

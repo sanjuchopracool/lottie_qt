@@ -45,6 +45,8 @@ bool AnimationWidget::load(const QString &file_path)
                               m_composition->in_point(),
                               m_composition->out_point(),
                               m_composition->framerate());
+        m_forced_update = true;
+        resize_animation(this->size());
         return true;
     }
     return false;
@@ -73,12 +75,17 @@ void AnimationWidget::paintEvent(QPaintEvent *event)
 void AnimationWidget::resizeEvent(QResizeEvent *ev)
 {
     auto size = ev->size();
+    resize_animation(size);
+}
+
+void AnimationWidget::resize_animation(const QSize &size)
+{
     if (m_animation_container) {
         qreal pixel_ratio = devicePixelRatioF();
         m_animation_container->resize(pixel_ratio * size.width(), pixel_ratio * size.height());
         m_forced_update = true;
+        slot_frame_changed(m_current_frame);
     }
-    slot_frame_changed(m_current_frame);
 }
 
 void AnimationWidget::slot_frame_changed(int time)

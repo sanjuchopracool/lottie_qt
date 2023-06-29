@@ -24,6 +24,8 @@ protected:
     void paintEvent(QPaintEvent *event) override;
     void resizeEvent(QResizeEvent *ev) override;
 
+private:
+    void resize_animation(const QSize &size);
 signals:
     void animation_loaded(QSize,
                           float in_point,
