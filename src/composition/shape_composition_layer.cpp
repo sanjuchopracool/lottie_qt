@@ -10,21 +10,31 @@
 namespace  eao {
 ShapeCompositionLayer::ShapeCompositionLayer(const ShapeLayer &layer)
     : BaseCompositionLayer(layer)
+    , GroupNode(layer.m_shapes)
 {
-    for (const auto &shape_item : layer.m_shapes) {
-        auto node = AnimationNodeFactory::node_for_shape_item(*shape_item);
-        if (node)
-        {
-            if (shape_item->m_type == ShapeType::Repeater) {
-                RepeaterNode *rep_node = static_cast<RepeaterNode *>(node.get());
-                rep_node->set_nodes(m_nodes);
-            }
-            m_nodes.emplace_back(std::move(node));
+    set_content();
+}
 
-        }
+void ShapeCompositionLayer::draw_layer(QPainter *painter, int alpha)
+{
+    for (auto *item : m_paint_items) {
+        item->draw(painter, alpha);
     }
 }
 
-void ShapeCompositionLayer::draw_layer(QPainter *painter, int alpha) {}
+void ShapeCompositionLayer::update_layer(FrameType t, bool force_update)
+{
+    BaseCompositionLayer::update_layer(t, force_update);
+    for (auto it = m_nodes.cbegin(); it != m_nodes.cend(); ++it) {
+        (*it)->update(t, force_update);
+    }
+}
+
+void ShapeCompositionLayer::set_content()
+{
+    std::vector<ShapeItemNode *> group_items_before;
+    std::vector<ShapeItemNode *> group_items_after;
+    GroupNode::set_content(group_items_after, group_items_after);
+}
 
 } // namespace eao

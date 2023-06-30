@@ -110,16 +110,17 @@ ShapeItem *shape_from_object(QJsonObject &in_object, QList<QString> &out_message
     return  result;
 }
 
-QList<ShapeItem *> ShapeFactory::shapes_from_object(QJsonArray &in_array, QList<QString> &out_messages)
+std::vector<ShapeItem *> ShapeFactory::shapes_from_object(QJsonArray &in_array,
+                                                          QList<QString> &out_messages)
 {
-    QList<ShapeItem *> result;
+    std::vector<ShapeItem *> result;
     for( auto shape : in_array)
     {
         auto shape_object = shape.toObject();
         auto shape_item = shape_from_object(shape_object, out_messages);
         if(shape_item)
         {
-            result.push_back(shape_item);
+            result.emplace_back(shape_item);
         }
     }
     return result;

@@ -34,7 +34,7 @@ void BaseCompositionLayer::draw(QPainter *painter, int alpha)
     painter->restore();
 }
 
-void BaseCompositionLayer::update(FrameType t, bool force_update)
+void BaseCompositionLayer::update_layer(FrameType t, bool force_update)
 {
     // TODO check hidden layer
     m_dirty = false;

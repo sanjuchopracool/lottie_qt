@@ -10,15 +10,16 @@ SolidCompositionLayer::SolidCompositionLayer(const SolidLayer &solid_layer)
     , m_layer(solid_layer)
 {}
 
-void SolidCompositionLayer::draw_layer(QPainter *painter, int alpha)
+void SolidCompositionLayer::draw_layer(QPainter *painter, int parent_alpha)
 {
-    painter->setPen(Qt::NoPen);
     QColor color(m_layer.color());
-    alpha = opacity();
-    if (alpha < 100) {
-        alpha = (alpha * 255) / 100;
-        color.setAlpha(alpha);
-    }
+
+    if (color.alpha() == 0 || opacity() == 0)
+        return;
+
+    painter->setPen(Qt::NoPen);
+    int alpha = (parent_alpha * color.alpha() * opacity()) / (255 * 100);
+    color.setAlpha(alpha);
     painter->setBrush(color);
     painter->drawRect(0, 0, m_layer.width(), m_layer.height());
 }

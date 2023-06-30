@@ -17,7 +17,6 @@ ShapeLayer::ShapeLayer()
 
 ShapeLayer::~ShapeLayer()
 {
-    qDeleteAll(m_shapes);
 }
 
 void ShapeLayer::decode(QJsonObject &in_obj, QList<QString> &out_messages)

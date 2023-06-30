@@ -13,15 +13,13 @@ namespace eao {
 class PathNode
 {
 public:
-    const QPainterPath& path() {
-        return m_path;
-    }
+    const QPainterPath &path() const { return m_path; }
 
 protected:
     QPainterPath m_path;
 };
 
-class ShapeItemNode : public CascadeUpdateListener
+class ShapeItemNode : virtual public CascadeUpdateListener
 {
 public:
     virtual ~ShapeItemNode() {}

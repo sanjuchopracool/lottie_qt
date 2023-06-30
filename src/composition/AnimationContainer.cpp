@@ -21,9 +21,10 @@ AnimationContainer::~AnimationContainer() {}
 
 void AnimationContainer::draw(QPainter *painter)
 {
+    painter->setRenderHint(QPainter::Antialiasing);
     painter->scale(m_scale_x, m_scale_y);
     for (auto it = m_layers.rbegin(); it != m_layers.rend(); ++it)
-        (*it)->draw(painter, m_last_updated_frame);
+        (*it)->draw(painter, 255);
 }
 
 bool AnimationContainer::update(FrameType t, bool force_update)
@@ -31,7 +32,7 @@ bool AnimationContainer::update(FrameType t, bool force_update)
     m_dirty = false;
     m_last_updated_frame = t;
     for (const auto &layer : m_layers) {
-        layer->update(layer->local_frame(t), force_update);
+        layer->update_layer(layer->local_frame(t), force_update);
     }
     return m_dirty;
 }

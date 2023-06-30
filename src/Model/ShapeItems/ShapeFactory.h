@@ -10,7 +10,8 @@ class ShapeItem;
 class ShapeFactory
 {
 public:
-    static QList<ShapeItem *> shapes_from_object(QJsonArray &in_array, QList<QString>& out_messages);
+    static std::vector<ShapeItem *> shapes_from_object(QJsonArray &in_array,
+                                                       QList<QString> &out_messages);
 };
 
 }

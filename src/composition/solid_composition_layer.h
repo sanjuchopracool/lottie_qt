@@ -12,7 +12,7 @@ class SolidCompositionLayer : public BaseCompositionLayer
 {
 public:
     SolidCompositionLayer(const SolidLayer &solid_layer);
-    void draw_layer(QPainter *painter, int alpha) override;
+    void draw_layer(QPainter *painter, int parent_alpha) override;
 
 private:
     const SolidLayer &m_layer;

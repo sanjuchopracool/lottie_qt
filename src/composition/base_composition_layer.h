@@ -13,7 +13,7 @@ namespace eao {
 class Layer;
 class LayerTransformationNode;
 
-class BaseCompositionLayer : public PaintingElement, public CascadeUpdateListener
+class BaseCompositionLayer : virtual public PaintingElement, virtual public CascadeUpdateListener
 {
 public:
     BaseCompositionLayer(const Layer &layer_model);
@@ -22,8 +22,8 @@ public:
     FrameType local_frame(FrameType t) const;
     void draw(QPainter *painter, int alpha) override;
 
-    virtual void draw_layer(QPainter *painter, int alpha) = 0;
-    virtual void update(FrameType t, bool force_update);
+    virtual void draw_layer(QPainter *painter, int parent_alpha) = 0;
+    virtual void update_layer(FrameType t, bool force_update);
 
     QTransform transform() const;
     int opacity() const;

@@ -2,6 +2,7 @@
 #define SHAPECOMPOSITIONLAYER_H
 
 #include "base_composition_layer.h"
+#include <composition/AnimationNodes/group_node.h>
 #include <memory>
 #include <vector>
 
@@ -9,16 +10,17 @@ namespace  eao {
 class ShapeLayer;
 class ShapeItemNode;
 
-class ShapeCompositionLayer : public BaseCompositionLayer
+class ShapeCompositionLayer : public BaseCompositionLayer, public GroupNode
 {
 public:
     ShapeCompositionLayer(const ShapeLayer &layer);
 
 protected:
     void draw_layer(QPainter *painter, int alpha) override;
+    void update_layer(FrameType t, bool force_update) override;
 
 private:
-    std::vector<std::unique_ptr<ShapeItemNode>> m_nodes;
+    void set_content();
 };
 
 }

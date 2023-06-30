@@ -29,7 +29,8 @@ void Layer::decode(QJsonObject &in_obj, QList<QString> &out_messages)
     m_name = in_obj.take(name_key).toString();
     m_index = in_obj.take(index_key).toInt();
     m_type = static_cast<LayerType>(in_obj.take(type_key).toInt());
-    //    m_coordinate_space = static_cast<CoordinateSpace>(in_obj.take(coordinate_space_key).toInt());
+    Q_ASSERT(CoordinateSpace::Type2D
+             == static_cast<CoordinateSpace>(in_obj.take(coordinate_space_key).toInt()));
     m_in_point = in_obj.take(in_frame_key).toDouble();
     m_out_point = in_obj.take(out_frame_key).toDouble();
     m_start_time = in_obj.take(start_time_key).toDouble();

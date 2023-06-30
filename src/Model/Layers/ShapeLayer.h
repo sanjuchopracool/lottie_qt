@@ -17,7 +17,7 @@ public:
     void decode(QJsonObject& in_obj,QList<QString> &out_messages) override;
 
 public:
-    QList<ShapeItem*> m_shapes;
+    std::vector<ShapeItem *> m_shapes;
 };
 }
 #endif // SHAPELAYER_H
