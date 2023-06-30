@@ -11,8 +11,8 @@ const QStringView radius_key = u"r";
 const QStringView direction_key = u"d";
 
 Rectangle::Rectangle()
+    : ShapeItem(ShapeType::Rectangle)
 {
-    m_type = ShapeType::Rectangle;
 }
 
 void Rectangle::decode(QJsonObject &in_obj, QList<QString> &out_messages)

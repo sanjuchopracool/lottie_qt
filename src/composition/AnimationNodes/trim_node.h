@@ -15,15 +15,16 @@ class TrimNode : public ShapeItemNode
 public:
     TrimNode(const Trim &trim);
     bool update(FrameType t, bool force_update) override;
-    void set_paths(const QList<PathNode *> targets) { m_target_nodes = targets; }
+
+    qreal start() const;
+    qreal end() const;
+    qreal offset() const;
 
 public:
+    const Trim &m_trim;
     PropertyAnimatorPtr<Vector1D> m_start;
     PropertyAnimatorPtr<Vector1D> m_end;
     PropertyAnimatorPtr<Vector1D> m_offset;
-
-    const Trim &m_trim;
-    QList<PathNode*> m_target_nodes;
 };
 }
 #endif // TRIMNODE_H

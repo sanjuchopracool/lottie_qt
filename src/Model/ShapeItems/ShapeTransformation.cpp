@@ -14,8 +14,8 @@ const QString skew_key = "sk";
 const QString skew_axis_key = "sa";
 
 ShapeTransformation::ShapeTransformation()
+    : ShapeItem(ShapeType::Transform)
 {
-    m_type = ShapeType::Transform;
 }
 
 void ShapeTransformation::decode(QJsonObject &in_obj, QList<QString>& out_messages)

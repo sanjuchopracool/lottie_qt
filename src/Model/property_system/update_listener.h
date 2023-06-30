@@ -1,14 +1,10 @@
 #ifndef UPDATE_LISTENER_H
 #define UPDATE_LISTENER_H
 
-namespace eao {
+#include "property_update_listener.h"
+#include <set>
 
-class PropertyUpdateListener
-{
-public:
-    virtual ~PropertyUpdateListener() {}
-    virtual void on_update() = 0;
-};
+namespace eao {
 
 class SimpleUpdateListener : public PropertyUpdateListener
 {
@@ -21,21 +17,23 @@ protected:
 class CascadeUpdateListener : public PropertyUpdateListener
 {
 public:
-    CascadeUpdateListener(PropertyUpdateListener *listener = nullptr)
-        : m_listener(listener)
-    {}
+    CascadeUpdateListener(PropertyUpdateListener *listener = nullptr) { add_listener(listener); }
 
     virtual void on_update() override
     {
         m_dirty = true;
-        if (m_listener)
-            m_listener->on_update();
+        for (auto &listener : m_listeners)
+            listener->on_update();
     }
 
-    void set_listener(PropertyUpdateListener *listener) { m_listener = listener; }
+    void add_listener(PropertyUpdateListener *listener)
+    {
+        if (listener)
+            m_listeners.emplace(listener);
+    }
 
 protected:
-    PropertyUpdateListener *m_listener;
+    std::set<PropertyUpdateListener *> m_listeners;
     bool m_dirty = true;
 };
 

@@ -8,12 +8,11 @@ namespace eao {
 const QString opacity_key = "o";
 const QString color_key = "c";
 const QString fill_rule_key = "r";
-const QString fill_enabled_key ="fillEnabled";
-
+const QString fill_enabled_key = "fillEnabled";
 
 Fill::Fill()
+    : ShapeItem(ShapeType::Fill)
 {
-    m_type = ShapeType::Fill;
 }
 
 void Fill::decode(QJsonObject &in_obj, QList<QString> &out_messages)

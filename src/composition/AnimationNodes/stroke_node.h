@@ -12,6 +12,7 @@
 
 namespace eao {
 class Stroke;
+class PathNode;
 
 class StrokeNode : public ShapeItemNode, public PaintingElement
 {

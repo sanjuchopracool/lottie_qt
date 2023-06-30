@@ -3,6 +3,7 @@
 
 #include "TransformationNode.h"
 #include "animation_node.h"
+#include "path_node.h"
 #include <Model/property_system/property.h>
 
 #include <memory>

@@ -20,3 +20,4 @@ add_library(eao
 
 target_link_libraries(eao PRIVATE Qt6::Core Qt6::Widgets)
 target_include_directories(eao PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+

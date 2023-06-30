@@ -45,8 +45,8 @@ Qt::PenJoinStyle int_to_join_style(int i) {
 }
 
 Stroke::Stroke()
+    : ShapeItem(ShapeType::Stroke)
 {
-    m_type = ShapeType::Stroke;
 }
 
 void Stroke::decode(QJsonObject &in_obj, QList<QString>& out_messages)

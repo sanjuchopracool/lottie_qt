@@ -13,7 +13,6 @@
 
 #include "ShapeNode.h"
 #include "ShapeTransformationNode.h"
-#include "TrimNode.h"
 #include "ellipse_node.h"
 #include "fill_node.h"
 #include "group_node.h"
@@ -21,6 +20,7 @@
 #include "rectangle_node.h"
 #include "repeater_node.h"
 #include "stroke_node.h"
+#include "trim_node.h"
 
 namespace eao {
 namespace AnimationNodeFactory {
@@ -28,7 +28,7 @@ namespace AnimationNodeFactory {
 std::unique_ptr<ShapeItemNode> node_for_shape_item(const ShapeItem &shape_item)
 {
     std::unique_ptr<ShapeItemNode> result;
-    switch (shape_item.m_type) {
+    switch (shape_item.type()) {
     case ShapeType::Group:
     {
         auto group = std::make_unique<GroupNode>(static_cast<const Group &>(shape_item).m_shapes);

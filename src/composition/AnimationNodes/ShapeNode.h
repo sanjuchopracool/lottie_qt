@@ -2,6 +2,7 @@
 #define SHAPENODE_H
 
 #include "animation_node.h"
+#include "shape_path_node.h"
 #include <vector>
 
 #include "Utility/Primitives/Utility.h"
@@ -11,7 +12,7 @@
 namespace eao {
 class Shape;
 
-class ShapeNode : public ShapeItemNode, public PathNode
+class ShapeNode : public ShapePathNode
 {
 public:
     ShapeNode(const Shape &shape);

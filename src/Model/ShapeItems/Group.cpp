@@ -9,8 +9,8 @@ namespace eao {
 const QString it_key("it");
 
 Group::Group()
+    : ShapeItem(ShapeType::Group)
 {
-    m_type = ShapeType::Group;
 }
 
 Group::~Group()

@@ -1,9 +1,23 @@
 #include "stroke_node.h"
 
 #include "Model/ShapeItems/Stroke.h"
+#include "path_node.h"
+#include "trim_node.h"
 #include <QPainter>
 
 namespace eao {
+
+class PathGroup
+{
+public:
+    PathGroup(TrimNode *trim)
+        : m_trim(trim)
+    {}
+
+private:
+    TrimNode *m_trim;
+};
+
 StrokeNode::StrokeNode(const Stroke &stroke)
     : m_stroke(stroke)
     , m_color(stroke.m_color->create_animator(this))
@@ -58,7 +72,7 @@ void StrokeNode::set_content(const std::vector<ShapeItemNode *> &,
 
 void StrokeNode::draw(QPainter *painter, int parent_alpha)
 {
-    if (m_stroke.m_hidden)
+    if (m_stroke.hidden())
         return;
 
     QColor color(to_color(m_color->value()));

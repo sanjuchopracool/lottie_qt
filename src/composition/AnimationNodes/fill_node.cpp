@@ -1,6 +1,7 @@
 #include "fill_node.h"
 
 #include "Model/ShapeItems/Fill.h"
+#include "path_node.h"
 #include <QPainter>
 
 namespace eao {
@@ -33,7 +34,7 @@ void FillNode::set_content(const std::vector<ShapeItemNode *> &,
 
 void FillNode::draw(QPainter *painter, int parent_alpha)
 {
-    if (m_fill.m_hidden)
+    if (m_fill.hidden())
         return;
 
     QColor color(to_color(m_color->value()));

@@ -1,8 +1,9 @@
 #ifndef POLYSTARNODE_H
 #define POLYSTARNODE_H
 
-#include "animation_node.h"
 #include "Utility/Primitives/Utility.h"
+#include "animation_node.h"
+#include "shape_path_node.h"
 #include <Model/property_system/property.h>
 
 #include <memory>
@@ -10,7 +11,7 @@
 namespace eao {
 class PolyStar;
 
-class PolyStarNode : public ShapeItemNode, public PathNode
+class PolyStarNode : public ShapePathNode
 {
 public:
     PolyStarNode(const PolyStar &polystar);

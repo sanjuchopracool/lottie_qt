@@ -14,8 +14,8 @@ GroupNode::GroupNode(const std::vector<ShapeItem *> &shapes)
         auto node = AnimationNodeFactory::node_for_shape_item(*shape_item);
         if (node)
         {
-            node->set_listener(this);
-            if (shape_item->m_type == ShapeType::Repeater) {
+            node->add_listener(this);
+            if (shape_item->type() == ShapeType::Repeater) {
                 RepeaterNode *rep_node = static_cast<RepeaterNode *>(node.get());
                 rep_node->set_nodes(m_nodes);
             }

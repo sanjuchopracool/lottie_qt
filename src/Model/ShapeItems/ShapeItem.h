@@ -55,11 +55,14 @@ enum class PathDirection
 class ShapeItem
 {
 public:
-    ShapeItem();
+    ShapeItem(ShapeType type);
     virtual ~ShapeItem();
 
     virtual void decode(QJsonObject& in_obj, QList<QString>& out_messages);
-public:
+    bool hidden() const { return m_hidden; }
+    ShapeType type() const { return m_type; }
+
+private:
     QString m_name;
     QString m_match_name;
     ShapeType m_type;

@@ -13,7 +13,7 @@ BaseCompositionLayer::BaseCompositionLayer(const Layer &layer_model)
     : m_layer_model(layer_model)
     , m_transformation(std::make_unique<LayerTransformationNode>(layer_model.m_transform))
 {
-    m_transformation->set_listener(this);
+    m_transformation->add_listener(this);
 }
 
 BaseCompositionLayer::~BaseCompositionLayer() {}

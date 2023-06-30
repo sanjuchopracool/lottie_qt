@@ -17,8 +17,8 @@ Trim::TrimType type_from_int(int i) {
 }
 
 Trim::Trim()
+    : ShapeItem(ShapeType::Trim)
 {
-    m_type = ShapeType::Trim;
 }
 
 void Trim::decode(QJsonObject &in_obj, QList<QString>& out_messages)
@@ -27,6 +27,8 @@ void Trim::decode(QJsonObject &in_obj, QList<QString>& out_messages)
     Lottie::decode(m_end, in_obj.take(end_key), out_messages);
     Lottie::decode(m_offset, in_obj.take(offset_key), out_messages);
     m_trimType = type_from_int(in_obj.take(trim_type_key).toInt());
+    if (m_trimType == TrimType::Individually)
+        out_messages.append("Error: Individually trim not supported!");
     auto index = in_obj.take(index_key);
     if (!index.isUndefined()) {
         static bool flag = true;

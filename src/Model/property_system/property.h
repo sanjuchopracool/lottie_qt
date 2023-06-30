@@ -2,7 +2,7 @@
 #define PROPERTY_H
 
 #include "lottielib.h"
-#include "update_listener.h"
+#include "property_update_listener.h"
 #include <memory>
 
 namespace eao {

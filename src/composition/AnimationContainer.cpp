@@ -74,7 +74,7 @@ void AnimationContainer::load_layers()
     int i = 0;
     for (const auto &layer : m_animation->layers()) {
         m_layers.emplace_back(CompositionLayerFactory::composition_layer(*layer));
-        m_layers.back()->set_listener(this);
+        m_layers.back()->add_listener(this);
         if (layer->m_parent_index >= 0)
             index_to_parent[i] = layer->m_parent_index;
         model_index_to_index[layer->m_index] = i;

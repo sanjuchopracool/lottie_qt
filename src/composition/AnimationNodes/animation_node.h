@@ -3,21 +3,11 @@
 
 #include "lottielib.h"
 #include <Model/property_system/update_listener.h>
-#include <QList>
-#include <QPainterPath>
+#include <vector>
 
 class QPainter;
 
 namespace eao {
-
-class PathNode
-{
-public:
-    const QPainterPath &path() const { return m_path; }
-
-protected:
-    QPainterPath m_path;
-};
 
 class ShapeItemNode : virtual public CascadeUpdateListener
 {

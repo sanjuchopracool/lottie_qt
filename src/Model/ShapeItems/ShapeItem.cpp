@@ -10,10 +10,9 @@ const QStringView hidden_key = u"hd";
 const QStringView index_key = u"ind";
 }
 
-ShapeItem::ShapeItem()
-{
-
-}
+ShapeItem::ShapeItem(ShapeType type)
+    : m_type(type)
+{}
 
 ShapeItem::~ShapeItem()
 {
@@ -34,5 +33,4 @@ void ShapeItem::decode(QJsonObject &in_obj, QList<QString>& out_messages)
         }
     }
 }
-
-}
+} // namespace eao

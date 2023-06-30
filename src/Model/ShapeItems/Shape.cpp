@@ -9,8 +9,8 @@ const QString path_key = "ks";
 const QString direction_key = "d";
 
 Shape::Shape()
+    : ShapeItem(ShapeType::Shape)
 {
-    m_type = ShapeType::Shape;
 }
 
 Shape::~Shape()

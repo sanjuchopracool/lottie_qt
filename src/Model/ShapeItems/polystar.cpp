@@ -16,8 +16,8 @@ const QStringView direction_key = u"d";
 const QStringView num_points_key = u"pt";
 
 PolyStar::PolyStar()
+    : ShapeItem(ShapeType::Star)
 {
-    m_type = ShapeType::Star;
 }
 
 void PolyStar::decode(QJsonObject &in_obj, QList<QString> &out_messages)

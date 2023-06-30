@@ -11,8 +11,8 @@ const QStringView composite_key = u"m";
 const QStringView transform_key = u"tr";
 
 Repeater::Repeater()
+    : ShapeItem(ShapeType::Repeater)
 {
-    m_type = ShapeType::Repeater;
 }
 
 void Repeater::decode(QJsonObject &in_obj, QList<QString> &out_messages)

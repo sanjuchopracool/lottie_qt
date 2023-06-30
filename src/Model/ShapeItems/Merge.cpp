@@ -7,9 +7,8 @@ namespace eao {
 const QString mode_key("mm");
 
 Merge::Merge()
-{
-    m_type = ShapeType::Merge;
-}
+    : ShapeItem(ShapeType::Merge)
+{}
 
 void Merge::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {

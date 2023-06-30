@@ -10,8 +10,8 @@ const QString position_key = "p";
 const QString size_key = "s";
 
 Ellipse::Ellipse()
+    : ShapeItem(ShapeType::Ellipse)
 {
-    m_type = ShapeType::Ellipse;
 }
 
 void Ellipse::decode(QJsonObject &in_obj, QList<QString> &out_messages)

@@ -1,15 +1,16 @@
 #ifndef RECTANGLENODE_H
 #define RECTANGLENODE_H
 
-#include "animation_node.h"
 #include "Utility/Primitives/Utility.h"
+#include "animation_node.h"
+#include "shape_path_node.h"
 #include <Model/property_system/property.h>
 #include <memory>
 
 namespace eao {
 class Rectangle;
 
-class RectangleNode : public ShapeItemNode, public PathNode
+class RectangleNode : public ShapePathNode
 {
 public:
     RectangleNode(const Rectangle &rectangle);

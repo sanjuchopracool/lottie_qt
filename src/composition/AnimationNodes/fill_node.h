@@ -10,6 +10,7 @@
 
 namespace eao {
 class Fill;
+class PathNode;
 
 class FillNode : public ShapeItemNode, public PaintingElement
 {
