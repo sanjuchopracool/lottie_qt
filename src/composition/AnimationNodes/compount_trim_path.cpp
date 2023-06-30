@@ -15,9 +15,9 @@ void CompoundTrimPath::add_trim_path(const TrimNode *trim)
 
 void CompoundTrimPath::apply_trim(QPainterPath &path)
 {
-    qreal start = 1;
-    qreal end = 1;
-    qreal offset = 1;
+    qreal start = 0.01f;
+    qreal end = 0.01f;
+    qreal offset = 1.0 / 360.f;
 
     // TODO assuming simultaneous trim
     for (const TrimNode *trim : m_trims) {
