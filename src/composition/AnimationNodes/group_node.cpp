@@ -22,20 +22,13 @@ GroupNode::GroupNode(const std::vector<ShapeItem *> &shapes)
             m_nodes.emplace_back(std::move(node));
         }
     }
-
-    m_is_static = std::all_of(m_nodes.cbegin(), m_nodes.cend(),
-    [](const std::unique_ptr<ShapeItemNode>& node)
-    {
-        return node->is_static();
-    });
 }
 
 bool GroupNode::update(FrameType t, bool force_update)
 {
     m_dirty = false;
-    for( auto& node : m_nodes)
-    {
-        node->update(t, force_update);
+    for (auto it = m_nodes.rbegin(); it != m_nodes.rend(); ++it) {
+        (*it)->update(t, force_update);
     }
     return m_dirty;
 }

@@ -1,5 +1,5 @@
 #include "shape_path_node.h"
-#include "compount_trim_path.h"
+#include "compound_trim_path.h"
 #include "trim_node.h"
 
 namespace eao {
@@ -13,7 +13,7 @@ void ShapePathNode::set_content(const std::vector<ShapeItemNode *> &items_before
 {
     for (ShapeItemNode *item : items_before) {
         TrimNode *trim = dynamic_cast<TrimNode *>(item);
-        if (trim) {
+        if (trim && trim->trim_type() == Trim::TrimType::Simultaneously) {
             if (!m_compount_trim) {
                 m_compount_trim = std::make_unique<CompoundTrimPath>();
             }

@@ -25,7 +25,7 @@ void ShapeCompositionLayer::draw_layer(QPainter *painter, int alpha)
 void ShapeCompositionLayer::update_layer(FrameType t, bool force_update)
 {
     BaseCompositionLayer::update_layer(t, force_update);
-    for (auto it = m_nodes.cbegin(); it != m_nodes.cend(); ++it) {
+    for (auto it = m_nodes.rbegin(); it != m_nodes.rend(); ++it) {
         (*it)->update(t, force_update);
     }
 }

@@ -53,12 +53,18 @@ void trim_path(QPainterPath &path, qreal start, qreal end, qreal offset)
             end_length += offset_length;
             start_length -= static_cast<int>(start_length / total_length) * total_length;
             end_length -= static_cast<int>(end_length / total_length) * total_length;
+
+            bool rotated = false;
+            if (start_length > end_length) {
+                rotated = true;
+            }
+
             int element_count = path.elementCount();
             std::vector<QPointF> points(4);
             int index = 0;
 
             qreal length_so_far = 0;
-            bool start_found = false;
+            bool found_start = false;
             bool end_found = false;
             auto check_start_end = [&]() -> bool {
                 bool is_start_seg = false;
@@ -72,12 +78,14 @@ void trim_path(QPainterPath &path, qreal start, qreal end, qreal offset)
                         current_path.cubicTo(points[1], points[2], points[3]);
                         qreal seg_length = current_path.length();
                         qreal length_after_seg = length_so_far + seg_length;
-                        if (!start_found && length_so_far <= start_length
+                        if (!found_start && length_so_far <= start_length
                             && start_length <= length_after_seg) {
                             is_start_seg = true;
                         }
 
-                        if (length_so_far <= end_length && end_length <= length_after_seg) {
+                        bool find_end = (!rotated || found_start);
+                        if (find_end && length_so_far <= end_length
+                            && end_length <= length_after_seg) {
                             is_end_seg = true;
                         }
 
@@ -85,7 +93,7 @@ void trim_path(QPainterPath &path, qreal start, qreal end, qreal offset)
                             // both start and end in this segment
                             // start in this segment but not end
                             qreal start_percent = (start_length - length_so_far) / seg_length;
-                            start_found = true;
+                            found_start = true;
                             if (is_end_seg) {
                                 qreal end_percent = (end_length - length_so_far) / seg_length;
                                 cubic_split(points, start_percent, end_percent);
@@ -93,12 +101,12 @@ void trim_path(QPainterPath &path, qreal start, qreal end, qreal offset)
                                 cubic_split(points, start_percent, true);
                             }
                             result.moveTo(points[0]);
-                        } else if (start_found && !is_end_seg) { // already started but not end
+                        } else if (found_start && !is_end_seg) { // already started but not end
                         } else if (is_end_seg) {                 // end found
                             qreal end_percent = (end_length - length_so_far) / seg_length;
                             cubic_split(points, end_percent, false);
                         }
-                        if (start_found)
+                        if (found_start)
                             result.cubicTo(points[1], points[2], points[3]);
                         length_so_far = length_after_seg;
                     }
@@ -116,30 +124,34 @@ void trim_path(QPainterPath &path, qreal start, qreal end, qreal offset)
             };
 
             bool trimmed = false;
-            for (int i = 0; i < element_count; ++i) {
-                if (trimmed)
-                    break;
+            while (!trimmed) {
+                length_so_far = 0;
+                for (int i = 0; i < element_count; ++i) {
+                    if (trimmed)
+                        break;
 
-                QPainterPath::Element el = path.elementAt(i);
-                switch (el.type) {
-                case QPainterPath::MoveToElement:
-                    index = 0;
-                    points[index] = el;
-                    break;
-                case QPainterPath::LineToElement:
-                    Q_ASSERT(false);
-                    break;
-                case QPainterPath::CurveToElement:
-                    trimmed = evaluate(el);
-                    break;
-                case QPainterPath::CurveToDataElement:
-                    points[++index] = el;
-                    break;
-                default:
-                    break;
+                    QPainterPath::Element el = path.elementAt(i);
+                    switch (el.type) {
+                    case QPainterPath::MoveToElement:
+                        index = 0;
+                        points[index] = el;
+                        break;
+                    case QPainterPath::LineToElement:
+                        Q_ASSERT(false);
+                        break;
+                    case QPainterPath::CurveToElement:
+                        trimmed = evaluate(el);
+                        break;
+                    case QPainterPath::CurveToDataElement:
+                        points[++index] = el;
+                        break;
+                    default:
+                        break;
+                    }
                 }
+                if (!trimmed)
+                    trimmed = check_start_end();
             }
-            check_start_end();
             path = result;
         }
     } else {

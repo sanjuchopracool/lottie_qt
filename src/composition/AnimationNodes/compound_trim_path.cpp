@@ -1,4 +1,4 @@
-#include "compount_trim_path.h"
+#include "compound_trim_path.h"
 #include "path_algorithm.h"
 #include "trim_node.h"
 namespace eao {
@@ -15,15 +15,15 @@ void CompoundTrimPath::add_trim_path(const TrimNode *trim)
 
 void CompoundTrimPath::apply_trim(QPainterPath &path)
 {
-    qreal start = 0.01f;
-    qreal end = 0.01f;
-    qreal offset = 1.0 / 360.f;
+    qreal start = 1;
+    qreal end = 1;
+    qreal offset = 1.0;
 
     // TODO assuming simultaneous trim
     for (const TrimNode *trim : m_trims) {
-        start *= trim->start();
-        end *= trim->end();
-        offset *= trim->offset();
+        start *= trim->start() / 100.0f;
+        end *= trim->end() / 100.0f;
+        offset *= trim->offset() / 360.f;
     }
 
     trim_path(path, start, end, offset);

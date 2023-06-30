@@ -1,15 +1,15 @@
 #ifndef TRIMNODE_H
 #define TRIMNODE_H
 
-#include "animation_node.h"
 #include "Utility/Primitives/Utility.h"
+#include "animation_node.h"
+#include <Model/ShapeItems/Trim.h>
 #include <Model/property_system/property.h>
 
 #include <memory>
 #include <QPainterPath>
 
 namespace eao {
-class Trim;
 class TrimNode : public ShapeItemNode
 {
 public:
@@ -19,6 +19,8 @@ public:
     qreal start() const;
     qreal end() const;
     qreal offset() const;
+
+    auto trim_type() const { return m_trim.trim_type(); }
 
 public:
     const Trim &m_trim;

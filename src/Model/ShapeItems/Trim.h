@@ -18,6 +18,7 @@ public:
     };
 
     virtual void decode(QJsonObject& in_obj, QList<QString>& out_messages) override;
+    auto trim_type() const { return m_trimType; }
 
 public:
     PropertyPtr<Vector1D> m_start;
