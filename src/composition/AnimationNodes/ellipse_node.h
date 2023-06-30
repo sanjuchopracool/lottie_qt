@@ -5,7 +5,6 @@
 #include "animation_node.h"
 #include "shape_path_node.h"
 #include <Model/property_system/property.h>
-
 #include <memory>
 
 namespace eao {

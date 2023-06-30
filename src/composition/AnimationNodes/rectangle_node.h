@@ -5,9 +5,9 @@
 #include "animation_node.h"
 #include "shape_path_node.h"
 #include <Model/property_system/property.h>
-#include <memory>
 
 namespace eao {
+
 class Rectangle;
 
 class RectangleNode : public ShapePathNode
@@ -17,11 +17,15 @@ public:
     bool update(FrameType t, bool force_update) override;
 
 private:
+    void create_path();
+
+private:
+    const eao::Rectangle &m_rectangle;
     PropertyAnimatorPtr<QVector2D> m_size;
     PropertyAnimatorPtr<QVector2D> m_center;
     PropertyAnimatorPtr<Vector1D> m_corner_radius;
-    QPainterPath m_rectangle_path;
 };
-}
+
+} // namespace eao
 
 #endif // RECTANGLENODE_H

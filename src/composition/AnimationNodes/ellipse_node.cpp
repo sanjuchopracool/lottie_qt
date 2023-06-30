@@ -57,6 +57,7 @@ void EllipseNode::create_path()
         m_path.cubicTo(0 - el_w, half_height, -half_width, 0 + el_h, -half_width, 0);
         m_path.cubicTo(-half_width, 0 - el_h, 0 - el_w, -half_height, 0, -half_height);
     }
+    m_path.closeSubpath();
 
     m_path.translate(position.x(), position.y());
     apply_trim();
