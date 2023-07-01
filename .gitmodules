@@ -1,0 +1,3 @@
+[submodule "src/third_party/minitrace"]
+	path = src/third_party/minitrace
+	url = https://github.com/hrydgard/minitrace.git
