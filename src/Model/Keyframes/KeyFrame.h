@@ -1,8 +1,8 @@
 #ifndef KEYFRAME_H
 #define KEYFRAME_H
 
-#include "Utility/Interpolatable/Interpolatable.h"
-#include "Utility/Primitives/Utility.h"
+#include <utility/interpolatable/interpolatable.h>
+#include <utility/primitives/utility.h>
 #include "lottielib.h"
 
 #include <vector>

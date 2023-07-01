@@ -1,8 +1,7 @@
 #include "composition_parser.h"
-#include "Model/composition.h"
+#include "model/composition.h"
 
-#include "Model/Layers/LayerFactory.h"
-#include "Model/composition.h"
+#include "model/layers/layer_factory.h"
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QList>

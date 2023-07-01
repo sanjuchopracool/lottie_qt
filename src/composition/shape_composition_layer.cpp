@@ -1,11 +1,11 @@
 #include "shape_composition_layer.h"
 
-#include "Model/Layers/ShapeLayer.h"
-#include "AnimationNodes/TransformationNode.h"
-#include "AnimationNodes/AnimationNodeFactory.h"
-#include "AnimationNodes/repeater_node.h"
-#include <QPainter>
+#include "animation_nodes/animation_node_factory.h"
+#include "animation_nodes/transformation_node.h"
+#include "animation_nodes/repeater_node.h"
+#include "model/layers/shape_layer.h"
 #include <QDebug>
+#include <QPainter>
 
 namespace  eao {
 ShapeCompositionLayer::ShapeCompositionLayer(const ShapeLayer &layer)

@@ -1,7 +1,7 @@
 #ifndef EAO_COMPOSITION_H
 #define EAO_COMPOSITION_H
 
-#include "Layers/layer.h"
+#include "layers/layer.h"
 #include "lottielib.h"
 #include <memory>
 #include <vector>

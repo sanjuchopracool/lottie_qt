@@ -1,7 +1,7 @@
 #include "base_composition_layer.h"
-#include "AnimationNodes/TransformationNode.h"
-#include "Model/Layers/layer.h"
-#include "Utility/Primitives/Transformation.h"
+#include "animation_nodes/transformation_node.h"
+#include "model/layers/layer.h"
+#include "utility/primitives/transformation.h"
 
 #include <QDebug>
 #include <QPainter>

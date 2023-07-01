@@ -3,7 +3,7 @@
 
 #include "composition/interfaces/painting_element.h"
 #include "lottielib.h"
-#include <Model/property_system/update_listener.h>
+#include <model/property_system/update_listener.h>
 
 #include <memory>
 #include <QTransform>

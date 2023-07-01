@@ -1,5 +1,5 @@
 #include "composition.h"
-#include "Layers/LayerFactory.h"
+#include "layers/layer_factory.h"
 
 using namespace std;
 namespace eao {

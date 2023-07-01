@@ -2,8 +2,8 @@
 #define KEYFRAME_PROPERTY_H
 
 #include "property.h"
-#include <Model/Keyframes/KeyFrame.h>
-#include <NodeRenderSystem/NodeProperties/ValueProviders/KeyFrameValueProvider.h>
+#include <model/keyframes/keyframe.h>
+#include <utility/value_provider/keyframe_value_provider.h>
 
 namespace eao {
 

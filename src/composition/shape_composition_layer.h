@@ -2,7 +2,7 @@
 #define SHAPECOMPOSITIONLAYER_H
 
 #include "base_composition_layer.h"
-#include <composition/AnimationNodes/group_node.h>
+#include <composition/animation_nodes/group_node.h>
 #include <memory>
 #include <vector>
 

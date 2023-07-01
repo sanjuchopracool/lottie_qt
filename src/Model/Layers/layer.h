@@ -1,8 +1,8 @@
 #ifndef LAYER_H
 #define LAYER_H
 
-#include "Utility/Primitives/Transformation.h"
 #include "lottielib.h"
+#include "utility/primitives/transformation.h"
 #include <QJsonObject>
 
 namespace eao {

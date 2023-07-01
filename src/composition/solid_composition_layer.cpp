@@ -1,6 +1,6 @@
 #include "solid_composition_layer.h"
 
-#include "Model/Layers/solid_layer.h"
+#include "model/layers/solid_layer.h"
 #include <QPainter>
 #include <QDebug>
 

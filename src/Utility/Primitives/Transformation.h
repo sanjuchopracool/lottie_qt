@@ -1,8 +1,8 @@
 #ifndef TRANSFORMATION_H
 #define TRANSFORMATION_H
 
-#include "Utility.h"
-#include <Model/property_system/property.h>
+#include "utility.h"
+#include <model/property_system/property.h>
 
 namespace eao {
 

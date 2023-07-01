@@ -1,7 +1,7 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
-#include "BezierPath.h"
+#include "bezier_path.h"
 
 #include <QColor>
 #include <QtMath>

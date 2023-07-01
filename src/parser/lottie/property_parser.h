@@ -1,11 +1,11 @@
 #ifndef PROPERTY_PARSER_H
 #define PROPERTY_PARSER_H
 #
-#include <Model/Keyframes/KeyFrame.h>
-#include <Model/property_system/constant_property.h>
-#include <Model/property_system/keyframe_property.h>
-#include <Model/property_system/property_factory.h>
-#include <Utility/Primitives/Utility.h>
+#include <model/keyframes/keyframe.h>
+#include <model/property_system/constant_property.h>
+#include <model/property_system/keyframe_property.h>
+#include <model/property_system/property_factory.h>
+#include <utility/primitives/utility.h>
 
 #include <QJsonArray>
 #include <QJsonObject>

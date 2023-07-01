@@ -1,7 +1,7 @@
 #include "AnimationWidget.h"
 #include "parser/lottie/composition_parser.h"
-#include <Model/composition.h>
-#include <composition/AnimationContainer.h>
+#include <composition/animation_container.h>
+#include <model/composition.h>
 
 #include <QDebug>
 #include <QFile>
@@ -11,7 +11,7 @@
 #include <QPainter>
 
 #include "timeline_widget.h"
-#include <AutoProfiler.h>
+#include <profiler.h>
 #include <QJsonObject>
 #include <QVBoxLayout>
 
