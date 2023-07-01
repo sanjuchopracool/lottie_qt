@@ -2,11 +2,12 @@
 #include <parser/lottie/property_parser.h>
 
 namespace eao {
-const QString start_key = "s";
-const QString end_key = "e";
-const QString offset_key = "o";
-const QString trim_type_key = "m";
-const QString index_key = "ix";
+
+const QStringView start_key{u"s"};
+const QStringView end_key{u"e"};
+const QStringView offset_key{u"o"};
+const QStringView trim_type_key{u"m"};
+const QStringView index_key{u"ix"};
 
 Trim::TrimType type_from_int(int i) {
     auto result = Trim::TrimType::Simultaneously;
