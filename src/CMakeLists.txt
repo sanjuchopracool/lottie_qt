@@ -1,3 +1,6 @@
+
+option(TRACE_ENABLED "Enable Trace Support" OFF)
+
 set (HEADER_FILES_ALL
     composition/animation_container.h
     composition/animation_nodes/animation_node.h
@@ -126,6 +129,10 @@ add_library(eao
     ${HEADER_FILES_ALL}
     ${SRC_FILES_ALL}
 )
+
+if(TRACE_ENABLED)
+    target_compile_definitions(eao PUBLIC MTR_ENABLED)
+endif(TRACE_ENABLED)
 
 target_link_libraries(eao PRIVATE Qt6::Core Qt6::Widgets)
 target_include_directories(eao PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

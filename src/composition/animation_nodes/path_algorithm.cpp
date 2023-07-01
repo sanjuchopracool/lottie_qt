@@ -39,7 +39,7 @@ void cubic_split(std::vector<QPointF> &points, qreal t1, qreal t2)
 
 void trim_path(QPainterPath &path, qreal start, qreal end, qreal offset)
 {
-    MTR_SCOPE("TRIM_PATH", "MAIN")
+    MTR_SCOPE("TRIM_PATH", "MAIN");
     if (std::abs(end - start) > std::numeric_limits<float>::epsilon()) {
         if (std::abs(end - start - 1) > std::numeric_limits<float>::epsilon()) {
             QPainterPath result;
