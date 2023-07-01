@@ -134,7 +134,7 @@ void AnimationViewWidget::slot_animation_loaded(QSize size,
                                                 float out_point,
                                                 float framerate)
 {
-    size.setWidth(std::max(size.width(), m_timeline_widget->width()));
+    size.setWidth(std::max(size.width(), m_timeline_widget->minimumWidth()));
     size.setHeight(size.height() + m_timeline_widget->height());
     resize(size);
 
@@ -151,9 +151,10 @@ QSize AnimationViewWidget::sizeHint() const
 void AnimationViewWidget::keyPressEvent(QKeyEvent *event)
 {
     if ((event->modifiers() & Qt::ControlModifier) and (event->key() == Qt::Key_O)) {
+        QFileInfo fileInfo(m_settings.value(last_file_key).toString());
         QString file_path = QFileDialog::getOpenFileName(this,
                                                          "select file",
-                                                         QDir::homePath() + "/Downloads",
+                                                         fileInfo.dir().path(),
                                                          "*.json");
         m_settings.setValue(last_file_key, file_path);
         load(file_path);
