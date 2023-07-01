@@ -14,7 +14,6 @@ AnimationContainer::AnimationContainer(const Composition *animation)
     : m_animation(animation)
 {
     load_layers();
-    on_resize();
 }
 
 AnimationContainer::~AnimationContainer() {}
@@ -56,15 +55,6 @@ void AnimationContainer::resize(int x, int y)
     m_size = QSize(w, h);
     m_scale_x = scale;
     m_scale_y = scale;
-
-    on_resize();
-}
-
-void AnimationContainer::on_resize()
-{
-    //    for (auto &layer : m_layers) {
-    //        layer->update_buffer_info(m_buffer_info);
-    //    }
 }
 
 void AnimationContainer::load_layers()

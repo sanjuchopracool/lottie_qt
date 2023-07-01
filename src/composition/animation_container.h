@@ -25,7 +25,6 @@ public:
 
     void resize(int x, int y);
 private:
-    void on_resize();
     void load_layers();
 
 private:
