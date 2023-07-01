@@ -1,4 +1,4 @@
-#include "Shape.h"
+#include "shape.h"
 
 #include <parser/lottie/property_parser.h>
 #include <QJsonObject>

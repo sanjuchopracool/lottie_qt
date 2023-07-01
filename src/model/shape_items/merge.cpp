@@ -1,4 +1,4 @@
-#include "Merge.h"
+#include "merge.h"
 
 #include <QJsonObject>
 

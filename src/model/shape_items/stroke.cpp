@@ -1,4 +1,4 @@
-#include "Stroke.h"
+#include "stroke.h"
 #include <parser/lottie/property_parser.h>
 
 #include <QJsonObject>

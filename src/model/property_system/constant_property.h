@@ -38,7 +38,7 @@ public:
     CRefValueType value() const override { return m_value; }
 
 private:
-    const CRefValueType &m_value;
+    CRefValueType &m_value;
 };
 
 template<typename T>
