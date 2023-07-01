@@ -21,7 +21,6 @@ public:
 private:
     const Shape &m_shape;
     PropertyAnimatorPtr<BezierPath> m_pathProp;
-    QPainterPath m_shape_path;
 };
 
 }

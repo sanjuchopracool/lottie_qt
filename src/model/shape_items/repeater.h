@@ -18,7 +18,7 @@ public:
 public:
     PropertyPtr<Vector1D> m_copies;
     PropertyPtr<Vector1D> m_offset;
-    RepeaterTransformation m_transformation;
+    ShapeTransformation m_transformation;
     int m_composite = 1;
 };
 }

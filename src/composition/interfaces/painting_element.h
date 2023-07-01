@@ -9,7 +9,7 @@ class PaintingElement
 {
 public:
     virtual ~PaintingElement() {}
-    virtual void draw(QPainter *painter, int alpha) = 0;
+    virtual void draw(QPainter *painter, int parent_alpha) = 0;
 };
 
 } // namespace eao

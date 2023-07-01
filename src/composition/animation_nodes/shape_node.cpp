@@ -13,14 +13,13 @@ ShapeNode::ShapeNode(const Shape &shape)
 bool ShapeNode::update(FrameType t, bool force_update)
 {
     bool result = false;
-    //    if (force_update or need_update(t))
-    //    {
-    //        result = true;
-    //        m_pathProp->update(t);
-    //        m_shape_path = m_pathProp->value().path();
-    //    }
-
-    m_path = m_shape_path;
+    m_pathProp->update(t);
+    // TODO listen to trim paths also
+    if (force_update || m_dirty) {
+        m_path = m_pathProp->value().path();
+        m_dirty = false;
+        result = true;
+    }
     return result;
 }
 }

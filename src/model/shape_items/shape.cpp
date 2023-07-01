@@ -20,6 +20,7 @@ Shape::~Shape()
 
 void Shape::decode(QJsonObject &in_obj, QList<QString> &out_messages)
 {
+    // TODO SHAPE DIRECTION
     auto val = in_obj.take(path_key);
     Q_ASSERT(!val.isUndefined());
     Lottie::decode(m_path, val, out_messages);

@@ -6,19 +6,6 @@
 
 namespace eao {
 
-struct RepeaterTransformation
-{
-    void decode(QJsonObject &in_obj, QList<QString> &out_messages);
-
-    PropertyPtr<QVector2D> m_anchor;
-    PropertyPtr<QVector2D> m_position;
-    PropertyPtr<QVector2D> m_scale;
-    PropertyPtr<Vector1D> m_rotation;
-    PropertyPtr<int> m_opacity;
-    PropertyPtr<Vector1D> m_skew;
-    PropertyPtr<Vector1D> m_skew_axis;
-};
-
 struct LayerTransformation
 {
     void decode(QJsonObject &in_obj, QList<QString> &out_messages);

@@ -19,20 +19,45 @@ ShapeTransformationNode::ShapeTransformationNode(const ShapeTransformation &tran
 
 bool ShapeTransformationNode::update(FrameType t, bool force_update)
 {
-    bool result = false;
-    //    if (force_update or need_update(t))
-    //    {
-    //        result = true;
-    //        m_anchor->update(t);
-    //        m_position->update(t);
-    //        m_rotation->update(t);
-    //        m_scale->update(t);
-    //        m_opacity->update(t);
-    //        m_skew->update(t);
-    //        m_skew_axis->update(t);
-    //    }
-
-    return result;
+    m_dirty = false;
+    update_transform(t);
+    return m_dirty;
 }
+
+void ShapeTransformationNode::draw(QPainter *painter, int parent_alpha)
+{
+    painter->setTransform(transform(), true);
+}
+
+void ShapeTransformationNode::update_transform(FrameType t)
+{
+    m_anchor->update(t);
+    m_position->update(t);
+    m_rotation->update(t);
+    m_scale->update(t);
+    m_opacity->update(t);
+    m_skew->update(t);
+    m_skew_axis->update(t);
+}
+
+QTransform ShapeTransformationNode::transform() const
+{
+    auto anchor = m_anchor->value();
+    auto pos = m_position->value();
+    auto rotation = m_rotation->value();
+    auto scale = m_scale->value() / 100;
+
+    //TODO other properties
+
+    QTransform tr;
+    tr.translate(pos.x(), pos.y());
+    //    tr.translate(anchor.x(), anchor.y());
+    tr.rotate(rotation);
+    tr.scale(scale.x(), scale.y());
+    tr.translate(-anchor.x(), -anchor.y());
+
+    return tr;
+}
+
 
 }

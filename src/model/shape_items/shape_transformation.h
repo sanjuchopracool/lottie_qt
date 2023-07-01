@@ -19,7 +19,7 @@ public:
     PropertyPtr<QVector2D> m_position;
     PropertyPtr<QVector2D> m_scale;
     PropertyPtr<Vector1D> m_rotation;
-    PropertyPtr<Vector1D> m_opacity;
+    PropertyPtr<int> m_opacity;
     PropertyPtr<Vector1D> m_skew;
     PropertyPtr<Vector1D> m_skew_axis;
 };

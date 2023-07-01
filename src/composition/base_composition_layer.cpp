@@ -29,7 +29,7 @@ void BaseCompositionLayer::draw(QPainter *painter, int alpha)
         return;
 
     painter->save();
-    painter->setTransform(m_transformation->tranform(), true);
+    painter->setTransform(m_transformation->transform(), true);
     draw_layer(painter, alpha);
     painter->restore();
 }
@@ -43,7 +43,7 @@ void BaseCompositionLayer::update_layer(FrameType t, bool force_update)
 
 QTransform BaseCompositionLayer::transform() const
 {
-    return m_transformation->tranform();
+    return m_transformation->transform();
 }
 
 int BaseCompositionLayer::opacity() const
