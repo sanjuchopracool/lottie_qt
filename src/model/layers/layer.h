@@ -1,7 +1,7 @@
 #ifndef LAYER_H
 #define LAYER_H
 
-#include "lottielib.h"
+#include <common_types.h>
 #include "utility/primitives/transformation.h"
 #include <QJsonObject>
 

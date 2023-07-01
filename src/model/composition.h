@@ -2,7 +2,7 @@
 #define EAO_COMPOSITION_H
 
 #include "layers/layer.h"
-#include "lottielib.h"
+#include <common_types.h>
 #include <memory>
 #include <vector>
 

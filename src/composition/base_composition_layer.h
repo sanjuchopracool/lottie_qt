@@ -2,7 +2,7 @@
 #define BASE_COMPOSITION_LAYER_H
 
 #include "composition/interfaces/painting_element.h"
-#include "lottielib.h"
+#include <common_types.h>
 #include <model/property_system/update_listener.h>
 
 #include <memory>

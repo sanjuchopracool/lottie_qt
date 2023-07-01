@@ -1,7 +1,7 @@
 #ifndef PROPERTY_H
 #define PROPERTY_H
 
-#include "lottielib.h"
+#include <common_types.h>
 #include "property_update_listener.h"
 #include <memory>
 

@@ -1,5 +1,5 @@
-#ifndef LOTTIELIB_H
-#define LOTTIELIB_H
+#ifndef COMMON_TYPES_H
+#define COMMON_TYPES_H
 
 namespace eao {
 

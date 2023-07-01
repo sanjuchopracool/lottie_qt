@@ -3,7 +3,7 @@
 
 #include <utility/interpolatable/interpolatable.h>
 #include <utility/primitives/utility.h>
-#include "lottielib.h"
+#include <common_types.h>
 
 #include <vector>
 #include <QEasingCurve>

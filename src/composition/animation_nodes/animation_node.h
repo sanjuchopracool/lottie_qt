@@ -1,7 +1,7 @@
 #ifndef ANIMATION_NODE_H
 #define ANIMATION_NODE_H
 
-#include "lottielib.h"
+#include <common_types.h>
 #include <model/property_system/update_listener.h>
 #include <vector>
 

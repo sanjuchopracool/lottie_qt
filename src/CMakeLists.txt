@@ -27,7 +27,7 @@ set (HEADER_FILES_ALL
     composition/null_composition_layer.h
     composition/shape_composition_layer.h
     composition/solid_composition_layer.h
-    lottielib.h
+    common_types.h
     model/composition.h
     model/keyframes/keyframe.h
     model/layers/layer.h
