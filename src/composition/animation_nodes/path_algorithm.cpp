@@ -1,9 +1,9 @@
 #include "path_algorithm.h"
 
 #include <profiler.h>
+#include <third_party/minitrace/minitrace.h>
 #include <QDebug>
 #include <QPainterPath>
-#include <third_party/minitrace/minitrace.h>
 
 namespace eao {
 
@@ -49,15 +49,17 @@ void trim_path(QPainterPath &path, qreal start, qreal end, qreal offset)
             if (start_length > end_length)
                 std::swap(start_length, end_length);
 
-            qreal offset_length = offset * total_length;
-            start_length += offset_length;
-            end_length += offset_length;
-            start_length -= static_cast<int>(start_length / total_length) * total_length;
-            end_length -= static_cast<int>(end_length / total_length) * total_length;
-
             bool rotated = false;
-            if (start_length > end_length) {
-                rotated = true;
+            qreal offset_length = offset * total_length;
+            if (offset != 0.0f) {
+                start_length += offset_length;
+                end_length += offset_length;
+                start_length -= static_cast<int>(start_length / total_length) * total_length;
+                end_length -= static_cast<int>(end_length / total_length) * total_length;
+
+                if (start_length > end_length) {
+                    rotated = true;
+                }
             }
 
             int element_count = path.elementCount();

@@ -73,9 +73,10 @@ inline void decode(QVector2D &obj, const QJsonValue &in_value)
 
 inline void decode_keyframe_tangent(QVector2D &obj, const QJsonValue &in_value)
 {
-    const auto& object = in_value.toObject();
-    obj.setX(object.value("x").toArray().at(0).toDouble());
-    obj.setY(object.value("y").toArray().at(0).toDouble());
+    const auto &in_array = in_value.toObject();
+    Q_ASSERT(in_array.size() == 2);
+    obj.setX(in_array.value("x").toDouble());
+    obj.setY(in_array.value("y").toDouble());
 }
 
 inline QColor to_color(const QVector4D &value)

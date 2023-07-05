@@ -3,8 +3,9 @@
 #include <QJsonArray>
 #include "utility.h"
 
-#include <QPixmap>
+#include <QDir>
 #include <QPainter>
+#include <QPixmap>
 
 namespace eao {
 
@@ -102,14 +103,14 @@ void BezierPath::decode(const QJsonValue &in_value)
     m_length = total_length;
     m_elements = decoded_elements;
 
-//    QPixmap pix(800, 800);
-//    pix.fill(Qt::transparent);
-//    QPainter painter(&pix);
-//    painter.translate(400, 400);
-//    painter.drawPath(path());
+    //    QPixmap pix(800, 800);
+    //    pix.fill(Qt::transparent);
+    //    QPainter painter(&pix);
+    //    painter.translate(400, 400);
+    //    painter.drawPath(path());
 
-//    static int count = 0;
-//    pix.save(QString("/home/sanju/file_%1.png").arg(count++));
+    //    static int count = 0;
+    //    pix.save(QString(QDir::homePath() + "/file_%1.png").arg(count++));
 }
 
 const QPainterPath &BezierPath::path() const
