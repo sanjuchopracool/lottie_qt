@@ -35,6 +35,7 @@ private:
     const Layer &m_layer_model;
     std::unique_ptr<LayerTransformationNode> m_transformation;
     std::vector<const BaseCompositionLayer*> m_parents;
+    bool m_visible = false;
 };
 
 } // namespace eao

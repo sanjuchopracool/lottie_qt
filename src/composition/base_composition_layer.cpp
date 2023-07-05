@@ -25,7 +25,7 @@ FrameType BaseCompositionLayer::local_frame(FrameType t) const
 
 void BaseCompositionLayer::draw(QPainter *painter, int alpha)
 {
-    if (m_layer_model.m_hidden)
+    if (m_layer_model.m_hidden || !m_visible)
         return;
 
     painter->save();
@@ -40,7 +40,16 @@ void BaseCompositionLayer::draw(QPainter *painter, int alpha)
 
 void BaseCompositionLayer::update_layer(FrameType t, bool force_update)
 {
-    // TODO check hidden layer
+    // TODO check hidden layer or in range update
+    // also start time
+    bool visible = m_layer_model.in_range(t);
+    if (m_visible != visible) {
+        m_visible = visible;
+        CascadeUpdateListener::on_update();
+    }
+    if (!m_visible)
+        return;
+
     m_dirty = false;
     m_transformation->update(t, force_update);
 }

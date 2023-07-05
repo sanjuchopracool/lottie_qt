@@ -17,6 +17,7 @@ bool ShapeNode::update(FrameType t, bool force_update)
     // TODO listen to trim paths also
     if (force_update || m_dirty) {
         m_path = m_pathProp->value().path();
+        apply_trim();
         m_dirty = false;
         result = true;
     }

@@ -63,9 +63,9 @@ void AnimationWidget::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)
     QPainter painter(this);
+    painter.fillRect(this->rect(), Qt::black);
     qreal inverse_pixel_ratio = 1.0 / devicePixelRatioF();
     painter.scale(inverse_pixel_ratio, inverse_pixel_ratio);
-    //    painter.fillRect(this->rect(), Qt::darkGreen);
     if (m_animation_container) {
         //        AutoProfiler p("D");
         m_animation_container->draw(&painter);
