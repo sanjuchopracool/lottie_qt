@@ -24,6 +24,8 @@ public:
     bool update(FrameType t, bool force_update);
 
     void resize(int x, int y);
+    const std::vector<std::unique_ptr<BaseCompositionLayer>> &layers() const { return m_layers; }
+
 private:
     void load_layers();
 

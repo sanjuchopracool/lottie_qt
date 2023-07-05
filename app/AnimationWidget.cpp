@@ -12,7 +12,10 @@
 
 #include "timeline_widget.h"
 #include <profiler.h>
+#include <QHBoxLayout>
 #include <QJsonObject>
+#include <QListWidget>
+#include <QListWidgetItem>
 #include <QVBoxLayout>
 
 namespace eao {
@@ -41,10 +44,7 @@ bool AnimationWidget::load(const QString &file_path)
 
         m_animation_container = std::make_unique<AnimationContainer>(m_composition.get());
         m_forced_update = true;
-        emit animation_loaded(QSize(m_composition->width(), m_composition->height()),
-                              m_composition->in_point(),
-                              m_composition->out_point(),
-                              m_composition->framerate());
+        emit animation_loaded(m_composition.get());
         m_forced_update = true;
         resize_animation(this->size());
         return true;
@@ -103,14 +103,30 @@ void AnimationWidget::slot_frame_changed(int time)
     }
 }
 
+void AnimationWidget::layer_checked(QString layer_name, bool visible)
+{
+    for (const auto &layer : m_animation_container->layers()) {
+        if (layer->name() == layer_name) {
+            layer->set_debug_visible(visible);
+            //            m_animation_container->update(m_current_frame, true);
+            update();
+        }
+    }
+}
+
 AnimationViewWidget::AnimationViewWidget(QWidget *parent)
     : m_settings("chops", "app", this)
 {
-    QVBoxLayout *main_layout = new QVBoxLayout();
+    QHBoxLayout *main_layout = new QHBoxLayout();
+    QVBoxLayout *v_layout = new QVBoxLayout();
     m_animation_widget = new AnimationWidget();
     m_timeline_widget = new TimeLineWidget();
-    main_layout->addWidget(m_animation_widget);
-    main_layout->addWidget(m_timeline_widget);
+    m_layers_view = new QListWidget(this);
+    m_layers_view->setFixedWidth(150);
+    v_layout->addWidget(m_animation_widget);
+    v_layout->addWidget(m_timeline_widget);
+    main_layout->addLayout(v_layout);
+    main_layout->addWidget(m_layers_view);
     setLayout(main_layout);
 
     connect(m_timeline_widget,
@@ -123,27 +139,46 @@ AnimationViewWidget::AnimationViewWidget(QWidget *parent)
             this,
             &AnimationViewWidget::slot_animation_loaded);
 
+    connect(m_layers_view, &QListWidget::itemChanged, this, &AnimationViewWidget::item_changed);
+
     auto last_file_opened = m_settings.value(last_file_key).toString();
     load(last_file_opened);
 }
 
 AnimationViewWidget::~AnimationViewWidget() {}
 
-void AnimationViewWidget::slot_animation_loaded(QSize size,
-                                                float in_point,
-                                                float out_point,
-                                                float framerate)
+void AnimationViewWidget::slot_animation_loaded(const Composition *comp)
 {
-    size.setWidth(std::max(size.width(), m_timeline_widget->minimumWidth()));
-    size.setHeight(size.height() + m_timeline_widget->height());
+    QSize size;
+    m_animation_widget->resize(comp->width(), comp->height());
+    size.setWidth(
+        std::max(comp->width() + m_layers_view->width(), m_timeline_widget->minimumWidth()));
+    size.setHeight(comp->height() + m_timeline_widget->minimumHeight());
     resize(size);
 
-    m_timeline_widget->set_frame_info(in_point, out_point, framerate);
+    m_timeline_widget->set_frame_info(comp->in_point(), comp->out_point(), comp->framerate());
+
+    // set list items
+    m_layers_view->clear();
+    QSignalBlocker blk(m_layers_view);
+    const Composition::LayerList &layers = comp->layers();
+    for (int i = 0; i < layers.size(); ++i) {
+        QListWidgetItem *item = new QListWidgetItem(layers[i]->name());
+        item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+        item->setCheckState(Qt::Checked);
+        m_layers_view->addItem(item);
+    }
+}
+
+void AnimationViewWidget::item_changed(QListWidgetItem *item)
+{
+    m_animation_widget->layer_checked(item->text(), item->checkState() == Qt::Checked);
 }
 
 QSize AnimationViewWidget::sizeHint() const
 {
     QSize size = m_animation_widget->minimumSizeHint();
+    size.setWidth(size.width() + m_layers_view->minimumWidth());
     size.setHeight(size.height() + m_timeline_widget->height());
     return size;
 }

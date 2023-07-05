@@ -5,6 +5,9 @@
 #include <QSettings>
 #include <QWidget>
 
+class QListWidget;
+class QListWidgetItem;
+
 namespace eao {
 class Composition;
 class AnimationContainer;
@@ -27,13 +30,11 @@ protected:
 private:
     void resize_animation(const QSize &size);
 signals:
-    void animation_loaded(QSize,
-                          float in_point,
-                          float out_point,
-                          float framerate);
+    void animation_loaded(const Composition *comp);
 
 public slots:
     void slot_frame_changed(int frame);
+    void layer_checked(QString, bool);
 
 private:
     std::unique_ptr<Composition> m_composition;
@@ -51,10 +52,9 @@ public:
     ~AnimationViewWidget();
 
 private slots:
-    void slot_animation_loaded(QSize size,
-                               float in_point,
-                               float out_point,
-                               float framerate);
+    void slot_animation_loaded(const Composition *comp);
+    void item_changed(QListWidgetItem *item);
+
 protected:
     QSize sizeHint() const override;
     void keyPressEvent(QKeyEvent *event) override;
@@ -66,6 +66,7 @@ private:
     AnimationWidget* m_animation_widget = nullptr;
     TimeLineWidget* m_timeline_widget = nullptr;
     QSettings m_settings;
+    QListWidget *m_layers_view = nullptr;
 };
 
 } // namespace eao

@@ -46,6 +46,8 @@ public:
     FrameType out_point() const { return m_out_point; }
     FrameType start_time() const { return m_start_time; }
 
+    const QString &name() const { return m_name; }
+
 public:
     QString m_name;
     int m_index;

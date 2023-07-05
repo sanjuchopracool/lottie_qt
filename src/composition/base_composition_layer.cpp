@@ -25,6 +25,9 @@ FrameType BaseCompositionLayer::local_frame(FrameType t) const
 
 void BaseCompositionLayer::draw(QPainter *painter, int alpha)
 {
+    if (!m_debug_visible)
+        return;
+
     if (m_layer_model.m_hidden || !m_visible)
         return;
 
@@ -62,6 +65,17 @@ QTransform BaseCompositionLayer::transform() const
 int BaseCompositionLayer::opacity() const
 {
     return m_transformation->opacity();
+}
+
+const QString &BaseCompositionLayer::name() const
+{
+    return m_layer_model.name();
+}
+
+void BaseCompositionLayer::set_debug_visible(bool visible)
+{
+    m_debug_visible = visible;
+    CascadeUpdateListener::on_update();
 }
 
 } // namespace eao

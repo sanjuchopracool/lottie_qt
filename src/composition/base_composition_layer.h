@@ -31,11 +31,16 @@ public:
     void set_parent_layers(std::vector<const BaseCompositionLayer*>& layers) {
         m_parents = std::move(layers);
     }
+
+    const QString &name() const;
+    void set_debug_visible(bool visible);
+
 private:
     const Layer &m_layer_model;
     std::unique_ptr<LayerTransformationNode> m_transformation;
     std::vector<const BaseCompositionLayer*> m_parents;
     bool m_visible = false;
+    bool m_debug_visible = true;
 };
 
 } // namespace eao
