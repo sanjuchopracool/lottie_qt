@@ -5,7 +5,7 @@
 
 #include <algorithm>
 #include <QDebug>
-#include <QMap>
+#include <unordered_map>
 #include <QPainter>
 
 namespace eao {
@@ -59,26 +59,42 @@ void AnimationContainer::resize(int x, int y)
 
 void AnimationContainer::load_layers()
 {
-    QMap<int, int> index_to_parent;
-    QMap<int, int> model_index_to_index;
+    std::unordered_map<int, int> local_index_to_parent_layer_index;
+    std::unordered_map<int, int> layer_index_to_local_index;
     int i = 0;
     for (const auto &layer : m_animation->layers()) {
         m_layers.emplace_back(CompositionLayerFactory::composition_layer(*layer));
         m_layers.back()->add_listener(this);
         if (layer->m_parent_index >= 0)
-            index_to_parent[i] = layer->m_parent_index;
-        model_index_to_index[layer->m_index] = i;
+            local_index_to_parent_layer_index[i] = layer->m_parent_index;
+        layer_index_to_local_index[layer->m_index] = i;
         i++;
     }
 
-    //    for (const auto &child_layer_index : index_to_parent.keys()) {
-    //        int parent_index = index_to_parent.value(child_layer_index);
-    //        int parent_layer_index = model_index_to_index.value(parent_index, -1);
-    //        if (parent_layer_index != -1 and parent_layer_index < m_layers.size()) {
-    //            //            m_layers[child_layer_index]->set_parent_transform(
-    //            //                m_layers[parent_layer_index]->transform());
-    //        }
-    //    }
+    auto get_parent_local_index = [&](int child_layer_index) {
+        auto it =  local_index_to_parent_layer_index.find(child_layer_index);
+        if (it == local_index_to_parent_layer_index.end())
+            return -1;
+
+        int parent_layer_index = it->second;
+
+        auto parent_it =  layer_index_to_local_index.find(parent_layer_index);
+        if (parent_it == layer_index_to_local_index.end())
+            return -1;
+
+        return parent_it->second;
+    };
+
+    for (int i = 0; i < m_layers.size(); ++i) {
+        std::vector<const BaseCompositionLayer*> parent_layers;
+        int parent_local_index = get_parent_local_index(i);
+        while (parent_local_index != -1 and parent_local_index < m_layers.size()) {
+            parent_layers.insert(parent_layers.begin(), m_layers[parent_local_index].get());
+            parent_local_index = get_parent_local_index(parent_local_index);
+        }
+
+        m_layers[i]->set_parent_layers(parent_layers);
+    }
 }
 
 } // namespace eao

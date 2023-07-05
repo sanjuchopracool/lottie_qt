@@ -29,6 +29,10 @@ void BaseCompositionLayer::draw(QPainter *painter, int alpha)
         return;
 
     painter->save();
+    for (const auto *layer : m_parents) {
+        painter->setTransform(layer->transform(), true);
+    }
+
     painter->setTransform(m_transformation->transform(), true);
     draw_layer(painter, alpha);
     painter->restore();

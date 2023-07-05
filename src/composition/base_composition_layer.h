@@ -28,9 +28,13 @@ public:
     QTransform transform() const;
     int opacity() const;
 
+    void set_parent_layers(std::vector<const BaseCompositionLayer*>& layers) {
+        m_parents = std::move(layers);
+    }
 private:
     const Layer &m_layer_model;
     std::unique_ptr<LayerTransformationNode> m_transformation;
+    std::vector<const BaseCompositionLayer*> m_parents;
 };
 
 } // namespace eao
